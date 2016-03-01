@@ -2,24 +2,29 @@
 	X posiiton verticale , Y posiiton horisontale
 */
   function initScene() {
-     initBackground()
    }
 
 	function initBackground(pX , pY) {
-     allert("initBackground")
    }
 
    function drawFloor(pX , pY) {
-     allert("dessinerPlancher")
+     context.save()
+     context.fillStyle = 'green'
      context.rect( pX  ,pX , 60 , 60)
-     context.rect( pX  ,pX , 20 , 20)
+     context.rect( pX+20  ,pX+20 , 20 , 20)
+     context.restore()
+     console.log("florr")
    }
 
    function drawStair(pX , pY) {
-     allert("drawStair")
+     context.save()
+     context.fillStyle = 'blue'
+     context.rect( pX  ,pX , 240 , 120)
+     context.rect( pX  ,pX+40 , 160 , 50)
+     context.rect( pX+60  ,pX+40 , 160 , 50)
+     context.restore()
    }
 
    function drawBomb(pX , pY) {
-     allert("drawBomb")
    }
 

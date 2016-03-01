@@ -21,6 +21,12 @@ function initAnimation() {
 }
 
 function initWalls() {
+	var points = [{x:100, y:100}, {x:160, y:100}, {x:200, y:260}]
+
+	for(var i = 0; i < points.length; i++) {
+	   drawFloor(points[i].x , points[i].y)         
+	}
+
 }
 
 function initLadders() {
