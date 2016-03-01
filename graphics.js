@@ -10,33 +10,24 @@
   //ajoute des points pour créer une ligne de plancher horisontale
    function pushArrayFloor(pArr,pX, pY, nbRep) {
      for (var i = 0; i < nbRep; i++) {
-      pArr.push( {x:pX+(i*4), y:pY} )
-     }
-   }
-   //décupler les planchers symétriques
-   function duplArrayFloorSym(pArr) {
-    var originals = pArr
-
-     for (var i = 0; i < originals; i++) {
-      pArr.push( {x:365-(originals[i].x-originals[i].nbRep), y:originals[i].y ,nbRep:originals[i].nbRep} )
+      pArr.push( {x:pX+(i*2), y:pY} )
      }
    }
    function drawFloor(pX , pY) {
      context.beginPath();
      context.fillStyle = '#6dac49'
-     //context.strokeStyle = '#6dac49'
-     context.rect( pX*dimPx  ,pY*dimPx , 4*dimPx , 6*dimPx)
+     context.rect( pX*dimPx  ,pY*dimPx , 2*dimPx , 3*dimPx)
      context.fill()
 
      context.beginPath()
      context.fillStyle = 'black'
-     context.rect( (pX+2)*dimPx ,(pY+2)*dimPx , 2*dimPx , 2*dimPx)
+     context.rect( (pX*dimPx) +dimPx  ,(pY*dimPx)+dimPx , dimPx , dimPx)
      context.fill()
    }
-   //ajoute les points nécessaires pour créer une échelle verticale
+   //ajoute des points pour créer une échelle verticale
    function pushArrayLadders(pArr,pX, pY, nbRep) {
      for (var i = 0; i < nbRep; i++) {
-      pArr.push( {x:pX, y:pY+(pY-(178-pY) ) } )
+      pArr.push( {x:pX, y:pY+(i*4) } )
      }
    }
 
@@ -44,9 +35,9 @@
      
      context.beginPath()
      context.fillStyle = '#3a36a3'
-     context.rect( (pX*dimPx)   , (pY)*dimPx   , 4*dimPx   , 8*dimPx)
-     context.rect( (pX+2)*dimPx , (pY+4)*dimPx , 10*dimPx , dimPx)
-     context.rect( (pX+12)*dimPx , (pY)*dimPx   , 4*dimPx  , 8*dimPx)
+     context.rect( (pX*dimPx)   , (pY)*dimPx   , 2*dimPx   , 4*dimPx)
+     context.rect( (pX+1)*dimPx , (pY+2)*dimPx , 5*dimPx , dimPx)
+     context.rect( (pX+6)*dimPx , (pY)*dimPx   , 2*dimPx  , 4*dimPx)
      context.fill()
    }
 
@@ -141,20 +132,30 @@
    function drawJumpManLeft(pX , pY) {
      context.save()
      
-     var head = []
-     var body = []
-     var hand = []
-     var leg = []
-     var feet = []
+     var jumpMan = 
+         [
+             [(x : 9, length : 5)]
+            ,[(x : 7, length : 4), (x : 14, length : 2)]
+            ,[(x : 4, length : 10)]
+            ,[(x : 3, length : 2),(x : 7 , length : 4) ]
+            ,[(x : 3, length : 2),(x : 7, length : 4)]
+            ,[(x : 7, length : 4)]
+            ,[(x : 5, length : 10)]
+            ,[(x : 3, length : 2),(x :13 , length : 2)]
+            ,[(x : 1, length : 2),(x : 13, length : 16)]
+         ]
      
      pX *= dimPx;pY *= dimPx
      
      context.fillStyle = 'green'
      
-     for(var i = 0; i < rope.length; i++)
-        for(var j = 0; j < rope[i].length;j++)
-            if(rope[i][j])
-                context.fillRect(pX+(j*dimPx) ,pY+(i*dimPx) , dimPx , dimPx)
+     for(var i = 0; i < jumpMan.length; i++) {
+        for(var j = 0; j < jumpMan[i].length;j++) {
+           // if(jumpMan[i][j]) {
+            //    context.fillRect(pX+(j*dimPx) ,pY+(i*dimPx) , dimPx , dimPx)
+            //}
+        }
+     }
                 
      context.restore()
    }
