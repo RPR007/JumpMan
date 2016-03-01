@@ -12,7 +12,7 @@ decors.arrRopes = []
 function initGame() {
      canvas =  document.getElementById('canJumpMan')
      context = canvas.getContext('2d')
-     dimPx = 9
+     dimPx = 4.5
      width = canvas.width
      height = canvas.height
      initAnimation()
@@ -70,7 +70,12 @@ function initRopes() {
 }
 
 function initJumpMan() {
-    
+    var points = [{x:80, y:20}]
+
+	for(var i = 0; i < points.length; i++) {
+	   console.log(points[i].x + "," + points[i].y)
+	   drawJumpMan(points[i].x , points[i].y)         
+	}
 }
 
 function initBombs() {
