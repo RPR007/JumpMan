@@ -6,11 +6,11 @@
    }
 
 	function initBackground(pX , pY) {
-     console.log("initBackground")
+     alert("initBackground")
    }
 
    function drawFloor(pX , pY) {
-     console.log("dessinerPlancher")
+     alert("dessinerPlancher")
      context.rect( pX  ,pX , 60 , 60)
      context.rect( pX  ,pX , 20 , 20)
    }
