@@ -1,41 +1,27 @@
 /*
 	X posiiton verticale , Y posiiton horisontale
 */
-    var canvas = null
-    var context = null
-    var height  = null
-    var width  = null
-
-   function initGame() {
-     canvas =  document.getElementById('canJumpMan')
-     context = canvas.getContext('2d')
-     width = canvas.width
-     height = canvas.height
-     
-     //alert("initGame")
-   }
-
    function keyDown() {
-     allert("keyDown")
+     console.log("keyDown")
    }
 
    function keyUp() {
-     alert("keyUp")
+     console.log("keyUp")
    }
 
 	function fn1() {
-     alert("fn1")
+     console.log("fn1")
    }
 
    function fn2() {
-     alert("fn2")
+     console.log("fn2")
    }
 
    function fn3() {
-     alert("fn3")
+     console.log("fn3")
    }
 
    function fn4() {
-     alert("fn4")
+     console.log("fn4")
    }
 
