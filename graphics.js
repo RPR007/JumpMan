@@ -9,19 +9,19 @@
 
    function drawFloor(pX , pY) {
      context.save()
-     context.fillStyle = 'green'
-     context.rect( pX  ,pX , 60 , 60)
-     context.rect( pX+20  ,pX+20 , 20 , 20)
+     context.strokeStyle = 'green'
+     context.strokeRect( pX  ,pX , 60 , 60)
+     context.strokeRect( pX+20  ,pX+20 , 20 , 20)
      context.restore()
      console.log("florr")
    }
 
-   function drawStair(pX , pY) {
+   function drawLadders(pX , pY) {
      context.save()
-     context.fillStyle = 'blue'
-     context.rect( pX  ,pX , 240 , 120)
-     context.rect( pX  ,pX+40 , 160 , 50)
-     context.rect( pX+60  ,pX+40 , 160 , 50)
+     context.strokeStyle = 'blue'
+     context.strokeRect( pX  ,pX , 240 , 120)
+     context.strokeRect( pX  ,pX+40 , 160 , 50)
+     context.strokeRect( pX+60  ,pX+40 , 160 , 50)
      context.restore()
    }
 
