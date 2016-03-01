@@ -8,9 +8,23 @@
   
   }
   //ajoute des points pour créer une ligne de plancher horisontale
+<<<<<<< HEAD
    function pushArrayFloor(pArr,pX, pY, nbRep) {
      for (var i = 0; i < nbRep; i++) {
       pArr.push( {x:pX+(i*2), y:pY} )
+=======
+   function pushArrayFloor(pArr,  pFloor ){
+     for (var i = 0; i < pFloor.nbRep; i++) {
+      pArr.push( {x:pFloor.x+(i*4), y:pFloor.y } )
+     }
+   }
+   //répliquer les planchers symétriques
+   function duplArrayFloorSym(pArr) {
+   originals = pArr
+   var length = originals.length
+     for (var i = 0; i < length; i++) {
+      pArr.push( {x:356-(originals[i].x+originals[i].nbRep*4) , y:originals[i].y ,nbRep:originals[i].nbRep} )
+>>>>>>> dc611d507971f61eee3ccdf9619d4d7bf4d74730
      }
    }
    function drawFloor(pX , pY) {
@@ -24,21 +38,36 @@
      context.rect( (pX*dimPx) +dimPx  ,(pY*dimPx)+dimPx , dimPx , dimPx)
      context.fill()
    }
+   
    //ajoute des points pour créer une échelle verticale
    function pushArrayLadders(pArr,pX, pY, nbRep) {
      for (var i = 0; i < nbRep; i++) {
       pArr.push( {x:pX, y:pY+(i*4) } )
+
+   //répliquer les planchers symétriques
+   function duplArrayLadders(pArr) {
+   originals = pArr
+   var length = originals.length
+     for (var i = 0; i < length; i++) {
+      pArr.push( {x:356-(originals[i].x+originals[i].nbRep*4) , y:originals[i].y ,nbRep:originals[i].nbRep} )
+     }
+   }
+   //ajoute les points nécessaires pour créer une échelle verticale
+   function pushArrayLadders(pArr,pLadder) {
+     for (var i = 0; i < pLadder.nbRep; i++) {
+      pArr.push( {x:pLadder.x, y:pLadder.y+(i*4) } )
+      console.log("echelles: "+i)
      }
    }
 
    function drawLadders(pX , pY) {
-     
      context.beginPath()
      context.fillStyle = '#3a36a3'
      context.rect( (pX*dimPx)   , (pY)*dimPx   , 2*dimPx   , 4*dimPx)
      context.rect( (pX+1)*dimPx , (pY+2)*dimPx , 5*dimPx , dimPx)
      context.rect( (pX+6)*dimPx , (pY)*dimPx   , 2*dimPx  , 4*dimPx)
      context.fill()
+     console.log("drawLadders")
    }
 
 
