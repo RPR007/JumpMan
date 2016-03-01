@@ -1,30 +1,24 @@
 /*
 	X posiiton verticale , Y posiiton horisontale
 */
-  function initScene() {
+   function initScene() {
+     initBackground()
    }
 
 	function initBackground(pX , pY) {
+     console.log("initBackground")
    }
 
    function drawFloor(pX , pY) {
-     context.save()
-     context.strokeStyle = 'green'
-     context.strokeRect( pX  ,pX , 60 , 60)
-     context.strokeRect( pX+20  ,pX+20 , 20 , 20)
-     context.restore()
-     console.log("florr")
+     console.log("dessinerPlancher")
+     context.rect( pX  ,pX , 60 , 60)
+     context.rect( pX  ,pX , 20 , 20)
    }
 
-   function drawLadders(pX , pY) {
-     context.save()
-     context.strokeStyle = 'blue'
-     context.strokeRect( pX  ,pX , 240 , 120)
-     context.strokeRect( pX  ,pX+40 , 160 , 50)
-     context.strokeRect( pX+60  ,pX+40 , 160 , 50)
-     context.restore()
+   function drawStair(pX , pY) {
+     alert("drawStair")
    }
 
    function drawBomb(pX , pY) {
+     alert("drawBomb")
    }
-
