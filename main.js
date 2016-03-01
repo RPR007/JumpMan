@@ -47,7 +47,7 @@ function initFloor() {
 function initLadders() {
     var arrLadders = []
 
-    for(var i = 0; i < arrFloor.length; i++) {
+    for(var i = 0; i < arrLadders.length; i++) {
        drawFloor(arrLadders[i].x , arrLadders[i].y)         
     }
 }
