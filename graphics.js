@@ -33,11 +33,7 @@
    function drawBomb(pX , pY) {
     console.log("alex")
    }
-<<<<<<< HEAD
    
    function test() {
        
    }
-=======
-
->>>>>>> 6187449c929b092aac709c8ed97e3f61d6a04298
