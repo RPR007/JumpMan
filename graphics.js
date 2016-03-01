@@ -24,14 +24,21 @@
      context.rect( (pX*dimPx) +dimPx  ,(pY*dimPx)+dimPx , dimPx , dimPx)
      context.fill()
    }
+   //ajoute des points pour créer une échelle verticale
+   function pushArrayLadders(pArr,pX, pY, nbRep) {
+     for (var i = 0; i < nbRep; i++) {
+      pArr.push( {x:pX, y:pY+(i*4) } )
+     }
+   }
 
    function drawLadders(pX , pY) {
-     context.save()
-     context.strokeStyle = 'blue'
-     context.strokeRect( pX  ,pX , 240 , 120)
-     context.strokeRect( pX  ,pX+40 , 160 , 50)
-     context.strokeRect( pX+60  ,pX+40 , 160 , 50)
-     context.restore()
+     
+     context.beginPath()
+     context.fillStyle = '#3a36a3'
+     context.rect( (pX*dimPx)   , (pY)*dimPx   , 2*dimPx   , 4*dimPx)
+     context.rect( (pX+1)*dimPx , (pY+2)*dimPx , 5*dimPx , dimPx)
+     context.rect( (pX+6)*dimPx , (pY)*dimPx   , 2*dimPx  , 4*dimPx)
+     context.fill()
    }
 
 
