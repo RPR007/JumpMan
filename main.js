@@ -22,13 +22,26 @@ function initAnimation() {
     initBombs()
 }
 
-function initWalls() {
-	var points = [{x:100, y:100}, {x:160, y:100}, {x:200, y:260}]
+function initFloor() {
+	
+    var arrFloor = []
+    //top left floor
+    pushArrayFloor(arrFloor,3, 11, 8)
+    //center top left floor
+    //arrFloor.push({x:28, y:3}, {x:28, y:5}, {x:28, y:7})
+    /*middle-top left floor
+    arrFloor.push({x:100, y:100}, {x:160, y:100}, {x:200, y:260})
+    //middle-btm left floor
+    arrFloor.push({x:100, y:100}, {x:160, y:100}, {x:200, y:260})
+    //btm-top left floor
+    arrFloor.push({x:100, y:100}, {x:160, y:100}, {x:200, y:260})
+    //btm-btm left floor
+    arrFloor.push({x:100, y:100}, {x:160, y:100}, {x:200, y:260})
+    */
 
-	for(var i = 0; i < points.length; i++) {
-	   drawFloor(points[i].x , points[i].y)         
+    for(var i = 0; i < arrFloor.length; i++) {
+	   drawFloor(arrFloor[i].x , arrFloor[i].y)         
 	}
-
 }
 
 function initLadders() {
