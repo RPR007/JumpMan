@@ -24,32 +24,37 @@ function initAnimation() {
 
 function initFloor() {
 	
-    var arrFloor = []
+    var arrFloors = []
     //top left floor
-    pushArrayFloor(arrFloor,3, 11, 8)
-    //center top left floor
-    //arrFloor.push({x:28, y:3}, {x:28, y:5}, {x:28, y:7})
-    /*middle-top left floor
-    arrFloor.push({x:100, y:100}, {x:160, y:100}, {x:200, y:260})
-    //middle-btm left floor
-    arrFloor.push({x:100, y:100}, {x:160, y:100}, {x:200, y:260})
-    //btm-top left floor
-    arrFloor.push({x:100, y:100}, {x:160, y:100}, {x:200, y:260})
-    //btm-btm left floor
-    arrFloor.push({x:100, y:100}, {x:160, y:100}, {x:200, y:260})
-    */
 
-    for(var i = 0; i < arrFloor.length; i++) {
-	   drawFloor(arrFloor[i].x , arrFloor[i].y)         
+    pushArrayFloor(arrFloors,3, 11, 15)
+    //center top left floor
+    //arrFloors.push({x:28, y:3}, {x:28, y:5}, {x:28, y:7})
+    /*middle-top left floor
+    arrFloors.push({x:100, y:100}, {x:160, y:100}, {x:200, y:260})
+    //middle-btm left floor
+    arrFloors.push({x:100, y:100}, {x:160, y:100}, {x:200, y:260})
+    //btm-top left floor
+    arrFloors.push({x:100, y:100}, {x:160, y:100}, {x:200, y:260})
+    //btm-btm left floor
+    arrFloors.push({x:100, y:100}, {x:160, y:100}, {x:200, y:260})
+    */
+    context.save()
+    for(var i = 0; i < arrFloors.length; i++) {
+	   drawFloor(arrFloors[i].x , arrFloors[i].y)         
 	}
+    context.restore()
 }
 
 function initLadders() {
     var arrLadders = []
+    pushArrayLadders(arrLadders , 10, 10, 9)
 
+    context.save()
     for(var i = 0; i < arrLadders.length; i++) {
-       drawFloor(arrLadders[i].x , arrLadders[i].y)         
+       drawLadders(arrLadders[i].x , arrLadders[i].y)         
     }
+    context.restore()
 }
 
 function initRopes() {
