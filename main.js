@@ -27,32 +27,50 @@ function initAnimation() {
 }
 
 function initFloor() {
-	
-    var arrFloors = []
     //top left floor
-    pushArrayFloor(arrFloors,3, 11, 15)
     //center top left floor
-    //arrFloors.push({x:28, y:3}, {x:28, y:5}, {x:28, y:7})
+
     /*middle-top left floor
-    arrFloors.push({x:100, y:100}, {x:160, y:100}, {x:200, y:260})
+
     //middle-btm left floor
-    arrFloors.push({x:100, y:100}, {x:160, y:100}, {x:200, y:260})
+
     //btm-top left floor
-    arrFloors.push({x:100, y:100}, {x:160, y:100}, {x:200, y:260})
+
     //btm-btm left floor
-    arrFloors.push({x:100, y:100}, {x:160, y:100}, {x:200, y:260})
     */
+    //decors.arrLadders.push({x:50,  y:50,  nbRep:5})
+    //decors.arrLadders.push({x:150, y:75,  nbRep:10})
+    decors.arrLadders.push({x:190, y:75, nbRep:7})
+
+    //duplArrayLaddersSym(decors.arrFloors)
+
+    // créer les morceaux individuels
+    var arrPointsFloors = []
+    for (var i = 0 ; i<decors.arrFloors.length ; i++) {
+        pushArrayFloor(arrPointsFloors , decors.arrFloors[i].x , decors.arrFloors[i].y, decors.arrFloors[i].nbRep) 
+        console.log("test"+decors.arrFloors[i].nbRep)
+    }
+    console.log("hello")
+    //dessiner les morceaux individuels
     context.save()
-    for(var i = 0; i < arrFloors.length; i++) {
-	   drawFloor(arrFloors[i].x , arrFloors[i].y)         
+    for(var i = 0; i < arrPointsFloors.length; i++) {
+	   drawFloor(arrPointsFloors[i].x , arrPointsFloors[i].y)         
 	}
     context.restore()
 }
 
 function initLadders() {
-    var arrPointsLadders = []
-    pushArrayLadders(arrPointsLadders , 10, 10, 9)
+    decors.arrLadders.push({x:50,  y:50,  nbRep:5})
+    //decors.arrLadders.push({x:100, y:75,  nbRep:10})
+    //decors.arrLadders.push({x:300, y:300, nbRep:7})
+    //créer les obj échelles
 
+    // créer les morceaux individuels
+    var arrPointsLadders = []
+    for (var i = 0 ; i<decors.arrLadders.length ; i++) {
+        pushArrayLadders(arrPointsLadders , decors.arrLadders[i].x , decors.arrLadders[i].y, decors.arrLadders[i].nbRep) 
+    }
+    //dessiner les morceaux individuels
     context.save()
     for(var i = 0; i < arrPointsLadders.length; i++) {
        drawLadders(arrPointsLadders[i].x , arrPointsLadders[i].y)         
