@@ -39,10 +39,10 @@ function initFloor() {
     //btm-btm left floor
     */
     //decors.arrLadders.push({x:50,  y:50,  nbRep:5})
-    //decors.arrLadders.push({x:150, y:75,  nbRep:10})
-    decors.arrLadders.push({x:190, y:75, nbRep:7})
+    decors.arrFloors.push({x:5, y:22,  nbRep:10})
+    decors.arrFloors.push({x:5, y:75, nbRep:7})
 
-    //duplArrayLaddersSym(decors.arrFloors)
+    duplArrayFloorSym(decors.arrFloors)
 
     // créer les morceaux individuels
     var arrPointsFloors = []
