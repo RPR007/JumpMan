@@ -4,6 +4,10 @@ var context = null
 var dimPx = null
 var height  = null
 var width  = null
+var decors = new Object()
+decors.arrLadders = []
+decors.arrFloors = []
+decors.arrRopes = []
 
 function initGame() {
      canvas =  document.getElementById('canJumpMan')
@@ -26,7 +30,6 @@ function initFloor() {
 	
     var arrFloors = []
     //top left floor
-
     pushArrayFloor(arrFloors,3, 11, 15)
     //center top left floor
     //arrFloors.push({x:28, y:3}, {x:28, y:5}, {x:28, y:7})
@@ -47,12 +50,12 @@ function initFloor() {
 }
 
 function initLadders() {
-    var arrLadders = []
-    pushArrayLadders(arrLadders , 10, 10, 9)
+    var arrPointsLadders = []
+    pushArrayLadders(arrPointsLadders , 10, 10, 9)
 
     context.save()
-    for(var i = 0; i < arrLadders.length; i++) {
-       drawLadders(arrLadders[i].x , arrLadders[i].y)         
+    for(var i = 0; i < arrPointsLadders.length; i++) {
+       drawLadders(arrPointsLadders[i].x , arrPointsLadders[i].y)         
     }
     context.restore()
 }

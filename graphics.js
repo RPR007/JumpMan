@@ -10,18 +10,26 @@
   //ajoute des points pour créer une ligne de plancher horisontale
    function pushArrayFloor(pArr,pX, pY, nbRep) {
      for (var i = 0; i < nbRep; i++) {
-      pArr.push( {x:pX+(i*2), y:pY} )
+      pArr.push( {x:pX+(i*4), y:pY} )
+     }
+   }
+   //décupler les floors symétriques
+   function dupArrayFloorSym(pArr) {
+    var originals = pArr
+
+     for (var i = 0; i < originals; i++) {
+      pArr.push( {x:pX+(i*4), y:pY} )
      }
    }
    function drawFloor(pX , pY) {
      context.beginPath();
      context.fillStyle = '#6dac49'
-     context.rect( pX*dimPx  ,pY*dimPx , 2*dimPx , 3*dimPx)
+     context.rect( pX*dimPx  ,pY*dimPx , 4*dimPx , 6*dimPx)
      context.fill()
 
      context.beginPath()
      context.fillStyle = 'black'
-     context.rect( (pX*dimPx) +dimPx  ,(pY*dimPx)+dimPx , dimPx , dimPx)
+     context.rect( (pX+2)*dimPx ,(pY+2)*dimPx , 2*dimPx , 2*dimPx)
      context.fill()
    }
    //ajoute des points pour créer une échelle verticale
@@ -35,9 +43,9 @@
      
      context.beginPath()
      context.fillStyle = '#3a36a3'
-     context.rect( (pX*dimPx)   , (pY)*dimPx   , 2*dimPx   , 4*dimPx)
-     context.rect( (pX+1)*dimPx , (pY+2)*dimPx , 5*dimPx , dimPx)
-     context.rect( (pX+6)*dimPx , (pY)*dimPx   , 2*dimPx  , 4*dimPx)
+     context.rect( (pX*dimPx)   , (pY)*dimPx   , 4*dimPx   , 8*dimPx)
+     context.rect( (pX+2)*dimPx , (pY+4)*dimPx , 10*dimPx , dimPx)
+     context.rect( (pX+12)*dimPx , (pY)*dimPx   , 4*dimPx  , 8*dimPx)
      context.fill()
    }
 
