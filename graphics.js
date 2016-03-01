@@ -53,7 +53,7 @@
      for(var i = 0; i < rope.length; i++)
         for(var j = 0; j < rope[i].length;j++)
             if(rope[i][j])
-                context.fillRect(pX+(j*dimPx) ,pY+(i*dimPx) , dimPx , dimPx)
+                context.fillRect(pX+(j*(dimPx*2)) ,pY+(i*(dimPx*2)) , (dimPx*2) , (dimPx*2))
                 
      context.restore()
    }
@@ -76,34 +76,55 @@
      
      // tete
      context.fillStyle = 'white'
-     for(var i = 0; i < head.length; i++)
-        for(var j = 0; j < head[i].length;j++)
-            if(head[i][j])
+     context.strokeStyle = 'white'
+     context.lineWidth = 1
+     for(var i = 0; i < head.length; i++) {
+        for(var j = 0; j < head[i].length;j++) {
+            if(head[i][j]) {
                 context.fillRect(pX+(j*dimPx) ,pY+(i*dimPx) , dimPx , dimPx)
+                context.strokeRect(pX+(j*dimPx)+1 ,pY+(i*dimPx)+1 , dimPx-1 , dimPx-1)
+            }
+        }
+     }
         
      // corps
      pY += (2*dimPx) 
      context.fillStyle = 'brown'
-     for(var i = 0; i < body.length; i++)
-        for(var j = 0; j < body[i].length;j++)
-            if(body[i][j])
+     context.strokeStyle = 'brown'
+     for(var i = 0; i < body.length; i++) {
+        for(var j = 0; j < body[i].length;j++) {
+            if(body[i][j]) {
                 context.fillRect(pX+(j*dimPx) ,pY+(i*dimPx) , dimPx , dimPx)
+                context.strokeRect(pX+(j*dimPx)+1 ,pY+(i*dimPx)+1 , dimPx-1 , dimPx-1)
+            }
+        }
+     }
                
      // jambe
      pY += (3*dimPx) 
      context.fillStyle = 'purple'
-     for(var i = 0; i < leg.length; i++)
-        for(var j = 0; j < leg[i].length;j++)
-            if(leg[i][j])
+     context.strokeStyle = 'purple'
+     for(var i = 0; i < leg.length; i++) {
+        for(var j = 0; j < leg[i].length;j++) {
+            if(leg[i][j]) {
                 context.fillRect(pX+(j*dimPx) ,pY+(i*dimPx) , dimPx , dimPx)
+                context.strokeRect(pX+(j*dimPx)+1 ,pY+(i*dimPx)+1 , dimPx-1 , dimPx-1)
+            }
+        }
+     }
                 
      // pied
      pY += (4*dimPx)
      context.fillStyle = 'white'
-     for(var i = 0; i < feet.length; i++)
-        for(var j = 0; j < feet[i].length;j++)
-            if(feet[i][j])
-                context.fillRect(pX+(j*dimPx) ,pY+(i*dimPx) , dimPx , dimPx) 
+     context.strokeStyle = 'white'
+     for(var i = 0; i < feet.length; i++) {
+        for(var j = 0; j < feet[i].length;j++) {
+            if(feet[i][j]) {
+                context.fillRect(pX+(j*dimPx) ,pY+(i*dimPx) , dimPx , dimPx)
+                context.strokeRect(pX+(j*dimPx)+1 ,pY+(i*dimPx)+1 , dimPx-1 , dimPx-1)
+            }
+        }
+     }
                 
      context.restore()
    }
@@ -157,11 +178,15 @@
      pX *= dimPx;pY *= dimPx
      
      context.fillStyle = 'brown'
-     
-     for(var i = 0; i < bomb.length; i++)
-        for(var j = 0; j < bomb[i].length;j++)
-            if(bomb[i][j])
-                context.fillRect(pX+(j*dimPx) ,pY+(i*dimPx) , dimPx , dimPx)
+     context.strokeStyle = 'brown'
+     for(var i = 0; i < bomb.length; i++) {
+        for(var j = 0; j < bomb[i].length;j++) {
+            if(bomb[i][j]) {
+                context.fillRect(pX+(j*(dimPx*2)) ,pY+(i*(dimPx*2)) , (dimPx*2) , (dimPx*2))
+                context.strokeRect(pX+(j*(dimPx*2))+1 ,pY+(i*(dimPx*2))+1 , (dimPx*2)-1 , (dimPx*2)-1)
+            }
+        }
+     }
                 
      context.restore()
    }
