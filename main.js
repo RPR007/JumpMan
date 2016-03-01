@@ -44,9 +44,10 @@ function initJumpMan() {
 }
 
 function initBombs() {
-    var points = [{x:500, y:500}, {x:560, y:500}, {x:600, y:660}]
+    var points = [{x:50, y:50}, {x:75, y:75}, {x:97, y:97}]
 
 	for(var i = 0; i < points.length; i++) {
-	   drawFloor(points[i].x , points[i].y)         
+	   console.log(points[i].x + "," + points[i].y)
+	   drawBomb(points[i].x , points[i].y)         
 	}
 }
