@@ -3,12 +3,24 @@
 */
     var canvas = null
     var context = null
-    var height  = null
-    var width  = null
 
-   function initGame() {
+   function initCore() {
      canvas =  document.getElementById('canJumpMan')
      context = canvas.getContext('2d')
+
+
+        objDimentions = new Object()
+        objDimentions.width = canvas.width
+        objDimentions.height = canvas.height
+        objDimentions.largeurEchelle = 0
+        objDimentions.hauteurEchelle = 0
+        objDimentions.largeurMur = 0
+        objDimentions.hauteurMur = 0
+        objDimentions.largeurEchelle = 0
+        objDimentions.largeurEchelle = 0;
+        objDimentions.largeurEchelle = 0;
+
+
      width = canvas.width
      height = canvas.height
      
