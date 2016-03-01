@@ -15,7 +15,7 @@ function initGame() {
 }
 
 function initAnimation() {
-    initWalls()
+    initFloor()
     initLadders()
     initRopes()
     initJumpMan()
@@ -45,7 +45,11 @@ function initFloor() {
 }
 
 function initLadders() {
-    
+    var arrLadders = []
+
+    for(var i = 0; i < arrFloor.length; i++) {
+       drawFloor(arrLadders[i].x , arrLadders[i].y)         
+    }
 }
 
 function initRopes() {

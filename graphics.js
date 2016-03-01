@@ -8,7 +8,7 @@
   
   }
   //ajoute des points pour créer une ligne de plancher horisontale
-   function drawArrayFloor(pArr,pX, pY, nbRep) {
+   function pushArrayFloor(pArr,pX, pY, nbRep) {
      for (var i = 0; i < nbRep; i++) {
       pArr.push( {x:pX+(i*2), y:pY} )
      }
@@ -35,18 +35,5 @@
    }
 
    function drawBomb(pX , pY) {
-     context.save()
-     
-     var bomb = [[false,true,true,false],[true,false,false,true],[false,true,true,false]]
-     pX *= dimPx;pY *= dimPx
-     
-     context.strokeStyle = 'brown'
-     context.fillStyle = 'brown'
-     
-     for(var i = 0; i < bomb.length; i++)
-        for(var j = 0; j < bomb[i].length;j++)
-            if(bomb[i][j])
-                context.fillRect(pX+(j*dimPx) ,pY+(i*dimPx) , dimPx , dimPx)
-                
-     context.restore()
+    console.log("alex 2")
    }
