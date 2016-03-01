@@ -31,7 +31,7 @@
    }
 
    function drawBomb(pX , pY) {
-    console.log("alex")
+    console.log("alex 2")
    }
    
    function test() {
