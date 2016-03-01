@@ -1,21 +1,27 @@
 /*
-  X posiiton verticale , Y posiiton horisontale
+  X posiiton horisontale , Y posiiton verticale 
 */
   function initScene() {
    }
 
   function initBackground(pX , pY) {
+  
+  }
+  //ajoute des points pour créer une ligne de plancher horisontale
+   function drawArrayFloor(pArr,pX, pY, nbRep) {
+     for (var i = 0; i < nbRep; i++) {
+      pArr.push( {x:pX+(i*2), y:pY} )
+     }
    }
-
    function drawFloor(pX , pY) {
      context.beginPath();
-     context.fillStyle = 'green'
-     context.rect( pX  ,pX , 20 , 20)
+     context.fillStyle = '6dac49'
+     context.rect( pX*dimPx  ,pY*dimPx , 2*dimPx , 3*dimPx)
      context.fill()
 
      context.beginPath()
-     context.fillStyle = 'blue'
-     context.rect( pX+10  ,pX+5 , 10 , 10)
+     context.fillStyle = 'black'
+     context.rect( (pX*dimPx) +dimPx  ,(pY*dimPx)+dimPx , dimPx , dimPx)
      context.fill()
    }
 
