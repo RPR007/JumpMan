@@ -35,5 +35,18 @@
    }
 
    function drawBomb(pX , pY) {
-    console.log("alex 2")
+    context.save()
+     
+     var bomb = [[false,true,true,false],[true,false,false,true],[false,true,true,false]]
+     pX *= dimPx;pY *= dimPx
+     
+     context.strokeStyle = 'brown'
+     context.fillStyle = 'brown'
+     
+     for(var i = 0; i < bomb.length; i++)
+        for(var j = 0; j < bomb[i].length;j++)
+            if(bomb[i][j])
+                context.fillRect(pX+(j*dimPx) ,pY+(i*dimPx) , dimPx , dimPx)
+                
+     context.restore()
    }
