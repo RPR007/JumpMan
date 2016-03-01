@@ -1,12 +1,14 @@
 
 var canvas = null
 var context = null
+var dimPx = null
 var height  = null
 var width  = null
 
 function initGame() {
      canvas =  document.getElementById('canJumpMan')
      context = canvas.getContext('2d')
+     dimPx = 9
      width = canvas.width
      height = canvas.height
      initAnimation()
@@ -17,7 +19,7 @@ function initAnimation() {
     initLadders()
     initRopes()
     initJumpMan()
-    
+    initBombs()
 }
 
 function initWalls() {
@@ -42,5 +44,9 @@ function initJumpMan() {
 }
 
 function initBombs() {
-    
+    var points = [{x:500, y:500}, {x:560, y:500}, {x:600, y:660}]
+
+	for(var i = 0; i < points.length; i++) {
+	   drawFloor(points[i].x , points[i].y)         
+	}
 }
