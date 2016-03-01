@@ -8,11 +8,7 @@
   
   }
   //ajoute des points pour créer une ligne de plancher horisontale
-<<<<<<< HEAD
-   function pushArrayFloor(pArr,pX, pY, nbRep) {
-     for (var i = 0; i < nbRep; i++) {
-      pArr.push( {x:pX+(i*2), y:pY} )
-=======
+
    function pushArrayFloor(pArr,  pFloor ){
      for (var i = 0; i < pFloor.nbRep; i++) {
       pArr.push( {x:pFloor.x+(i*4), y:pFloor.y } )
@@ -24,7 +20,6 @@
    var length = originals.length
      for (var i = 0; i < length; i++) {
       pArr.push( {x:356-(originals[i].x+originals[i].nbRep*4) , y:originals[i].y ,nbRep:originals[i].nbRep} )
->>>>>>> dc611d507971f61eee3ccdf9619d4d7bf4d74730
      }
    }
    function drawFloor(pX , pY) {
@@ -38,11 +33,6 @@
      context.rect( (pX*dimPx) +dimPx  ,(pY*dimPx)+dimPx , dimPx , dimPx)
      context.fill()
    }
-   
-   //ajoute des points pour créer une échelle verticale
-   function pushArrayLadders(pArr,pX, pY, nbRep) {
-     for (var i = 0; i < nbRep; i++) {
-      pArr.push( {x:pX, y:pY+(i*4) } )
 
    //répliquer les planchers symétriques
    function duplArrayLadders(pArr) {
@@ -161,7 +151,7 @@
    function drawJumpManLeft(pX , pY) {
      context.save()
      
-     var jumpMan = 
+   /*  var jumpMan = 
          [
              [(x : 9, length : 5)]
             ,[(x : 7, length : 4), (x : 14, length : 2)]
@@ -185,7 +175,7 @@
             //}
         }
      }
-                
+                */
      context.restore()
    }
    
