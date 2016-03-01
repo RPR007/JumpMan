@@ -8,17 +8,15 @@
    }
 
    function drawFloor(pX , pY) {
-     context.save()
-     context.strokeStyle = 'green'
+     context.beginPath();
      context.fillStyle = 'green'
      context.rect( pX  ,pX , 20 , 20)
-     context.strokeRect( pX  ,pX , 20 , 20)
-     context.strokeStyle = 'blue'
-     context.fillStyle = 'blue'
-     context.rect( pX+5  ,pX+5 , 7 , 7)
      context.fill()
-     context.restore()
-     console.log("florr")
+
+     context.beginPath()
+     context.fillStyle = 'blue'
+     context.rect( pX+10  ,pX+5 , 10 , 10)
+     context.fill()
    }
 
    function drawLadders(pX , pY) {
