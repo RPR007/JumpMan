@@ -25,12 +25,12 @@
    function drawFloor(pX , pY) {
      context.beginPath();
      context.fillStyle = '#6dac49'
-     context.rect( pX*dimPx  ,pY*dimPx , 2*dimPx , 3*dimPx)
+     context.rect( pX*dimPx  ,pY*dimPx , 4*dimPx , 6*dimPx)
      context.fill()
 
      context.beginPath()
      context.fillStyle = 'black'
-     context.rect( (pX*dimPx) +dimPx  ,(pY*dimPx)+dimPx , dimPx , dimPx)
+     context.rect( (pX+2)*dimPx ,(pY+2)*dimPx , 2*dimPx , 2*dimPx)
      context.fill()
    }
 
