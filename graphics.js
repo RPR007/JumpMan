@@ -10,8 +10,8 @@
    function drawFloor(pX , pY) {
      context.save()
      context.strokeStyle = 'green'
-     context.strokeRect( pX  ,pX , 60 , 60)
-     context.strokeRect( pX+20  ,pX+20 , 20 , 20)
+     context.strokeRect( pX  ,pX , 20 , 20)
+     context.strokeRect( pX+5  ,pX+5 , 7 , 7)
      context.restore()
      console.log("florr")
    }
