@@ -8,17 +8,17 @@
   
   }
   //ajoute des points pour créer une ligne de plancher horisontale
-   function pushArrayFloor(pArr,pX, pY, nbRep) {
-     for (var i = 0; i < nbRep; i++) {
-      pArr.push( {x:pX+(i*4), y:pY} )
+   function pushArrayFloor(pArr,  pFloor ){
+     for (var i = 0; i < pFloor.nbRep; i++) {
+      pArr.push( {x:pFloor.x+(i*4), y:pFloor.y } )
      }
    }
-   //décupler les planchers symétriques
+   //répliquer les planchers symétriques
    function duplArrayFloorSym(pArr) {
-    var originals = pArr
-
-     for (var i = 0; i < originals; i++) {
-      pArr.push( {x:365-(originals[i].x-originals[i].nbRep), y:originals[i].y ,nbRep:originals[i].nbRep} )
+   originals = pArr
+   var length = originals.length
+     for (var i = 0; i < length; i++) {
+      pArr.push( {x:356-(originals[i].x+originals[i].nbRep*4) , y:originals[i].y ,nbRep:originals[i].nbRep} )
      }
    }
    function drawFloor(pX , pY) {
@@ -33,21 +33,31 @@
      context.rect( (pX+2)*dimPx ,(pY+2)*dimPx , 2*dimPx , 2*dimPx)
      context.fill()
    }
+
+   //répliquer les planchers symétriques
+   function duplArrayLadders(pArr) {
+   originals = pArr
+   var length = originals.length
+     for (var i = 0; i < length; i++) {
+      pArr.push( {x:356-(originals[i].x+originals[i].nbRep*4) , y:originals[i].y ,nbRep:originals[i].nbRep} )
+     }
+   }
    //ajoute les points nécessaires pour créer une échelle verticale
-   function pushArrayLadders(pArr,pX, pY, nbRep) {
-     for (var i = 0; i < nbRep; i++) {
-      pArr.push( {x:pX, y:pY+(pY-(178-pY) ) } )
+   function pushArrayLadders(pArr,pLadder) {
+     for (var i = 0; i < pLadder.nbRep; i++) {
+      pArr.push( {x:pLadder.x, y:pLadder.y+(i*4) } )
+      console.log("echelles: "+i)
      }
    }
 
    function drawLadders(pX , pY) {
-     
      context.beginPath()
      context.fillStyle = '#3a36a3'
      context.rect( (pX*dimPx)   , (pY)*dimPx   , 4*dimPx   , 8*dimPx)
      context.rect( (pX+2)*dimPx , (pY+4)*dimPx , 10*dimPx , dimPx)
      context.rect( (pX+12)*dimPx , (pY)*dimPx   , 4*dimPx  , 8*dimPx)
      context.fill()
+     console.log("drawLadders")
    }
 
 
