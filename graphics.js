@@ -21,7 +21,7 @@
 
      context.beginPath()
      context.fillStyle = 'black'
-     context.rect( (pX*dimPx)+dimPx , (pY*dimPx)+dimPx , dimPx , dimPx)
+     context.rect( (pX*dimPx) +dimPx  ,(pY*dimPx)+dimPx , dimPx , dimPx)
      context.fill()
    }
 
@@ -34,13 +34,28 @@
      context.restore()
    }
 
+   function drawRope(pX , pY) {
+     context.save()
+     
+     var rope = [[true,false],[false,true],[true,false],[false,true],[true,false],[false,true],[true,false],[false,true]]
+     pX *= dimPx;pY *= dimPx
+     
+     context.fillStyle = 'green'
+     
+     for(var i = 0; i < rope.length; i++)
+        for(var j = 0; j < rope[i].length;j++)
+            if(rope[i][j])
+                context.fillRect(pX+(j*dimPx) ,pY+(i*dimPx) , dimPx , dimPx)
+                
+     context.restore()
+   }
+   
    function drawBomb(pX , pY) {
     context.save()
      
      var bomb = [[false,true,true,false],[true,false,false,true],[false,true,true,false]]
      pX *= dimPx;pY *= dimPx
      
-     context.strokeStyle = 'brown'
      context.fillStyle = 'brown'
      
      for(var i = 0; i < bomb.length; i++)

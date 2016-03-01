@@ -53,7 +53,12 @@ function initLadders() {
 }
 
 function initRopes() {
-    
+    var points = [{x:45, y:45}]
+
+	for(var i = 0; i < points.length; i++) {
+	   console.log(points[i].x + "," + points[i].y)
+	   drawRope(points[i].x , points[i].y)         
+	}
 }
 
 function initJumpMan() {
