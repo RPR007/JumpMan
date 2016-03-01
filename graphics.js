@@ -22,3 +22,7 @@
    function drawBomb(pX , pY) {
      alert("drawBomb")
    }
+   
+   function test() {
+       
+   }
