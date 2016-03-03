@@ -19,7 +19,7 @@
    originals = pArr
    var length = originals.length
      for (var i = 0; i < length; i++) {
-      pArr.push( {x:356-(originals[i].x+originals[i].nbRep*4) , y:originals[i].y ,nbRep:originals[i].nbRep} )
+      pArr.push( {x:312-(originals[i].x+originals[i].nbRep*4) , y:originals[i].y ,nbRep:originals[i].nbRep} )
      }
    }
    function drawFloor(pX , pY) {
@@ -34,30 +34,28 @@
      context.fill()
    }
 
-   //répliquer les planchers symétriques
+   //répliquer les échelles symétriques
    function duplArrayLadders(pArr) {
    originals = pArr
    var length = originals.length
      for (var i = 0; i < length; i++) {
-      pArr.push( {x:356-(originals[i].x+originals[i].nbRep*4) , y:originals[i].y ,nbRep:originals[i].nbRep} )
+      pArr.push( {x:312-(originals[i].x+originals[i].larg) , y:originals[i].y ,nbRep:originals[i].nbRep} )
      }
    }
    //ajoute les points nécessaires pour créer une échelle verticale
    function pushArrayLadders(pArr,pLadder) {
      for (var i = 0; i < pLadder.nbRep; i++) {
-      pArr.push( {x:pLadder.x, y:pLadder.y+(i*4) } )
-      console.log("echelles: "+i)
+      pArr.push( {x:pLadder.x, y:pLadder.y+(i*8) } )
      }
    }
 
    function drawLadders(pX , pY) {
      context.beginPath()
      context.fillStyle = '#3a36a3'
-     context.rect( (pX*dimPx)   , (pY)*dimPx   , 2*dimPx   , 4*dimPx)
-     context.rect( (pX+1)*dimPx , (pY+2)*dimPx , 5*dimPx , dimPx)
-     context.rect( (pX+6)*dimPx , (pY)*dimPx   , 2*dimPx  , 4*dimPx)
+     context.rect( (pX*dimPx)   , (pY)*dimPx   , 4*dimPx   , 8*dimPx)
+     context.rect( (pX+4)*dimPx , (pY+4)*dimPx , 8*dimPx , 2*dimPx)
+     context.rect( (pX+12)*dimPx , (pY)*dimPx   , 4*dimPx  , 8*dimPx)
      context.fill()
-     console.log("drawLadders")
    }
 
 
