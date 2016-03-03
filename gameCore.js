@@ -1,6 +1,7 @@
 /*
 	X posiiton verticale , Y posiiton horisontale
-*/
+*/var sounds = new Object();
+
    function keyDown() {
      console.log("keyDown")
    }
@@ -24,4 +25,3 @@
    function fn4() {
      console.log("fn4")
    }
-

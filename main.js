@@ -18,6 +18,7 @@ function initGame() {
      canvas =  document.getElementById('canJumpMan')
      context = canvas.getContext('2d')
      initScene()
+     initSounds()
      resize()
      animer()
 }
