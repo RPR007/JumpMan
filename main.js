@@ -1,12 +1,15 @@
 
 var canvas = null
 var context = null
+var cycleAnimation = null
 var dimPx = null
 var height  = null
 var width  = null
 var decors = new Object()
 decors.arrLadders = []
+decors.arrPointsLadders  = []
 decors.arrFloors = []
+decors.arrPointsFloors = []
 decors.arrRopes = []
 
 function initGame() {
@@ -17,6 +20,19 @@ function initGame() {
      height = canvas.height
      initAnimation()
      resize()
+     animer()
+}
+
+function animer() {
+    cycleAnimation = requestAnimationFrame(animer)
+    context.clearRect(0,0, canvas.width, canvas.height) 
+    mettreAJourAnimation()
+    dessiner()
+}
+
+function mettreAJourAnimation()
+{
+      //calculs des collisions
 }
 
 function initAnimation() {
@@ -46,21 +62,12 @@ function initFloor() {
     decors.arrFloors.push({x:132, y:60, nbRep:12, haut:6})//middle-up floor
     decors.arrFloors.push({x:108, y:92, nbRep:24, haut:6})//middle-middle floor
     decors.arrFloors.push({x:108, y:124, nbRep:24, haut:6})//middle-down floor
-    
     decors.arrFloors.push({x:142, y:166, nbRep:8, haut:6})//middle bump lower florr
     decors.arrFloors.push({x:4, y:172, nbRep:76, haut:6})//full lower florr
-    
     // créer les morceaux individuels
-    var arrPointsFloors = []
     for (var i = 0 ; i<decors.arrFloors.length ; i++) {
-        pushArrayFloor(arrPointsFloors , decors.arrFloors[i])
+        pushArrayPointsFloor(decors.arrFloors[i])
     }
-    //dessiner les morceaux individuels
-    context.save()
-    for(var i = 0; i < arrPointsFloors.length; i++) {
-	   drawFloor(arrPointsFloors[i].x , arrPointsFloors[i].y)         
-	}
-    context.restore()
 }
 
 function initLadders() {
@@ -73,26 +80,14 @@ function initLadders() {
     duplArrayLadders(decors.arrLadders)
     //créer les obj échelles NON symétriques
     decors.arrLadders.push({x:148,  y:52,  nbRep:5, larg:16})//middle
-    
     // créer les morceaux individuels
-    var arrPointsLadders = []
     for (var i = 0 ; i<decors.arrLadders.length ; i++) {
-        pushArrayLadders(arrPointsLadders , decors.arrLadders[i] ) 
+        pushArrayPointsLadders(decors.arrLadders[i] ) 
     }
-    //dessiner les morceaux individuels
-    context.save()
-    for(var i = 0; i < arrPointsLadders.length; i++) {
-       drawLadders(arrPointsLadders[i].x , arrPointsLadders[i].y)         
-    }
-    context.restore()
 }
 
 function initRopes() {
-    var points = [{x:45, y:45}]
-
-	for(var i = 0; i < points.length; i++) {
-	   drawRope(points[i].x , points[i].y)         
-	}
+    decors.arrRopes = [{x:74, y:98}, {x:234, y:98}]
 }
 
 function initJumpMan() {
