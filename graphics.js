@@ -1,6 +1,25 @@
 /*
   X posiiton horisontale , Y posiiton verticale 
 */
+  var resizeId
+  $(window).resize(function() {
+      clearTimeout(resizeId);
+      resizeId = setTimeout(resize, 1000);
+  })
+
+  function resize(){
+    var w =  window.outerWidth / 316 
+    var h =  window.outerHeight / 178 
+    dimPx = (  Boolean(w < h) ? w:h)
+    //dimPx = (  Boolean(dimPx == 0) ? 1: dimPx)
+    console.log( dimPx )
+    document.getElementById('canJumpMan').width=(316*dimPx)
+    document.getElementById('canJumpMan').height=(178*dimPx)
+    initAnimation()
+  }
+
+
+
   function initScene() {
    }
 

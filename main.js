@@ -16,6 +16,7 @@ function initGame() {
      width = canvas.width
      height = canvas.height
      initAnimation()
+     resize()
 }
 
 function initAnimation() {
