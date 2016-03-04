@@ -25,4 +25,3 @@
       objSon.load()
     sounds.death = objSon;
   }
-

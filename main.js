@@ -6,13 +6,6 @@ var dimPx = null
 var height  = null
 var width  = null
 var jumpMan = new Object()
-var decors = new Object()
-decors.arrLadders = []
-decors.arrPointsLadders  = []
-decors.arrFloors = []
-decors.arrPointsFloors = []
-decors.arrRopes = []
-decors.arrBombs = []
 
 function initGame() {
      canvas =  document.getElementById('canJumpMan')
