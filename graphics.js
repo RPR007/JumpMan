@@ -8,7 +8,7 @@
   decors.arrPointsFloors = []
   decors.arrRopes = []
   decors.arrBombs = []
-  
+
   var resizeTimer
   $(window).resize(function() {
       clearTimeout(resizeTimer) 
@@ -168,7 +168,10 @@
    }
 
     function initBombs() {
-       decors.arrBombs = [{x:4, y:14}, {x:4, y:46}, {x:4, y:166}]
+       decors.arrBombs = [{x:4,y:14},{x:4,y:46},{x:4,y:166}]
+       decors.arrBombs.push({x:132,y:8},{x:66,y:76},{x:126,y:146})
+       decors.arrBombs.push({x:300,y:14},{x:300,y:46},{x:300,y:166})
+       decors.arrBombs.push({x:172,y:8},{x:236,y:76},{x:178,y:146})
     }
 
    function drawBomb(pX , pY) {
