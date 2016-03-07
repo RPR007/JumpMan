@@ -1,7 +1,7 @@
 /*
   X posiiton horisontale , Y posiiton verticale 
 */
-  var decors = new Object()
+  var decors = new Object({})
   decors.arrLadders = []
   decors.arrPointsLadders  = []
   decors.arrFloors = []
@@ -9,19 +9,12 @@
   decors.arrRopes = []
   decors.arrBombs = []
 
-  var resizeTimer
-  $(window).resize(function() {
-      clearTimeout(resizeTimer) 
-      resizeTimer = setTimeout(resize, 500);
-  })
-
   function resize(){
-    var w =  window.outerWidth / 316 
-    var h =  window.outerHeight / 178 
-    dimPx = (  Boolean(w < h) ? w:h)
+    var w =  window.innerWidth / 316 
+    var h =  window.innerHeight / 178 
+    dimPx = (w < h ? w:h)
     document.getElementById('canJumpMan').width=(316*dimPx)
     document.getElementById('canJumpMan').height=(178*dimPx)
-    
   }
   function dessiner() {
     //flors

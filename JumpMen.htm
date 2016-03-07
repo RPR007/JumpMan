@@ -5,14 +5,24 @@
 
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>JumpMen par Rafael et Alexandre Arsenault</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script type="text/javascript" src="gameCore.js"></script>
   <script type="text/javascript" src="soundCore.js"></script>
   <script type="text/javascript" src="graphics.js"></script>
   <script type="text/javascript" src="main.js"></script>
+  <style>
+      html,body {
+        width : 100%;
+        height : 100%;
+        margin : auto;
+      }
+      
+      body {
+          background-image: url("img/wallpaper.png");
+      }
+  </style>
 </head>
 
-<body onload="initGame()"> 
+<body onload="initGame();" onresize="resize()"> 
 	<canvas id="canJumpMan" style="background-color : black;" width="1600" height="900" tabIndex="1" onkeydown="keyDown()" onkeyup="keyUp()">
 		Votre navigateur ne supporte pas la balise canvas
 	</canvas>
