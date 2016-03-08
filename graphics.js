@@ -13,6 +13,8 @@
   function resize() {
     clearTimeout(resizeTimer)
     resizeTimer = setTimeout(closureResize, 250);
+    width =  window.innerWidth 
+    height =  window.innerHeight
     function closureResize() {
         var w =  window.innerWidth / 316 
         var h =  window.innerHeight / 178
