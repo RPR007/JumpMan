@@ -8,21 +8,20 @@
   decors.arrPointsFloors = []
   decors.arrRopes = []
   decors.arrBombs = []
-
+  
   var resizeTimer
-  $(window).resize(function() {
-      clearTimeout(resizeTimer) 
-      resizeTimer = setTimeout(resize, 250);
-  })
- 
- 
-  function resize(){
-    var w =  window.innerWidth / 316 
-    var h =  window.innerHeight / 178 
-    dimPx = (w < h ? w:h)
-    document.getElementById('canJumpMan').width=(316*dimPx)
-    document.getElementById('canJumpMan').height=(178*dimPx)
+  function resize() {
+    clearTimeout(resizeTimer)
+    resizeTimer = setTimeout(closureResize, 250);
+    function closureResize() {
+        var w =  window.innerWidth / 316 
+        var h =  window.innerHeight / 178
+        dimPx = (w < h ? w:h)
+        document.getElementById('canJumpMan').width=(316*dimPx)
+        document.getElementById('canJumpMan').height=(178*dimPx)
+    }
   }
+  
   function dessiner() {
     //flors
     context.save()
