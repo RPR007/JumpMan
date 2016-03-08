@@ -9,6 +9,13 @@
   decors.arrRopes = []
   decors.arrBombs = []
 
+  var resizeTimer
+  $(window).resize(function() {
+      clearTimeout(resizeTimer) 
+      resizeTimer = setTimeout(resize, 250);
+  })
+ 
+ 
   function resize(){
     var w =  window.innerWidth / 316 
     var h =  window.innerHeight / 178 
