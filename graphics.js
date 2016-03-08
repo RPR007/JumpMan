@@ -13,6 +13,8 @@
   function resize() {
     clearTimeout(resizeTimer)
     resizeTimer = setTimeout(closureResize, 250);
+    width =  window.innerWidth 
+    height =  window.innerHeight 
     function closureResize() {
         var w =  window.innerWidth / 316 
         var h =  window.innerHeight / 178
@@ -23,7 +25,7 @@
   }
 
   function effacer() {
-    clearRect(0, 0, w, h)
+    context.clearRect(0, 0, width , height )
   }
   
   function dessiner() {
@@ -58,7 +60,6 @@
     initRopes()
     initJumpMan()
     initBombs()
-    animer()
   }
 
   function initFloor() {
@@ -196,7 +197,7 @@
       jumpMan.x = 22
       jumpMan.y = 27
       jumpMan.etat = 4
-      jumpMan.deplacement = {l:false,u:false,r:false,d:false,v:0} 
+      jumpMan.deplacement = {l:false,u:false,r:false} 
       jumpMan.jump = { jumping:false,jumpYStart:null, velX:0.0, velY:0.0, gravity:0.5}
 
         graphic2 = new Object() //left 1

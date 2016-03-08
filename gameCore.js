@@ -2,8 +2,8 @@
 	X posiiton verticale , Y posiiton horisontale
 */var sounds = new Object();
 
-   function keyDown() {
-      switch (event.keyCode) {
+   function keyDown(pEvent) {
+      switch (pEvent.keyCode) {
             case 37: // left
               jumpMan.deplacement.l = true
             break;
@@ -13,15 +13,12 @@
             case 39: // right
               jumpMan.deplacement.r = true
             break;
-            case 40: // down
-              jumpMan.deplacement.d = true
-            break;
             default:
               console.log("down touche : "+ event.keyCode+" invalide" )
       }
    }
-   function keyUp() {
-     switch (event.keyCode) {
+   function keyUp(pEvent) {
+     switch (pEvent.keyCode) {
             case 37: // left
               jumpMan.deplacement.l = false
             break;
@@ -31,19 +28,15 @@
             case 39: // right
               jumpMan.deplacement.r = false
             break;
-            case 40: // down
-              jumpMan.deplacement.d = false
-            break;
             default:
               console.log("up touche : "+ event.keyCode+" invalide" )
       }
    }
 
    function animer() {
-      objCycleAnimation = requestAnimationFrame(animer);
-  
-      // Le cycle d'animation
-      effacerDessin()
+      objCycleAnimation = requestAnimationFrame(animer)
+
+      effacer()
       updateAnimation()
       dessiner()
   }
@@ -63,21 +56,21 @@
     if (jumpMan.deplacement.jumping) {
 
     }
-    else{
-      if (jumpMan.deplacement.l) {
-        jumpMan.jump.velX=(jumpMan.jump.velX>-4? jumpMan.jump.velX--: jumpMan.jump.velX)
+    else{//go left
+      if (jumpMan.deplacement.l) {//change direction OR augment velX
+        jumpMan.jump.velX=(jumpMan.jump.velX>0?0:jumpMan.jump.velX> -4?jumpMan.jump.velX-1: jumpMan.jump.velX)
         console.log(jumpMan.jump.velX)
       }//start jumping
       else if (jumpMan.deplacement.u) {
-
         jumpMan.deplacement.jumping = true
+      }//go right
+      else if (jumpMan.deplacement.r) {//change direction OR augment velX
+        jumpMan.jump.velX=(jumpMan.jump.velX<0?0: jumpMan.jump.velX<4?jumpMan.jump.velX+1:jumpMan.jump.velX)
+        console.log(jumpMan.jump.velX)
       }
-      else if (jumpMan.deplacement.r) {
-        
-      }
-      else if (jumpMan.deplacement.d) {
-        
-      }
+
+      jumpMan.x+= jumpMan.jump.velX
+      jumpMan.y+= jumpMan.jump.velY
     }
 
 
