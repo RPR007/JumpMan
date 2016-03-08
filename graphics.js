@@ -194,136 +194,93 @@
   }
 
     function initJumpMan() {
-      jumpMan.x = 22
+      jumpMan.x = 20
       jumpMan.y = 27
       jumpMan.etat = 4
       jumpMan.deplacement = {l:false,u:false,r:false} 
       jumpMan.jump = { jumping:false,jumpYStart:null, velX:0.0, velY:0.0, gravity:0.5}
 
-        graphic2 = new Object() //left 1
-        graphic2.tetePied=[{x:4,y:0,w:4,h:1},{x:4,y:1,w:2,h:1},{x:0,y:9,w:4,h:1},{x:8,y:9,w:4,h:1}]
-        graphic2.corps=[{x:0,y:3,w:2,h:1},{x:2,y:2,w:2,h:1},{x:2,y:4,w:2,h:1},{x:4,y:2,w:4,h:3},{x:8,y:2,w:2,h:1},{x:10,y:3,w:2,h:1},{x:12,y:2,w:2,h:1}]
-        graphic2.jambes=[{x:0,y:8,w:2,h:1},{x:2,y:6,w:2,h:2},{x:4,y:5,w:4,h:2},{x:8,y:6,w:2,h:3}]
-      jumpMan.graphic2 = graphic2
-        graphic3 = new Object() //left 2
-        graphic3.tetePied=[{x:6,y:0,w:4,h:1},{x:6,y:1,w:2,h:1},{x:0,y:9,w:4,h:1},{x:8,y:9,w:4,h:1}]
-        graphic3.corps=[{x:0,y:4,w:2,h:1},{x:2,y:3,w:2,h:1},{x:4,y:2,w:2,h:1},{x:6,y:2,w:4,h:3},{x:10,y:4,w:2,h:1}]
-        graphic3.jambes=[{x:0,y:8,w:2,h:1},{x:2,y:7,w:2,h:1},{x:4,y:6,w:2,h:1},{x:6,y:5,w:4,h:2},{x:8,y:7,w:2,h:2}]
-      jumpMan.graphic3 = graphic3
-        graphic4 = new Object() //ladder X
-        graphic4.tetePied=[{x:6,y:0,w:4,h:2},{x:0,y:9,w:4,h:1},{x:12,y:9,w:4,h:1}]
-        graphic4.corps=[{x:0,y:0,w:2,h:1},{x:2,y:1,w:2,h:1},{x:4,y:2,w:2,h:1},{x:6,y:2,w:4,h:3},{x:10,y:2,w:2,h:1},{x:12,y:1,w:2,h:1},{x:14,y:0,w:2,h:1}]
-        graphic4.jambes=[{x:2,y:8,w:2,h:1},{x:4,y:6,w:2,h:2},{x:6,y:5,w:4,h:2},{x:10,y:6,w:2,h:2},{x:12,y:8,w:2,h:1}]
-      jumpMan.graphic4 = graphic4
+      jumpMan.graphic1 = jumpManFront()
+      jumpMan.graphic2 = jumpManRight1()
+      jumpMan.graphic3 = jumpManRight2()
+      jumpMan.graphic4 = jumpManLadder()
 
     }
 
-
+    function jumpManFront() {
+        graphic = new Object() //left 1
+        graphic.tetePied=[{x:4,y:0,w:4,h:2},{x:2,y:9,w:8,h:1}]
+        graphic.corps=[{x:2,y:2,w:8,h:1},{x:0,y:3,w:2,h:1},{x:4,y:3,w:4,h:1},{x:10,y:3,w:2,h:1},{x:2,y:4,w:8,h:1}]
+        graphic.jambes=[{x:4,y:5,w:4,h:4}]
+        return graphic
+    }
+    
+    function jumpManRight1() {
+        graphic = new Object() //left 1
+        graphic.tetePied=[{x:4,y:0,w:4,h:1},{x:4,y:1,w:2,h:1},{x:0,y:9,w:4,h:1},{x:8,y:9,w:4,h:1}]
+        graphic.corps=[{x:0,y:3,w:2,h:1},{x:2,y:2,w:2,h:1},{x:2,y:4,w:2,h:1},{x:4,y:2,w:4,h:3},{x:8,y:2,w:2,h:1},{x:10,y:3,w:2,h:1},{x:12,y:2,w:2,h:1}]
+        graphic.jambes=[{x:0,y:8,w:2,h:1},{x:2,y:6,w:2,h:2},{x:4,y:5,w:4,h:2},{x:8,y:6,w:2,h:3}]
+        return graphic
+    }
+    
+    function jumpManRight2() {
+        graphic = new Object() //left 2
+        graphic.tetePied=[{x:6,y:0,w:4,h:1},{x:6,y:1,w:2,h:1},{x:0,y:9,w:4,h:1},{x:8,y:9,w:4,h:1}]
+        graphic.corps=[{x:0,y:4,w:2,h:1},{x:2,y:3,w:2,h:1},{x:4,y:2,w:2,h:1},{x:6,y:2,w:4,h:3},{x:10,y:4,w:2,h:1}]
+        graphic.jambes=[{x:0,y:8,w:2,h:1},{x:2,y:7,w:2,h:1},{x:4,y:6,w:2,h:1},{x:6,y:5,w:4,h:2},{x:8,y:7,w:2,h:2}]
+        return graphic
+    }
+    
+    function jumpManLadder() {
+        graphic = new Object() //ladder X
+        graphic.tetePied=[{x:6,y:0,w:4,h:2},{x:0,y:9,w:4,h:1},{x:12,y:9,w:4,h:1}]
+        graphic.corps=[{x:0,y:0,w:2,h:1},{x:2,y:1,w:2,h:1},{x:4,y:2,w:2,h:1},{x:6,y:2,w:4,h:3},{x:10,y:2,w:2,h:1},{x:12,y:1,w:2,h:1},{x:14,y:0,w:2,h:1}]
+        graphic.jambes=[{x:2,y:8,w:2,h:1},{x:4,y:6,w:2,h:2},{x:6,y:5,w:4,h:2},{x:10,y:6,w:2,h:2},{x:12,y:8,w:2,h:1}]
+        return graphic
+    }
+    
     function drawJumpMan() {
+        
+      // Select jumpMan
       context.save()
       switch(jumpMan.etat) {
-        case 1://still
-            drawJumpManDeFace()
-            break;
         case 2://left 1
-            drawJumpMan2(jumpMan.graphic2.tetePied, jumpMan.graphic2.corps, jumpMan.graphic2.jambes)
+            draw(jumpMan.graphic2.tetePied, jumpMan.graphic2.corps, jumpMan.graphic2.jambes)
             break;
         case 3://left 2
-            drawJumpMan2(jumpMan.graphic3.tetePied, jumpMan.graphic3.corps, jumpMan.graphic3.jambes)
+            draw(jumpMan.graphic3.tetePied, jumpMan.graphic3.corps, jumpMan.graphic3.jambes)
             break;
         case 4://ladder X
-            drawJumpMan2(jumpMan.graphic4.tetePied, jumpMan.graphic4.corps, jumpMan.graphic4.jambes)
+            draw(jumpMan.graphic4.tetePied, jumpMan.graphic4.corps, jumpMan.graphic4.jambes)
             break;
-        default://still
-            drawJumpManDeFace()
+        case 1: //still
+        default:
+            draw(jumpMan.graphic1.tetePied, jumpMan.graphic1.corps, jumpMan.graphic1.jambes)
+            break;
       }
-     context.restore()
+      context.restore()
+     
+      // Draw jumpMan
+      function draw(pTetePied, pCorps, pJambes) {
+        context.beginPath() 
+        context.fillStyle = 'white'
+        for(var i = 0; i < pTetePied.length; i++){
+            context.rect( (jumpMan.x+pTetePied[i].x)*dimPx, (jumpMan.y+pTetePied[i].y)*dimPx, pTetePied[i].w*dimPx, pTetePied[i].h*dimPx)
+        }
+      
+        context.fill()
+        context.beginPath() 
+        context.fillStyle = 'red'
+        for(var i = 0; i < pCorps.length; i++){
+            context.rect( (jumpMan.x+pCorps[i].x)*dimPx, (jumpMan.y+pCorps[i].y)*dimPx, pCorps[i].w*dimPx, pCorps[i].h*dimPx)
+        }
+        context.fill()
+        context.beginPath() 
+        context.fillStyle = 'purple'
+        for(var i = 0; i < pJambes.length; i++){
+            context.rect( (jumpMan.x+pJambes[i].x)*dimPx, (jumpMan.y+pJambes[i].y)*dimPx, pJambes[i].w*dimPx, pJambes[i].h*dimPx)
+        }
+        context.fill()
+      }
     }
-
-   function drawJumpManDeFace() {
-     pX = jumpMan.x
-     pY = jumpMan.y
-     
-     var head = [[false,false,false,false,true,true,true,true,false,false,false,false]
-                ,[false,false,false,false,true,true,true,true,false,false,false,false]]
-     var body = [[false,false,true,true,true,true,true,true,true,true,false,false]
-                ,[true,true,false,false,true,true,true,true,false,false,true,true]
-                ,[false,false,true,true,true,true,true,true,true,true,false,false]]
-     var leg = [[false,false,false,false,true,true,true,true,false,false,false,false]
-               ,[false,false,false,false,true,true,true,true,false,false,false,false]
-               ,[false,false,false,false,true,true,true,true,false,false,false,false]
-               ,[false,false,false,false,true,true,true,true,false,false,false,false]]
-     var feet = [[false,false,true,true,true,true,true,true,true,true,false,false]]
-     
-     pX *= dimPx;pY *= dimPx
-     
-     // tete
-     context.fillStyle = 'white'
-     context.strokeStyle = 'white'
-     context.lineWidth = 1
-     for(var i = 0; i < head.length; i++) {
-        for(var j = 0; j < head[i].length;j++) {
-            if(head[i][j]) {
-                context.fillRect(pX+(j*dimPx) ,pY+(i*dimPx) , dimPx , dimPx)
-                context.strokeRect(pX+(j*dimPx)+1 ,pY+(i*dimPx)+1 , dimPx-1 , dimPx-1)
-            }
-        }
-     }
-     // corps
-     pY += (2*dimPx) 
-     context.fillStyle = 'brown'
-     context.strokeStyle = 'brown'
-     for(var i = 0; i < body.length; i++) {
-        for(var j = 0; j < body[i].length;j++) {
-            if(body[i][j]) {
-                context.fillRect(pX+(j*dimPx) ,pY+(i*dimPx) , dimPx , dimPx)
-                context.strokeRect(pX+(j*dimPx)+1 ,pY+(i*dimPx)+1 , dimPx-1 , dimPx-1)
-            }
-        }
-     }     
-     // jambe
-     pY += (3*dimPx) 
-     context.fillStyle = 'purple'
-     context.strokeStyle = 'purple'
-     for(var i = 0; i < leg.length; i++) {
-        for(var j = 0; j < leg[i].length;j++) {
-            if(leg[i][j]) {
-                context.fillRect(pX+(j*dimPx) ,pY+(i*dimPx) , dimPx , dimPx)
-                context.strokeRect(pX+(j*dimPx)+1 ,pY+(i*dimPx)+1 , dimPx-1 , dimPx-1)
-            }
-        }
-     }          
-     // pied
-     pY += (4*dimPx)
-     context.fillStyle = 'white'
-     context.strokeStyle = 'white'
-     for(var i = 0; i < feet.length; i++) {
-        for(var j = 0; j < feet[i].length;j++) {
-            if(feet[i][j]) {
-                context.fillRect(pX+(j*dimPx) ,pY+(i*dimPx) , dimPx , dimPx)
-                context.strokeRect(pX+(j*dimPx)+1 ,pY+(i*dimPx)+1 , dimPx-1 , dimPx-1)
-            }
-        }
-     }
-   }
    
-   function drawJumpMan2(pTetePied, pCorps, pJambes) {
-      context.beginPath() 
-      context.fillStyle = 'white'
-      for(var i = 0; i < pTetePied.length; i++){
-        context.rect( (jumpMan.x+pTetePied[i].x)*dimPx, (jumpMan.y+pTetePied[i].y)*dimPx, pTetePied[i].w*dimPx, pTetePied[i].h*dimPx)
-      }
-      context.fill()
-      context.beginPath() 
-      context.fillStyle = 'red'
-      for(var i = 0; i < pCorps.length; i++){
-        context.rect( (jumpMan.x+pCorps[i].x)*dimPx, (jumpMan.y+pCorps[i].y)*dimPx, pCorps[i].w*dimPx, pCorps[i].h*dimPx)
-      }
-      context.fill()
-      context.beginPath() 
-      context.fillStyle = 'purple'
-      for(var i = 0; i < pJambes.length; i++){
-        context.rect( (jumpMan.x+pJambes[i].x)*dimPx, (jumpMan.y+pJambes[i].y)*dimPx, pJambes[i].w*dimPx, pJambes[i].h*dimPx)
-      }
-      context.fill()
-   }
