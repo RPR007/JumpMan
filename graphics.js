@@ -19,6 +19,7 @@
         dimPx = (w < h ? w:h)
         document.getElementById('canJumpMan').width=(316*dimPx)
         document.getElementById('canJumpMan').height=(178*dimPx)
+    }
   }
   
   function dessiner() {
