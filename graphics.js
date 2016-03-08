@@ -21,6 +21,10 @@
         document.getElementById('canJumpMan').height=(178*dimPx)
     }
   }
+
+  function effacer() {
+    clearRect(0, 0, w, h)
+  }
   
   function dessiner() {
     //flors

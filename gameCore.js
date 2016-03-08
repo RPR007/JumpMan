@@ -38,3 +38,49 @@
               console.log("up touche : "+ event.keyCode+" invalide" )
       }
    }
+   
+   function animer() {
+      objCycleAnimation = requestAnimationFrame(animer);
+  
+      // Le cycle d'animation
+      effacerDessin()
+      updateAnimation()
+      dessiner()
+  }
+
+  function updateAnimation()
+  {
+    moveJumpMan()
+    collisionFloor()
+    collisionLadder()
+    collisionRope()
+    collisionBomb()
+  }
+
+
+  function moveJumpMan()
+  {
+
+    
+  }
+  function collisionFloor()
+  {
+
+    
+  }
+
+  function collisionLadder()
+  {
+
+    
+  }
+  function collisionRope()
+  {
+
+    
+  }
+  function collisionBomb()
+  {
+
+    
+  }
