@@ -13,17 +13,15 @@
   function resize() {
     clearTimeout(resizeTimer)
     resizeTimer = setTimeout(closureResize, 250);
-    width =  window.innerWidth 
-    height =  window.innerHeight 
     function closureResize() {
         var w =  window.innerWidth / 316 
         var h =  window.innerHeight / 178
         dimPx = (w < h ? w:h)
         document.getElementById('canJumpMan').width=(316*dimPx)
-        document.getElementById('canJumpMan').height=(178*dimPx)
-    }
+        document.getElementById('canJumpMan').height=(178*dimPx) 
+    } 
   }
-
+  
   function effacer() {
     context.clearRect(0, 0, width , height )
   }
@@ -60,6 +58,7 @@
     initRopes()
     initJumpMan()
     initBombs()
+    animer()
   }
 
   function initFloor() {
@@ -197,13 +196,14 @@
       jumpMan.x = 20
       jumpMan.y = 27
       jumpMan.etat = 4
-      jumpMan.deplacement = {l:false,u:false,r:false} 
+      jumpMan.deplacement = {l:false,u:false,r:false,d:false,v:0} 
       jumpMan.jump = { jumping:false,jumpYStart:null, velX:0.0, velY:0.0, gravity:0.5}
 
       jumpMan.graphic1 = jumpManFront()
       jumpMan.graphic2 = jumpManRight1()
       jumpMan.graphic3 = jumpManRight2()
-      jumpMan.graphic4 = jumpManLadder()
+      jumpMan.graphic4 = jumpManLadder1()
+      jumpMan.graphic5 = jumpManLadder2()
 
     }
 
@@ -231,11 +231,19 @@
         return graphic
     }
     
-    function jumpManLadder() {
+    function jumpManLadder1() {
         graphic = new Object() //ladder X
         graphic.tetePied=[{x:6,y:0,w:4,h:2},{x:0,y:9,w:4,h:1},{x:12,y:9,w:4,h:1}]
         graphic.corps=[{x:0,y:0,w:2,h:1},{x:2,y:1,w:2,h:1},{x:4,y:2,w:2,h:1},{x:6,y:2,w:4,h:3},{x:10,y:2,w:2,h:1},{x:12,y:1,w:2,h:1},{x:14,y:0,w:2,h:1}]
         graphic.jambes=[{x:2,y:8,w:2,h:1},{x:4,y:6,w:2,h:2},{x:6,y:5,w:4,h:2},{x:10,y:6,w:2,h:2},{x:12,y:8,w:2,h:1}]
+        return graphic
+    }
+    
+    function jumpManLadder2() {
+        graphic = new Object() //ladder X
+        graphic.tetePied=[{x:6,y:0,w:4,h:1},{x:6,y:1,w:2,h:1}]
+        graphic.corps=[{x:6,y:2,w:4,h:4}]
+        graphic.jambes=[]
         return graphic
     }
     
@@ -250,8 +258,11 @@
         case 3://left 2
             draw(jumpMan.graphic3.tetePied, jumpMan.graphic3.corps, jumpMan.graphic3.jambes)
             break;
-        case 4://ladder X
+        case 4://ladder 1
             draw(jumpMan.graphic4.tetePied, jumpMan.graphic4.corps, jumpMan.graphic4.jambes)
+            break;
+        case 5://ladder 2
+            draw(jumpMan.graphic5.tetePied, jumpMan.graphic5.corps, jumpMan.graphic5.jambes)
             break;
         case 1: //still
         default:
