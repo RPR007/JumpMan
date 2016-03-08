@@ -38,7 +38,7 @@
               console.log("up touche : "+ event.keyCode+" invalide" )
       }
    }
-   
+
    function animer() {
       objCycleAnimation = requestAnimationFrame(animer);
   
@@ -60,6 +60,26 @@
 
   function moveJumpMan()
   {
+    if (jumpMan.deplacement.jumping) {
+
+    }
+    else{
+      if (jumpMan.deplacement.l) {
+        jumpMan.jump.velX=(jumpMan.jump.velX>-4? jumpMan.jump.velX--: jumpMan.jump.velX)
+        console.log(jumpMan.jump.velX)
+      }//start jumping
+      else if (jumpMan.deplacement.u) {
+
+        jumpMan.deplacement.jumping = true
+      }
+      else if (jumpMan.deplacement.r) {
+        
+      }
+      else if (jumpMan.deplacement.d) {
+        
+      }
+    }
+
 
     
   }

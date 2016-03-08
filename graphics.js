@@ -58,6 +58,7 @@
     initRopes()
     initJumpMan()
     initBombs()
+    animer()
   }
 
   function initFloor() {
@@ -195,7 +196,8 @@
       jumpMan.x = 22
       jumpMan.y = 27
       jumpMan.etat = 4
-      jumpMan.deplacement = {l:false,u:false,r:false,d:false,v:0,jumpStart:null} 
+      jumpMan.deplacement = {l:false,u:false,r:false,d:false,v:0} 
+      jumpMan.jump = { jumping:false,jumpYStart:null, velX:0.0, velY:0.0, gravity:0.5}
 
         graphic2 = new Object() //left 1
         graphic2.tetePied=[{x:4,y:0,w:4,h:1},{x:4,y:1,w:2,h:1},{x:0,y:9,w:4,h:1},{x:8,y:9,w:4,h:1}]
