@@ -31,9 +31,8 @@
       }
   </style>
 </head>
-
 <body onload="initGame();" onresize="resize()" > 
-	<canvas id="canJumpMan"  width="1600" height="900" tabIndex="1" onkeydown="keyDown()" onkeyup="keyUp()">
+	<canvas id="canJumpMan"  width="1600" height="900" tabIndex="1" onkeydown="keyDown(event)" onkeyup="keyUp(event)">
 		Votre navigateur ne supporte pas la balise canvas
 	</canvas>
 </body>
