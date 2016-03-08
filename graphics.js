@@ -19,7 +19,6 @@
         dimPx = (w < h ? w:h)
         document.getElementById('canJumpMan').width=(316*dimPx)
         document.getElementById('canJumpMan').height=(178*dimPx)
-    }
   }
   
   function dessiner() {
@@ -191,6 +190,7 @@
       jumpMan.x = 22
       jumpMan.y = 27
       jumpMan.etat = 4
+      jumpMan.deplacement = {l:false,u:false,r:false,d:false,v:0,jumpStart:null} 
 
         graphic2 = new Object() //left 1
         graphic2.tetePied=[{x:4,y:0,w:4,h:1},{x:4,y:1,w:2,h:1},{x:0,y:9,w:4,h:1},{x:8,y:9,w:4,h:1}]
