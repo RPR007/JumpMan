@@ -61,21 +61,28 @@
   {
     if (jumpMan.deplacement.jumping) {
       jumpMan.deplacement.fr++
-      jumpMan.posAct.x += jumpMan.jump.velX * jumpMan.jump.fr
-      jumpMan.posAct.y += jumpMan.jump.velY * jumpMan.jump.fr
-      jumpMan.jump.velY += jumpMan.jump.gravity * jumpMan.deplacement.fr   
-      console.log("x = "+jumpMan.x +" y = "+jumpMan.y +" velx = "+jumpMan.jump.velX )
+      jumpMan.jump.velY = -0.7 * Math.pow(jumpMan.jump.jumpX,2) + 6
+      jumpMan.posAct.x += jumpMan.jump.jumpX+3
+      jumpMan.posAct.y = jumpMan.jump.posAct.y - jumpMan.jump.velY
+      console.log(jumpMan.jump.jumpX + ',' + jumpMan.jump.velY)
+      if(jumpMan.jump.jumpX == 3 ) {
+        jumpMan.deplacement.jumping = false
+        jumpMan.jump.velY = 0
+      } else
+        jumpMan.jump.jumpX++
     }
      //left AND right == not moving
     else if (jumpMan.deplacement.l && jumpMan.deplacement.r) {
-      jumpMan.jump.velX=0
+      jumpMan.jump.jumpX = -2
+      jumpMan.jump.posAct = jumpMan.posAct
     }
     else{
       
       //start jumping
       if (jumpMan.deplacement.u) {
+        jumpMan.jump.jumpX  = -3
         jumpMan.deplacement.jumping = true
-        jumpMan.jump.velY=-2 //give it a kick
+        jumpMan.jump.velY=0 //give it a kick
       }//go left
       else if (jumpMan.deplacement.l) {//reduce velX if possible
         jumpMan.jump.velX= jumpMan.jump.velX>0?0:jumpMan.jump.velX> -6?jumpMan.jump.velX-=1:jumpMan.jump.velX

@@ -198,7 +198,7 @@
       jumpMan.posPr  = {x:0,y:0}
       jumpMan.etat = 1
       jumpMan.deplacement = {l:false,u:false,r:false,fr:1}
-      jumpMan.jump = { jumping:false,jumpYStart:null, velX:0.0, velY:0.0, gravity:0.5}
+      jumpMan.jump = { jumping:false,jumpX : 0, posAct : {x:(316/2)-8,y:114,h : 0,w : 0},velX:0.0, velY:0.0, gravity:0.5}
       jumpMan.graphic1 = jumpManFront()
       jumpMan.graphic2 = jumpManRight1()
       jumpMan.graphic3 = jumpManRight2()
