@@ -194,7 +194,7 @@
   }
 
     function initJumpMan() {
-      jumpMan.posAct = {x:(316/2)-8,y:114}
+      jumpMan.posAct = {x:(316/2)-8,y:114,h : 0,w : 0}
       jumpMan.posPr  = {x:0,y:0}
       jumpMan.etat = 1
       jumpMan.deplacement = {l:false,u:false,r:false,fr:1}
@@ -270,25 +270,39 @@
       context.save()
       switch(jumpMan.etat) {
         case 2://right 1
+            jumpMan.posAct.h = 10
+            jumpMan.posAct.w = 14
             draw(jumpMan.graphic2.tetePied, jumpMan.graphic2.corps, jumpMan.graphic2.jambes)
             break;
         case 3://right 2
+            jumpMan.posAct.h = 10
+            jumpMan.posAct.w = 12
             draw(jumpMan.graphic3.tetePied, jumpMan.graphic3.corps, jumpMan.graphic3.jambes)
             break;
         case 4://ladder 1
+            jumpMan.posAct.h = 10
+            jumpMan.posAct.w = 16
             draw(jumpMan.graphic4.tetePied, jumpMan.graphic4.corps, jumpMan.graphic4.jambes)
             break;
         case 5://ladder 2
+            jumpMan.posAct.h = 10
+            jumpMan.posAct.w = 16
             draw(jumpMan.graphic5.tetePied, jumpMan.graphic5.corps, jumpMan.graphic5.jambes)
             break;
-        case 6://ladder 2
+        case 6://ladder 3
+            jumpMan.posAct.h = 9
+            jumpMan.posAct.w = 16
             draw(jumpMan.graphic6.tetePied, jumpMan.graphic6.corps, jumpMan.graphic6.jambes)
             break;
-        case 7://ladder 2
+        case 7://ladder 4
+            jumpMan.posAct.h = 10
+            jumpMan.posAct.w = 16
             draw(jumpMan.graphic7.tetePied, jumpMan.graphic7.corps, jumpMan.graphic7.jambes)
             break;
         case 1: //still
         default:
+            jumpMan.posAct.h = 10
+            jumpMan.posAct.w = 12
             draw(jumpMan.graphic1.tetePied, jumpMan.graphic1.corps, jumpMan.graphic1.jambes)
             break;
       }
