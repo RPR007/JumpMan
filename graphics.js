@@ -8,6 +8,7 @@
   decors.arrPointsFloors = []
   decors.arrRopes = []
   decors.arrBombs = []
+  decors.JumpManGraphics = []
   
   var resizeTimer
   function resize() {
@@ -172,12 +173,12 @@
       }*/
    }
 
-    function initBombs() {
+   function initBombs() {
        decors.arrBombs = [{x:4,y:14},{x:4,y:46},{x:4,y:166}]
        decors.arrBombs.push({x:132,y:8},{x:66,y:76},{x:126,y:146})
        decors.arrBombs.push({x:300,y:14},{x:300,y:46},{x:300,y:166})
        decors.arrBombs.push({x:172,y:8},{x:236,y:76},{x:178,y:146})
-    }
+   }
 
    function drawBomb(pX , pY) {
      var bomb = [[false,true,true,false],[true,false,false,true],[false,true,true,false]]
@@ -193,142 +194,53 @@
       }
   }
 
-    function initJumpMan() {
+  function initJumpMan() {
+      decors.JumpManGraphics[0] = jumpManFront()
+      decors.JumpManGraphics[1] = jumpManRight1()
+      decors.JumpManGraphics[2] = jumpManRight2()
+      decors.JumpManGraphics[3] = jumpManLeft1()
+      decors.JumpManGraphics[4] = jumpManLeft2()
+      decors.JumpManGraphics[5] = jumpManLadder1()
+      decors.JumpManGraphics[6] = jumpManLadder2()
+      decors.JumpManGraphics[7] = jumpManLadder3()
+      decors.JumpManGraphics[8] = jumpManLadder4()
+      decors.JumpManGraphics[9] = jumpManClimb1()
+      decors.JumpManGraphics[10] = jumpManClimb2()
+      decors.JumpManGraphics[11] = jumpManDead1()
+      //decors.JumpManGraphics[12] = jumpManDead2()
+      //decors.JumpManGraphics[13] = jumpManDead3()
+
       jumpMan.posAct = {x:(316/2)-8,y:114,h : 0,w : 0}
       jumpMan.posPr  = {x:0,y:0}
       jumpMan.etat = 1
       jumpMan.deplacement = {l:false,u:false,r:false,fr:1}
       jumpMan.jump = { jumping:false,jumpYStart:null, velX:0.0, velY:0.0, gravity:0.5}
-      jumpMan.graphic1 = jumpManFront()
-      jumpMan.graphic2 = jumpManRight1()
-      jumpMan.graphic3 = jumpManRight2()
-      jumpMan.graphic4 = jumpManLadder1()
-      jumpMan.graphic5 = jumpManLadder2()
-      jumpMan.graphic6 = jumpManLadder3()
-      jumpMan.graphic7 = jumpManLadder4()
+      jumpMan.graphic = decors.JumpManGraphics[6]
+      drawJumpMan()
     }
 
-    function jumpManFront() {
-        graphic = new Object()
-        graphic.tetePied=[{x:4,y:0,w:4,h:2},{x:2,y:9,w:8,h:1}]
-        graphic.corps=[{x:2,y:2,w:8,h:1},{x:0,y:3,w:2,h:1},{x:4,y:3,w:4,h:1},{x:10,y:3,w:2,h:1},{x:2,y:4,w:8,h:1}]
-        graphic.jambes=[{x:4,y:5,w:4,h:4}]
-        return graphic
-    }
-    
-    function jumpManRight1() {
-        graphic = new Object() //Right 1
-        graphic.tetePied=[{x:4,y:0,w:4,h:1},{x:4,y:1,w:2,h:1},{x:0,y:9,w:4,h:1},{x:8,y:9,w:4,h:1}]
-        graphic.corps=[{x:0,y:3,w:2,h:1},{x:2,y:2,w:2,h:1},{x:2,y:4,w:2,h:1},{x:4,y:2,w:4,h:3},{x:8,y:2,w:2,h:1},{x:10,y:3,w:2,h:1},{x:12,y:2,w:2,h:1}]
-        graphic.jambes=[{x:0,y:8,w:2,h:1},{x:2,y:6,w:2,h:2},{x:4,y:5,w:4,h:2},{x:8,y:6,w:2,h:3}]
-        return graphic
-    }
-    
-    function jumpManRight2() {
-        graphic = new Object() //Right 2
-        graphic.tetePied=[{x:6,y:0,w:4,h:1},{x:6,y:1,w:2,h:1},{x:0,y:9,w:4,h:1},{x:8,y:9,w:4,h:1}]
-        graphic.corps=[{x:0,y:4,w:2,h:1},{x:2,y:3,w:2,h:1},{x:4,y:2,w:2,h:1},{x:6,y:2,w:4,h:3},{x:10,y:4,w:2,h:1}]
-        graphic.jambes=[{x:0,y:8,w:2,h:1},{x:2,y:7,w:2,h:1},{x:4,y:6,w:2,h:1},{x:6,y:5,w:4,h:2},{x:8,y:7,w:2,h:2}]
-        return graphic
-    }
-    
-    function jumpManLadder1() {
-        graphic = new Object() //ladder 1
-        graphic.tetePied=[{x:6,y:0,w:4,h:2},{x:0,y:9,w:4,h:1},{x:12,y:9,w:4,h:1}]
-        graphic.corps=[{x:0,y:0,w:2,h:1},{x:2,y:1,w:2,h:1},{x:4,y:2,w:2,h:1},{x:6,y:2,w:4,h:3},{x:10,y:2,w:2,h:1},{x:12,y:1,w:2,h:1},{x:14,y:0,w:2,h:1}]
-        graphic.jambes=[{x:2,y:8,w:2,h:1},{x:4,y:6,w:2,h:2},{x:6,y:5,w:4,h:2},{x:10,y:6,w:2,h:2},{x:12,y:8,w:2,h:1}]
-        return graphic
-    }
-    
-    function jumpManLadder2() {
-         graphic = new Object() //ladder 2
-         graphic.tetePied=[{x:6,y:0,w:4,h:1},{x:6,y:1,w:2,h:1},{x:0,y:7,w:4,h:1},{x:12,y:9,w:4,h:1}]
-         graphic.corps=[{x:0,y:4,w:2,h:1},{x:2,y:3,w:2,h:1},{x:4,y:2,w:2,h:1},{x:6,y:2,w:4,h:4},{x:10,y:2,w:2,h:1},{x:12,y:1,w:2,h:1},{x:14,y:0,w:2,h:1}]
-         graphic.jambes=[{x:2,y:6,w:10,h:1},{x:10,y:7,w:2,h:1},{x:12,y:8,w:2,h:1}]
-         return graphic
-    }
- 
-    function jumpManLadder3() {
-         graphic = new Object() //ladder 3
-         graphic.tetePied=[{x:6,y:0,w:4,h:1},{x:0,y:8,w:4,h:1},{x:12,y:8,w:4,h:1}]
-         graphic.corps=[{x:0,y:3,w:2,h:1},{x:2,y:2,w:2,h:1},{x:4,y:1,w:2,h:1},{x:6,y:1,w:4,h:4},{x:10,y:1,w:2,h:1},{x:12,y:2,w:2,h:1},{x:14,y:3,w:2,h:1}]
-         graphic.jambes=[{x:2,y:7,w:2,h:1},{x:4,y:6,w:2,h:1},{x:4,y:5,w:8,h:1},{x:10,y:6,w:2,h:1},{x:12,y:7,w:2,h:1}]
-         return graphic
-    }
-    
-    function jumpManLadder4() {
-         graphic = new Object() //ladder 4
-         graphic.tetePied=[{x:6,y:0,w:4,h:1},{x:8,y:1,w:2,h:1},{x:0,y:9,w:4,h:1},{x:12,y:7,w:4,h:1}]
-         graphic.corps=[{x:0,y:0,w:2,h:1},{x:2,y:1,w:2,h:1},{x:4,y:2,w:2,h:1},{x:6,y:2,w:4,h:4},{x:10,y:2,w:2,h:1},{x:12,y:3,w:2,h:1},{x:14,y:4,w:2,h:1}]
-         graphic.jambes=[{x:2,y:8,w:2,h:1},{x:4,y:7,w:2,h:1},{x:4,y:6,w:10,h:1}]
-         return graphic
-    }
-    
     function drawJumpMan() {
-        
-      // Select jumpMan
       context.save()
-      switch(jumpMan.etat) {
-        case 2://right 1
-            jumpMan.posAct.h = 10
-            jumpMan.posAct.w = 14
-            draw(jumpMan.graphic2.tetePied, jumpMan.graphic2.corps, jumpMan.graphic2.jambes)
-            break;
-        case 3://right 2
-            jumpMan.posAct.h = 10
-            jumpMan.posAct.w = 12
-            draw(jumpMan.graphic3.tetePied, jumpMan.graphic3.corps, jumpMan.graphic3.jambes)
-            break;
-        case 4://ladder 1
-            jumpMan.posAct.h = 10
-            jumpMan.posAct.w = 16
-            draw(jumpMan.graphic4.tetePied, jumpMan.graphic4.corps, jumpMan.graphic4.jambes)
-            break;
-        case 5://ladder 2
-            jumpMan.posAct.h = 10
-            jumpMan.posAct.w = 16
-            draw(jumpMan.graphic5.tetePied, jumpMan.graphic5.corps, jumpMan.graphic5.jambes)
-            break;
-        case 6://ladder 3
-            jumpMan.posAct.h = 9
-            jumpMan.posAct.w = 16
-            draw(jumpMan.graphic6.tetePied, jumpMan.graphic6.corps, jumpMan.graphic6.jambes)
-            break;
-        case 7://ladder 4
-            jumpMan.posAct.h = 10
-            jumpMan.posAct.w = 16
-            draw(jumpMan.graphic7.tetePied, jumpMan.graphic7.corps, jumpMan.graphic7.jambes)
-            break;
-        case 1: //still
-        default:
-            jumpMan.posAct.h = 10
-            jumpMan.posAct.w = 12
-            draw(jumpMan.graphic1.tetePied, jumpMan.graphic1.corps, jumpMan.graphic1.jambes)
-            break;
+
+      context.beginPath() 
+      context.fillStyle = 'white'
+      for(var i = 0; i < graphic.tetePied.length; i++){
+          context.rect( (jumpMan.posAct.x+jumpMan.graphic.tetePied[i].x)*dimPx, (jumpMan.posAct.y+jumpMan.graphic.tetePied[i].y)*dimPx, jumpMan.graphic.tetePied[i].w*dimPx, jumpMan.graphic.tetePied[i].h*dimPx)
       }
-      context.restore()
-     
-      // Draw jumpMan
-      function draw(pTetePied, pCorps, pJambes) {
-        context.beginPath() 
-        context.fillStyle = 'white'
-        for(var i = 0; i < pTetePied.length; i++){
-            context.rect( (jumpMan.posAct.x+pTetePied[i].x)*dimPx, (jumpMan.posAct.y+pTetePied[i].y)*dimPx, pTetePied[i].w*dimPx, pTetePied[i].h*dimPx)
-        }
+      context.fill()
+      context.beginPath() 
+      context.fillStyle = 'red'
+      for(var i = 0; i < graphic.corps.length; i++){
+          context.rect( (jumpMan.posAct.x+jumpMan.graphic.corps[i].x)*dimPx, (jumpMan.posAct.y+jumpMan.graphic.corps[i].y)*dimPx, jumpMan.graphic.corps[i].w*dimPx, jumpMan.graphic.corps[i].h*dimPx)
+      }
+      context.fill()
+      context.beginPath() 
+      context.fillStyle = 'purple'
+      for(var i = 0; i < graphic.jambes.length; i++){
+          context.rect( (jumpMan.posAct.x+jumpMan.graphic.jambes[i].x)*dimPx, (jumpMan.posAct.y+jumpMan.graphic.jambes[i].y)*dimPx, jumpMan.graphic.jambes[i].w*dimPx, jumpMan.graphic.jambes[i].h*dimPx)
+      }
+      context.fill()
       
-        context.fill()
-        context.beginPath() 
-        context.fillStyle = 'red'
-        for(var i = 0; i < pCorps.length; i++){
-            context.rect( (jumpMan.posAct.x+pCorps[i].x)*dimPx, (jumpMan.posAct.y+pCorps[i].y)*dimPx, pCorps[i].w*dimPx, pCorps[i].h*dimPx)
-        }
-        context.fill()
-        context.beginPath() 
-        context.fillStyle = 'purple'
-        for(var i = 0; i < pJambes.length; i++){
-            context.rect( (jumpMan.posAct.x+pJambes[i].x)*dimPx, (jumpMan.posAct.y+pJambes[i].y)*dimPx, pJambes[i].w*dimPx, pJambes[i].h*dimPx)
-        }
-        context.fill()
-      }
+      context.restore()
     }
    
