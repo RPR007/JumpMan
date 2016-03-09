@@ -58,8 +58,8 @@
     initFloor()
     initLadders()
     initRopes()
-    initJumpMan()
     initBombs()
+    initJumpMan()
   }
 
   function initFloor() {
@@ -194,9 +194,9 @@
   }
 
     function initJumpMan() {
-      jumpMan.x = 20
-      jumpMan.y = 27
-      jumpMan.etat = 7
+      jumpMan.x = (316/2)-8
+      jumpMan.y = 114
+      jumpMan.etat = 1
       jumpMan.deplacement = {l:false,u:false,r:false,fr:1}
       jumpMan.jump = { jumping:false,jumpYStart:null, velX:0.0, velY:0.0, gravity:0.5}
       jumpMan.graphic1 = jumpManFront()
@@ -209,7 +209,7 @@
     }
 
     function jumpManFront() {
-        graphic = new Object() //left 1
+        graphic = new Object()
         graphic.tetePied=[{x:4,y:0,w:4,h:2},{x:2,y:9,w:8,h:1}]
         graphic.corps=[{x:2,y:2,w:8,h:1},{x:0,y:3,w:2,h:1},{x:4,y:3,w:4,h:1},{x:10,y:3,w:2,h:1},{x:2,y:4,w:8,h:1}]
         graphic.jambes=[{x:4,y:5,w:4,h:4}]
@@ -217,7 +217,7 @@
     }
     
     function jumpManRight1() {
-        graphic = new Object() //left 1
+        graphic = new Object() //Right 1
         graphic.tetePied=[{x:4,y:0,w:4,h:1},{x:4,y:1,w:2,h:1},{x:0,y:9,w:4,h:1},{x:8,y:9,w:4,h:1}]
         graphic.corps=[{x:0,y:3,w:2,h:1},{x:2,y:2,w:2,h:1},{x:2,y:4,w:2,h:1},{x:4,y:2,w:4,h:3},{x:8,y:2,w:2,h:1},{x:10,y:3,w:2,h:1},{x:12,y:2,w:2,h:1}]
         graphic.jambes=[{x:0,y:8,w:2,h:1},{x:2,y:6,w:2,h:2},{x:4,y:5,w:4,h:2},{x:8,y:6,w:2,h:3}]
@@ -225,7 +225,7 @@
     }
     
     function jumpManRight2() {
-        graphic = new Object() //left 2
+        graphic = new Object() //Right 2
         graphic.tetePied=[{x:6,y:0,w:4,h:1},{x:6,y:1,w:2,h:1},{x:0,y:9,w:4,h:1},{x:8,y:9,w:4,h:1}]
         graphic.corps=[{x:0,y:4,w:2,h:1},{x:2,y:3,w:2,h:1},{x:4,y:2,w:2,h:1},{x:6,y:2,w:4,h:3},{x:10,y:4,w:2,h:1}]
         graphic.jambes=[{x:0,y:8,w:2,h:1},{x:2,y:7,w:2,h:1},{x:4,y:6,w:2,h:1},{x:6,y:5,w:4,h:2},{x:8,y:7,w:2,h:2}]
