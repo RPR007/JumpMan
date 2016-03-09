@@ -61,8 +61,8 @@
   {
     if (jumpMan.deplacement.jumping) {
       jumpMan.deplacement.fr++
-      jumpMan.x += jumpMan.jump.velX * jumpMan.jump.fr
-      jumpMan.y += jumpMan.jump.velY * jumpMan.jump.fr
+      jumpMan.posAct.x += jumpMan.jump.velX * jumpMan.jump.fr
+      jumpMan.posAct.y += jumpMan.jump.velY * jumpMan.jump.fr
       jumpMan.jump.velY += jumpMan.jump.gravity * jumpMan.deplacement.fr   
       console.log("x = "+jumpMan.x +" y = "+jumpMan.y +" velx = "+jumpMan.jump.velX )
     }
@@ -79,28 +79,23 @@
       }//go left
       else if (jumpMan.deplacement.l) {//reduce velX if possible
         jumpMan.jump.velX= jumpMan.jump.velX>0?0:jumpMan.jump.velX> -6?jumpMan.jump.velX-=1:jumpMan.jump.velX
-        if(jumpMan.x == 0 && jumpMan.jump.velX < 0)
+        if(jumpMan.posAct.x < 1 && jumpMan.jump.velX < 0)
            jumpMan.jump.velX = 0 
+        //jumpMan.etat =  jumpMan.etat==X?Y:Z // changer etat
       }//go right
       else if (jumpMan.deplacement.r) {//augment velX if possible
-        switch (jumpMan.etat) {
-            case 2 : 
-                jumpMan.etat = 3
-                break
-            case 3 :
-            default :
-                jumpMan.etat = 2
-                break
-        }
+        jumpMan.etat =  jumpMan.etat==2?3:2 // changer etat
+
         jumpMan.jump.velX = jumpMan.jump.velX<0?0:jumpMan.jump.velX<6?jumpMan.jump.velX+=1:jumpMan.jump.velX
-        if(jumpMan.x == 316 && jumpMan.jump.velX > 0)
-           jumpMan.jump.velX = 316
+        
+        if(jumpMan.posAct.x >= 302 && jumpMan.jump.velX > 0)
+           jumpMan.jump.velX = 0
       }//stop going left OR right
       else if (!jumpMan.deplacement.l  && !jumpMan.deplacement.l){
           jumpMan.jump.velX=0
       }
-      jumpMan.x+= jumpMan.jump.velX
-      jumpMan.y+= jumpMan.jump.velY
+      jumpMan.posAct.x+= jumpMan.jump.velX
+      jumpMan.posAct.y+= jumpMan.jump.velY
     }
     //console.log("velX = "+jumpMan.jump.velX)
     

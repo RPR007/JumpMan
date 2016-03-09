@@ -194,8 +194,8 @@
   }
 
     function initJumpMan() {
-      jumpMan.x = (316/2)-8
-      jumpMan.y = 114
+      jumpMan.posAct = {x:(316/2)-8,y:114}
+      jumpMan.posPr  = {x:0,y:0}
       jumpMan.etat = 1
       jumpMan.deplacement = {l:false,u:false,r:false,fr:1}
       jumpMan.jump = { jumping:false,jumpYStart:null, velX:0.0, velY:0.0, gravity:0.5}
@@ -299,20 +299,20 @@
         context.beginPath() 
         context.fillStyle = 'white'
         for(var i = 0; i < pTetePied.length; i++){
-            context.rect( (jumpMan.x+pTetePied[i].x)*dimPx, (jumpMan.y+pTetePied[i].y)*dimPx, pTetePied[i].w*dimPx, pTetePied[i].h*dimPx)
+            context.rect( (jumpMan.posAct.x+pTetePied[i].x)*dimPx, (jumpMan.posAct.y+pTetePied[i].y)*dimPx, pTetePied[i].w*dimPx, pTetePied[i].h*dimPx)
         }
       
         context.fill()
         context.beginPath() 
         context.fillStyle = 'red'
         for(var i = 0; i < pCorps.length; i++){
-            context.rect( (jumpMan.x+pCorps[i].x)*dimPx, (jumpMan.y+pCorps[i].y)*dimPx, pCorps[i].w*dimPx, pCorps[i].h*dimPx)
+            context.rect( (jumpMan.posAct.x+pCorps[i].x)*dimPx, (jumpMan.posAct.y+pCorps[i].y)*dimPx, pCorps[i].w*dimPx, pCorps[i].h*dimPx)
         }
         context.fill()
         context.beginPath() 
         context.fillStyle = 'purple'
         for(var i = 0; i < pJambes.length; i++){
-            context.rect( (jumpMan.x+pJambes[i].x)*dimPx, (jumpMan.y+pJambes[i].y)*dimPx, pJambes[i].w*dimPx, pJambes[i].h*dimPx)
+            context.rect( (jumpMan.posAct.x+pJambes[i].x)*dimPx, (jumpMan.posAct.y+pJambes[i].y)*dimPx, pJambes[i].w*dimPx, pJambes[i].h*dimPx)
         }
         context.fill()
       }
