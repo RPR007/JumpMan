@@ -63,7 +63,7 @@
       jumpMan.deplacement.fr++
       jumpMan.jump.velY = -0.7 * Math.pow(jumpMan.jump.jumpX,2) + 6
       jumpMan.posAct.x += jumpMan.jump.jumpX+3
-      jumpMan.posAct.y = jumpMan.jump.posAct.y - jumpMan.jump.velY
+      jumpMan.posAct.y = jumpMan.posAct.y - jumpMan.jump.velY
       console.log(jumpMan.jump.jumpX + ',' + jumpMan.jump.velY)
       if(jumpMan.jump.jumpX == 3 ) {
         jumpMan.deplacement.jumping = false
@@ -88,10 +88,10 @@
         jumpMan.jump.velX= jumpMan.jump.velX>0?0:jumpMan.jump.velX> -6?jumpMan.jump.velX-=1:jumpMan.jump.velX
         if(jumpMan.posAct.x < 1 && jumpMan.jump.velX < 0)
            jumpMan.jump.velX = 0 
-        //jumpMan.etat =  jumpMan.etat==X?Y:Z // changer etat
+        //jumpMan.graphic.etat =  jumpMan.graphic.etat==X?Y:Z // changer etat
       }//go right
       else if (jumpMan.deplacement.r) {//augment velX if possible
-        jumpMan.etat =  jumpMan.etat==2?3:2 // changer etat
+        jumpMan.graphic.etat =  jumpMan.graphic.etat==2?3:2 // changer etat
 
         jumpMan.jump.velX = jumpMan.jump.velX<0?0:jumpMan.jump.velX<6?jumpMan.jump.velX+=1:jumpMan.jump.velX
         
