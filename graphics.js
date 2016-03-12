@@ -86,7 +86,6 @@
     //dupliquer les planchers symétriques
     duplArrayFloorSym(decors.arrFloors)
     //créer les obj planchers NON symétriques
-    
     floor(136,60,12);//middle-up floor
     floor(112,92,24);//middle-middle floor
     floor(112,124,24);//middle-down floor
@@ -209,11 +208,10 @@
 
    function drawBomb(pX , pY) {
     var t = p(1,0,2,1)
-     var bomb=[p(1,0,2,1),p(1,0,1,1),p(3,1,1,1)]
+     var bomb=[p(1,0,2,1),p(0,1,1,1),p(3,1,1,1),p(1,2,2,1)]
       context.beginPath()
       for(var i = 0; i < bomb.length; i++) {
             context.fillRect( (bomb[i].x+pX)*dimPx ,(bomb[i].y+pY)*dimPx , bomb[i].w*dimPx , bomb[i].h*dimPx)
-            console.log(":"+ t.h)
       }
       context.fill()
   }
@@ -236,9 +234,9 @@
 
       jumpMan.posAct = {x:(316/2)-8,y:114,h : 0,w : 0}
       jumpMan.posPr  = {x:0,y:0}
-      jumpMan.deplacement = {l:false,u:false,r:false,d:false,fr:1}
-      jumpMan.jump = { jumping:false,jumpYStart:null, velX:0.0, velY:0.0, gravity:0.5}
-      jumpMan.graphic = decors.JumpManGraphics[7]
+      jumpMan.deplacement = {l:false,u:false,r:false,fr:1}
+      jumpMan.jump = { jumping:false,jumpX : 0, posAct : {x:(316/2)-8,y:114,h : 0,w : 0},velX:0.0, velY:0.0, gravity:0.5}
+      jumpMan.graphic = decors.JumpManGraphics[10]
       drawJumpMan()
     }
 

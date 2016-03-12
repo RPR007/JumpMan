@@ -69,7 +69,7 @@
       jumpMan.deplacement.fr++
       jumpMan.jump.velY = -0.7 * Math.pow(jumpMan.jump.jumpX,2) + 6
       jumpMan.posAct.x += jumpMan.jump.jumpX+3
-      jumpMan.posAct.y = jumpMan.posAct.y - jumpMan.jump.velY
+      jumpMan.posAct.y = jumpMan.jump.posAct.y - jumpMan.jump.velY
       console.log(jumpMan.jump.jumpX + ',' + jumpMan.jump.velY)
       if(jumpMan.jump.jumpX == 3 ) {
         jumpMan.deplacement.jumping = false
