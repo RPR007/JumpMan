@@ -17,11 +17,11 @@
     width =  window.innerWidth 
     height =  window.innerHeight
     function closureResize() {
-        var w =  window.innerWidth / 316 
-        var h =  window.innerHeight / 178
+        var w =  window.innerWidth / 320 
+        var h =  window.innerHeight / 200
         dimPx = (w < h ? w:h)
-        document.getElementById('canJumpMan').width=(316*dimPx)
-        document.getElementById('canJumpMan').height=(178*dimPx)
+        document.getElementById('canJumpMan').width=(320*dimPx)
+        document.getElementById('canJumpMan').height=(200*dimPx)
     }
   }
 
@@ -53,6 +53,9 @@
     context.restore()
     drawJumpMan()
     context.restore()
+    //score
+
+    context.restore()
   }
 
   function initScene() {
@@ -63,31 +66,39 @@
     initJumpMan()
   }
 
+  function floor(pX , pY , pNbRep) {
+    decors.arrFloors.push( {x:pX ,y:pY,nbRep:pNbRep,haut:6})
+  }
+
   function initFloor() {
     //créer les obj planchers symétriques
     //top left floor
-    decors.arrFloors.push({x:4,y:20,nbRep:10,haut:6},{x:44,y:22,nbRep:2,haut:6},{x:52,y:24,nbRep:2,haut:6},{x:60,y:22,nbRep:2,haut:6})
-    decors.arrFloors.push({x:68,y:20,nbRep:12,haut:6},{x:116,y:18,nbRep:2,haut:6},{x:124,y:16,nbRep:2,haut:6},{x:132,y:14,nbRep:2,haut:6})
+    floor(8,20,10);floor(48,22,2);floor(56,24,2);floor(64,22,2); 
+    floor(72,20,12);floor(120,18,2);floor(128,16,2);floor(136,14,2); 
     //middle-top left floor
-    decors.arrFloors.push({x:4,y:60,nbRep:10,haut:6})
-    decors.arrFloors.push({x:76,y:52,nbRep:8,haut:6},{x:108,y:54,nbRep:2,haut:6},{x:116,y:56,nbRep:2,haut:6},{x:124,y:58,nbRep:2,haut:6})
+    floor(8,60,10); 
+    floor(80,52,8);floor(112,54,2);floor(120,56,2);floor(128,58,2);
     //middle-btm left floor
-    decors.arrFloors.push({x:4,y:92,nbRep:10,haut:6},{x:68,y:92,nbRep:4,haut:6})
+    floor(8,92,10);floor(72,92,4);
     //btm-top left floor
-    decors.arrFloors.push({x:4,y:140,nbRep:12,haut:6},{x:52,y:138,nbRep:2,haut:6},{x:60,y:136,nbRep:2,haut:6},{x:68,y:134,nbRep:2,haut:6}) 
-    decors.arrFloors.push({x:76,y:132,nbRep:2,haut:6},{x:84,y:130,nbRep:2,haut:6},{x:92,y:128,nbRep:2,haut:6},{x:100,y:126,nbRep:2,haut:6})
+    floor(8,140,12);floor(56,138,2);floor(64,136,2);floor(72,134,2);
+    floor(80,132,2);floor(88,130,2);floor(96,128,2);floor(104,126,2);
     //dupliquer les planchers symétriques
     duplArrayFloorSym(decors.arrFloors)
     //créer les obj planchers NON symétriques
-    decors.arrFloors.push({x:132, y:60, nbRep:12, haut:6})//middle-up floor
-    decors.arrFloors.push({x:108, y:92, nbRep:24, haut:6})//middle-middle floor
-    decors.arrFloors.push({x:108, y:124, nbRep:24, haut:6})//middle-down floor
-    decors.arrFloors.push({x:142, y:166, nbRep:8, haut:6})//middle bump lower florr
-    decors.arrFloors.push({x:4, y:172, nbRep:76, haut:6})//full lower florr
+    
+    floor(136,60,12);//middle-up floor
+    floor(112,92,24);//middle-middle floor
+    floor(112,124,24);//middle-down floor
+    floor(146,166,8); //middle bump lower florr
+    floor(6,172,76);//full lower florr
+    
     // créer les morceaux individuels
     for (var i = 0 ; i<decors.arrFloors.length ; i++) {
         pushArrayPointsFloor(decors.arrFloors[i])
     }
+
+
   }
   //ajoute des points pour créer une ligne de plancher horisontale
    function pushArrayPointsFloor(pFloor){
@@ -100,7 +111,8 @@
    originals = pArr
    var length = originals.length
      for (var i = 0; i < length; i++) {
-      pArr.push( {x:312-(originals[i].x+originals[i].nbRep*4) , y:originals[i].y ,nbRep:originals[i].nbRep} )
+      floor( 320-(originals[i].x+originals[i].nbRep*4) , originals[i].y , originals[i].nbRep)
+      //pArr.push( {x:320-(originals[i].x+originals[i].nbRep*4) , y:originals[i].y ,nbRep:originals[i].nbRep} )
      }
    }
 
@@ -116,16 +128,21 @@
      context.fill()
    }
 
+   function ladder(pX , pY , pNbRep) {
+     decors.arrLadders.push({x:pX, y:pY, nbRep:pNbRep, larg:16})
+   }
+
    function initLadders() {
       //créer les obj échelles symétriques
-      decors.arrLadders.push({x:20, y:12,  nbRep:11, larg:16})//left up
-      decors.arrLadders.push({x:20, y:132, nbRep:5, larg:16})//left down
-      decors.arrLadders.push({x:84,  y:12,  nbRep:5, larg:16})//middle left-up
-      decors.arrLadders.push({x:118,  y:84,  nbRep:5, larg:16})//middle left-down
+      ladder(24,12,11)//left up
+      ladder(24, 132, 5)//left down
+      ladder(88, 12, 5)//middle left-up
+      ladder(88, 12, 5)//middle left-down
+      ladder(122, 84, 5)//middle left-down
       //dupliquer les échelles symétriques
       duplArrayLadders(decors.arrLadders)
       //créer les obj échelles NON symétriques
-      decors.arrLadders.push({x:148,  y:52,  nbRep:5, larg:16})//middle
+      ladder(148, 52, 5)//middle
       // créer les morceaux individuels
       for (var i = 0 ; i<decors.arrLadders.length ; i++) {
           pushArrayPointsLadders(decors.arrLadders[i] ) 
@@ -142,7 +159,7 @@
    originals = pArr
    var length = originals.length
      for (var i = 0; i < length; i++) {
-      pArr.push( {x:312-(originals[i].x+originals[i].larg) , y:originals[i].y ,nbRep:originals[i].nbRep} )
+      pArr.push( {x:320-(originals[i].x+originals[i].larg) , y:originals[i].y ,nbRep:originals[i].nbRep} )
      }
    }
    
@@ -155,43 +172,50 @@
    }
 
     function initRopes() {
-      decors.arrRopes = [{x:74, y:98}, {x:234, y:98}]
+      decors.arrRopes = [{x:78, y:98}, {x:238, y:98}]
     }
 
    function drawRope(pX , pY) {
-     var rope = [[true,false],[false,true],[true,false],[false,true],[true,false],[false,true],[true,false],[false,true]]
-     pX *= dimPx;pY *= dimPx
-     
-     for(var i = 0; i < rope.length; i++)
-        for(var j = 0; j < rope[i].length;j++)
-            if(rope[i][j])
-                context.fillRect(pX+(j*(dimPx*2)) ,pY+(i*(dimPx*2)) , (dimPx*2) , (dimPx*2))
-      /*var b = true
+      var b = true
       for (var i = 0; i < 8; i++) {
         context.fillRect(pX*dimPx+(Boolean(b)?0:dimPx*2) ,pY*dimPx+(i*(dimPx*2)) , (2*dimPx) , (2*dimPx))
         b = !b
-      }*/
+      }
+   }
+
+
+   function drawFloor(pX , pY) {
+     context.beginPath();
+     context.fillStyle = '#6dac49'
+     context.rect( pX*dimPx  ,pY*dimPx , 4*dimPx , 6*dimPx)
+     context.fill()
+
+     context.beginPath()
+     context.fillStyle = 'black'
+     context.rect( (pX+2)*dimPx ,(pY+2)*dimPx , 2*dimPx , 2*dimPx)
+     context.fill()
+   }
+
+   function bomb(pX , pY, pID) {
+       decors.arrBombs.push({x:pX,y:pY, id:pID})
    }
 
    function initBombs() {
-       decors.arrBombs = [{x:4,y:14},{x:4,y:46},{x:4,y:166}]
-       decors.arrBombs.push({x:132,y:8},{x:66,y:76},{x:126,y:146})
-       decors.arrBombs.push({x:300,y:14},{x:300,y:46},{x:300,y:166})
-       decors.arrBombs.push({x:172,y:8},{x:236,y:76},{x:178,y:146})
+       bomb(8,14,1); bomb(8,46,2); bomb(8,166,3);
+       bomb(136,8,4); bomb(70,76,5); bomb(130,146,6);
+       bomb(304,14,7); bomb(304,46,8); bomb(304,166,9);
+       bomb(176,8,10); bomb(240,76,11); bomb(182,146,12);
    }
 
    function drawBomb(pX , pY) {
-     var bomb = [[false,true,true,false],[true,false,false,true],[false,true,true,false]]
-     pX *= dimPx;pY *= dimPx
-     
+    var t = p(1,0,2,1)
+     var bomb=[p(1,0,2,1),p(1,0,1,1),p(3,1,1,1)]
+      context.beginPath()
       for(var i = 0; i < bomb.length; i++) {
-        for(var j = 0; j < bomb[i].length;j++) {
-            if(bomb[i][j]) {
-                context.fillRect(pX+(j*(dimPx*2)) ,pY+(i*(dimPx*2)) , (dimPx*2) , (dimPx*2))
-                context.strokeRect(pX+(j*(dimPx*2))+1 ,pY+(i*(dimPx*2))+1 , (dimPx*2)-1 , (dimPx*2)-1)
-            }
-        }
+            context.fillRect( (bomb[i].x+pX)*dimPx ,(bomb[i].y+pY)*dimPx , bomb[i].w*dimPx , bomb[i].h*dimPx)
+            console.log(":"+ t.h)
       }
+      context.fill()
   }
 
   function initJumpMan() {
@@ -212,9 +236,9 @@
 
       jumpMan.posAct = {x:(316/2)-8,y:114,h : 0,w : 0}
       jumpMan.posPr  = {x:0,y:0}
-      jumpMan.deplacement = {l:false,u:false,r:false,fr:1}
+      jumpMan.deplacement = {l:false,u:false,r:false,d:false,fr:1}
       jumpMan.jump = { jumping:false,jumpYStart:null, velX:0.0, velY:0.0, gravity:0.5}
-      jumpMan.graphic = decors.JumpManGraphics[0]
+      jumpMan.graphic = decors.JumpManGraphics[7]
       drawJumpMan()
     }
 
@@ -240,7 +264,7 @@
       context.fill()
       context.beginPath() 
       context.fillStyle = 'purple'
-      for(var i = 0; i < graphic.jambes.length; i++){
+      for(var i = 0; i < grJambes.length; i++){
           context.rect( (actX+grJambes[i].x)*dimPx, (actY+grJambes[i].y)*dimPx, grJambes[i].w*dimPx, grJambes[i].h*dimPx)
       }
       context.fill()

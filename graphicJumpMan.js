@@ -1,3 +1,8 @@
+
+function p(pX, pY, pW, pH){
+   return {x:pX,y:pY,w:pW,h:pH}
+}
+
 function jumpManFront() {
     graphic = new Object()
     graphic.etat = 0
@@ -17,9 +22,9 @@ function jumpManLeft1() {
     graphic.w = 0
     graphic.etat = 1
     graphic.mdl = 0
-    graphic.tetePied=[{x:0,y:0,w:0,h:0}]
-    graphic.corps=[{x:0,y:0,w:0,h:0}]
-    graphic.jambes=[{x:0,y:0,w:0,h:0}]
+    graphic.tetePied=[p(6,0,2,1),p(8,0,2,2),p(2,9,4,1),p(10,9,4,1)]
+    graphic.corps=[p(0,2,2,1),p(2,3,2,1),p(4,2,2,1),p(10,2,2,1),p(12,3,2,1),p(10,4,2,1),p(6,2,4,3)]
+    graphic.jambes=[p(4,6,2,3),p(6,5,4,2),p(10,6,2,2),p(12,8,2,1)]
     return graphic
 }
 
@@ -29,9 +34,9 @@ function jumpManLeft2() {
     graphic.h = 0
     graphic.w = 0
     graphic.mdl = 0
-    graphic.tetePied=[{x:0,y:0,w:0,h:0}]
-    graphic.corps=[{x:0,y:0,w:0,h:0}]
-    graphic.jambes=[{x:0,y:0,w:0,h:0}]
+    graphic.tetePied=[p(2,0,2,1),p(4,0,2,2),p(0,9,4,1),p(8,9,4,1)]
+    graphic.corps=[p(0,4,2,1),p(2,2,4,3),p(6,2,2,1),p(8,3,2,1),p(10,4,2,1)]
+    graphic.jambes=[p(2,5,4,2),p(2,7,2,2),p(6,6,2,1),p(8,7,2,1),p(10,8,2,1)]
     return graphic
 }
 
@@ -138,9 +143,9 @@ function jumpManDead1() {
     graphic.w = 0
     graphic.etat = 0
     graphic.mdl = 0
-    graphic.tetePied=[{x:0,y:0,w:0,h:0}]
-    graphic.corps=[{x:0,y:0,w:0,h:0}]
-    graphic.jambes=[{x:0,y:0,w:0,h:0}]
+    graphic.tetePied=[p(6,0,4,2),p(0,4,2,1),p(14,4,2,1)]
+    graphic.corps=[p(0,0,2,1),p(2,1,2,1),p(4,2,2,1),p(6,2,4,3),p(10,2,2,1),p(12,1,2,1),p(14,0,2,1)]
+    graphic.jambes=[p(0,5,16,1)]
     return graphic
 }
 
