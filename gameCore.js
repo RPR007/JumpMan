@@ -52,7 +52,6 @@
         }
     }
 
-
   function updateAnimation()
   {
     moveJumpMan()
@@ -134,3 +133,34 @@
 
     
   }
+
+
+    function disarmBomb(pBomb)
+    {
+      arrTmp = []
+      if (pBomb.id == 1 || pBomb.id == 10 ) {
+          for (var i = 0 ; i<decors.arrFloors.length ; i++) {
+            if (!decors.arrFloors[i].bomb || decors.arrFloors[i].bomb != pBomb.id) {
+              arrTmp.push(decors.arrFloors[i])
+            }
+          }
+          decors.arrFloors = arrTmp
+          decors.arrPointsFloors = []
+          for (var i = 0 ; i<decors.arrFloors.length ; i++) {
+              pushArrayPointsFloor(decors.arrFloors[i])
+          }
+      }
+      else if (pBomb.id == 2 || pBomb.id == 11 ) {
+          for (var i = 0 ; i<decors.arrLadders.length ; i++) {
+            if (!decors.arrLadders[i].bomb || decors.arrLadders[i].bomb != pBomb.id) {
+              arrTmp.push(decors.arrLadders[i])
+            }
+          }
+          decors.arrLadders = arrTmp
+          decors.arrPointsLadders = []
+          for (var i = 0 ; i<decors.arrLadders.length ; i++) {
+              pushArrayPointsLadders(decors.arrLadders[i] ) 
+          }
+      }
+      else{ console.log("disarmBomb no "+pBomb.id+" impossible") }
+    }

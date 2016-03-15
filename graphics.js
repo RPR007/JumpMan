@@ -66,14 +66,19 @@
     initJumpMan()
   }
 
-  function floor(pX , pY , pNbRep) {
-    decors.arrFloors.push( {x:pX ,y:pY,nbRep:pNbRep,haut:6})
+  function floor(pX , pY , pNbRep , pIdBomb) {
+    if (pIdBomb) {
+           decors.arrFloors.push({x:pX ,y:pY,nbRep:pNbRep,haut:6,bomb:pIdBomb})
+    }
+    else{
+        decors.arrFloors.push({x:pX ,y:pY,nbRep:pNbRep,haut:6})
+    }
   }
 
   function initFloor() {
     //créer les obj planchers symétriques
     //top left floor
-    floor(8,20,10);floor(48,22,2);floor(56,24,2);floor(64,22,2); 
+    floor(8,20,10); 
     floor(72,20,12);floor(120,18,2);floor(128,16,2);floor(136,14,2); 
     //middle-top left floor
     floor(8,60,10); 
@@ -91,6 +96,9 @@
     floor(112,124,24);//middle-down floor
     floor(146,166,8); //middle bump lower florr
     floor(6,172,76);//full lower florr
+
+    floor(48,22,2,1);floor(56,24,2,1);floor(64,22,2,1);//associé bombe 1
+    floor(248,22,2,10);floor(256,24,2,10);floor(264,22,2,10);//associé bombe 10
     
     // créer les morceaux individuels
     for (var i = 0 ; i<decors.arrFloors.length ; i++) {
@@ -111,7 +119,6 @@
    var length = originals.length
      for (var i = 0; i < length; i++) {
       floor( 320-(originals[i].x+originals[i].nbRep*4) , originals[i].y , originals[i].nbRep)
-      //pArr.push( {x:320-(originals[i].x+originals[i].nbRep*4) , y:originals[i].y ,nbRep:originals[i].nbRep} )
      }
    }
 
@@ -127,14 +134,19 @@
      context.fill()
    }
 
-   function ladder(pX , pY , pNbRep) {
-     decors.arrLadders.push({x:pX, y:pY, nbRep:pNbRep, larg:16})
+   function ladder(pX , pY , pNbRep , pIdBomb) {
+
+    if (pIdBomb) {
+        decors.arrLadders.push({x:pX, y:pY, nbRep:pNbRep, larg:16 , bomb:pIdBomb})
+    }
+    else{
+        decors.arrLadders.push({x:pX, y:pY, nbRep:pNbRep, larg:16})
+    }
    }
 
    function initLadders() {
       //créer les obj échelles symétriques
-      ladder(24,12,11)//left up
-      ladder(24, 132, 5)//left down
+      ladder(24,12,7) ;ladder(24,84,2)//left up 2/3 pieces
       ladder(88, 12, 5)//middle left-up
       ladder(88, 12, 5)//middle left-down
       ladder(122, 84, 5)//middle left-down
@@ -142,6 +154,11 @@
       duplArrayLadders(decors.arrLadders)
       //créer les obj échelles NON symétriques
       ladder(148, 52, 5)//middle
+
+      ladder(24,68, 2,2)//associé bombe 2
+      ladder(280, 68, 2,11)//associé bombe 11
+
+
       // créer les morceaux individuels
       for (var i = 0 ; i<decors.arrLadders.length ; i++) {
           pushArrayPointsLadders(decors.arrLadders[i] ) 
@@ -196,14 +213,13 @@
    }
 
    function bomb(pX , pY, pID) {
-       decors.arrBombs.push({x:pX,y:pY, id:pID})
+       decors.arrBombs.push({x:pX,y:pY, id:pID , armed:true})
    }
 
    function initBombs() {
-       bomb(8,14,1); bomb(8,46,2); bomb(8,166,3);
-       bomb(136,8,4); bomb(70,76,5); bomb(130,146,6);
-       bomb(304,14,7); bomb(304,46,8); bomb(304,166,9);
-       bomb(176,8,10); bomb(240,76,11); bomb(182,146,12);
+       bomb(8,14,1);             bomb(136,8,4);  bomb(176,8,7);               bomb(304,14,10);  
+       bomb(8,46,2);bomb(70,76,5);                             bomb(240,76,8);bomb(304,46,11); 
+       bomb(8,166,3);            bomb(130,146,6);bomb(182,146,9);             bomb(304,166,12); 
    }
 
    function drawBomb(pX , pY) {
