@@ -158,7 +158,7 @@
    originals = pArr
    var length = originals.length
      for (var i = 0; i < length; i++) {
-      pArr.push( {x:320-(originals[i].x+originals[i].larg) , y:originals[i].y ,nbRep:originals[i].nbRep} )
+      pArr.push( {x:320-(originals[i].x+originals[i].larg) , y:originals[i].y ,nbRep:originals[i].nbRep,larg:originals[i].larg})
      }
    }
    
@@ -234,9 +234,9 @@
 
       jumpMan.posAct = {x:(316/2)-8,y:114,h : 0,w : 0}
       jumpMan.posPr  = {x:0,y:0}
-      jumpMan.deplacement = {l:false,u:false,r:false,fr:1}
+      jumpMan.deplacement = {l:false,u:false,r:false,j:false,fr:1}
       jumpMan.jump = { jumping:false,jumpX : 0, posAct : {x:(316/2)-8,y:114,h : 0,w : 0},velX:0.0, velY:0.0, gravity:0.5}
-      jumpMan.graphic = decors.JumpManGraphics[10]
+      jumpMan.graphic = decors.JumpManGraphics[0]
       drawJumpMan()
     }
 

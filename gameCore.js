@@ -16,6 +16,9 @@
             case 40: // down
               jumpMan.deplacement.d = true 
             break;
+            case 32 : // space
+              jumpMan.deplacement.j = true
+              break;
             default:
               console.log("down touche : "+ event.keyCode+" invalide" )
       }
@@ -34,6 +37,9 @@
             case 40: // down
               jumpMan.deplacement.d = false 
             break;
+            case 32: // space
+              jumpMan.deplacement.j = false
+              break;
             default:
               console.log("up touche : "+ event.keyCode+" invalide" )
       }
@@ -56,74 +62,102 @@
   function updateAnimation()
   {
     moveJumpMan()
-    collisionFloor()
-    collisionLadder()
-    collisionRope()
-    collisionBomb()
+  //  collisionFloor()
+  //  collisionLadder()
+  //  collisionRope()
+  //  collisionBomb()
   }
 
 
   function moveJumpMan()
   {
-    if (jumpMan.deplacement.jumping) {
-      jumpMan.deplacement.fr++
-      jumpMan.jump.velY = -0.7 * Math.pow(jumpMan.jump.jumpX,2) + 6
-      jumpMan.posAct.x += jumpMan.jump.jumpX+3
-      jumpMan.posAct.y = jumpMan.jump.posAct.y - jumpMan.jump.velY
-      console.log(jumpMan.jump.jumpX + ',' + jumpMan.jump.velY)
-      if(jumpMan.jump.jumpX == 3 ) {
+    if (jumpMan.deplacement.jumping) { jump() }
+    else if (jumpMan.deplacement.l && jumpMan.deplacement.r) {}
+    else if (jumpMan.deplacement.j) {
+        jumpMan.jump.jumpX  = -3
+        jumpMan.jump.velY=0 //give it a kick
+        jumpMan.deplacement.jumping = true
+    } else {
+        if(jumpMan.deplacement.u) {
+            up()
+        }
+        else if(jumpMan.deplacement.d) {
+            down()
+        }
+        else if (jumpMan.deplacement.l) {
+            left()
+        }
+        else if (jumpMan.deplacement.r) {
+            right()
+        }
+        else if (!jumpMan.deplacement.l  && !jumpMan.deplacement.l){
+          jumpMan.jump.velX=0
+        }
+        
+        jumpMan.posAct.x+= jumpMan.jump.velX
+        jumpMan.posAct.y+= jumpMan.jump.velY
+    }
+  }
+  
+  function jump() {
+     jumpMan.jump.velY = -0.7 * Math.pow(jumpMan.jump.jumpX,2) + 6
+     jumpMan.posAct.x += jumpMan.jump.jumpX+3
+     jumpMan.posAct.y = jumpMan.jump.posAct.y - jumpMan.jump.velY
+     if(jumpMan.jump.jumpX == 3 ) {
         jumpMan.deplacement.jumping = false
         jumpMan.jump.velY = 0
-      } else
-        jumpMan.jump.jumpX++
-    }
-     //left AND right == not moving
-    else if (jumpMan.deplacement.l && jumpMan.deplacement.r) {
-      jumpMan.jump.jumpX = -2
-      jumpMan.jump.posAct = jumpMan.posAct
-    }
-    else{
-      
-      //start jumping
-      if (jumpMan.deplacement.u) {
-        jumpMan.jump.jumpX  = -3
-        jumpMan.deplacement.jumping = true
-        jumpMan.jump.velY=0 //give it a kick
-      }//go left
-      else if (jumpMan.deplacement.l) {//reduce velX if possible
-        jumpMan.jump.velX= jumpMan.jump.velX>0?0:jumpMan.jump.velX> -6?jumpMan.jump.velX-=1:jumpMan.jump.velX
+     } else
+        jumpMan.jump.jumpX++ 
+  }
+  
+  function left() {
+      jumpMan.jump.velX= jumpMan.jump.velX>0?0:jumpMan.jump.velX> -6?jumpMan.jump.velX-=1:jumpMan.jump.velX
         if(jumpMan.posAct.x < 1 && jumpMan.jump.velX < 0)
            jumpMan.jump.velX = 0 
         //jumpMan.graphic.etat =  jumpMan.graphic.etat==X?Y:Z // changer etat
-      }//go right
-      else if (jumpMan.deplacement.r) {//augment velX if possible
-        jumpMan.graphic.etat =  jumpMan.graphic.etat==2?3:2 // changer etat
+  }
+  
+  function right() {
+       jumpMan.graphic.etat =  jumpMan.graphic.etat==2?3:2 // changer etat
 
         jumpMan.jump.velX = jumpMan.jump.velX<0?0:jumpMan.jump.velX<6?jumpMan.jump.velX+=1:jumpMan.jump.velX
         
         if(jumpMan.posAct.x >= 302 && jumpMan.jump.velX > 0)
            jumpMan.jump.velX = 0
-      }//stop going left OR right
-      else if (!jumpMan.deplacement.l  && !jumpMan.deplacement.l){
-          jumpMan.jump.velX=0
-      }
-      jumpMan.posAct.x+= jumpMan.jump.velX
-      jumpMan.posAct.y+= jumpMan.jump.velY
-    }
-    //console.log("velX = "+jumpMan.jump.velX)
-    
   }
+  
+  function up() {
+    if(collisionLadder()) {
+        jumpMan.posAct.y-=5
+    }
+  }
+  
+  function down() {
+    if(collisionLadder()) {
+        jumpMan.posAct.y+=5
+    }
+  }
+  
   function collisionFloor()
   {
 
-    
   }
 
   function collisionLadder()
   {
-
+    var collision = false
+    for(var i = 0; !collision && i < decors.arrLadders.length; i++) {
+        if(jumpMan.posAct.x >= decors.arrLadders[i].x
+          && jumpMan.posAct.x + jumpMan.graphic.w <= decors.arrLadders[i].x + (decors.arrLadders[i].larg)
+          && (jumpMan.posAct.y+jumpMan.graphic.h >= decors.arrLadders[i].y
+             && jumpMan.posAct.y+jumpMan.graphic.h <= decors.arrLadders[i].y + decors.arrLadders[i].nbRep*8)) {
+                 collision = true
+             }
+    }
     
+    return collision
   }
+  
   function collisionRope()
   {
 
