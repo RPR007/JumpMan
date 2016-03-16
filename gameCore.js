@@ -205,23 +205,28 @@
   {
     collide = false
     for (var i = 0; i < decors.arrBombs.length; i++) {
+      /*  Vérification si 2 ligne se touchent  L1:AB L2:CD
+         A    C      B    D     C    A      D    B
+         ----- - - - ------     ----- - - - ------
+          ( C<=B && A<=D )  ||   ( A<=D && A<=B )
+      */
       bxMin = decors.arrBombs[i].x                        //A
       bxMax = decors.arrBombs[i].x +decors.arrBombs[i].w  //B
       jxMin = jumpMan.posAct.x                            //C
       jxMax = jumpMan.posAct.x + jumpMan.graphic.w        //D
-      a=bxMin
-      b=bxMax
-      c=jxMin
-      d=jxMax
-      
-      if (  (bxMin <= jxMax && jxMin <= bxMax )||(jxMin <= bxMax && bxMin <= jxMax) ) {
-          collide = true
+
+      byMin = decors.arrBombs[i].y                        //A
+      byMax = decors.arrBombs[i].y +decors.arrBombs[i].h  //B
+      jyMin = jumpMan.posAct.y                            //C
+      jyMax = jumpMan.posAct.y + jumpMan.graphic.h        //D 
+
+      if ( ( (bxMin <= jxMax && jxMin <= bxMax )||(jxMin <= bxMax && bxMin <= jxMax) ) &&
+           ( (byMin <= jyMax && jyMin <= byMax )||(jyMin <= byMax && bxMin <= jyMax) ) ) {
           disarmBomb(decors.arrBombs[i])
+          collide = true
           break
-        //return
       }
-    }
-    console.log("collide avec bomb "+collide ) 
+    } 
 
     return collide
   }
@@ -270,6 +275,7 @@
         for (var i = 0 ; i<decors.arrFloors.length ; i++) {
             pushArrayPointsFloor(decors.arrFloors[i])
         }
+        removeBomb()
     }
     else if (pBomb.id == 2 || pBomb.id == 11 ) {
         for (var i = 0 ; i<decors.arrLadders.length ; i++) {
@@ -282,6 +288,18 @@
         for (var i = 0 ; i<decors.arrLadders.length ; i++) {
             pushArrayPointsLadders(decors.arrLadders[i] ) 
         }
+        removeBomb()
     }
     else{ console.log("disarmBomb no "+pBomb.id+" impossible") }
+
+      function removeBomb(){
+        arrTmp =[]
+        for (var i = 0 ; i<decors.arrBombs.length ; i++) {
+          if (decors.arrBombs[i].id != pBomb.id) {
+            arrTmp.push(decors.arrBombs[i])
+          }
+        }
+        decors.arrBombs = arrTmp
+      }
   }
+

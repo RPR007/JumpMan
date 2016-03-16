@@ -154,7 +154,7 @@
       //dupliquer les échelles symétriques
       duplArrayLadders(decors.arrLadders)
       //créer les obj échelles NON symétriques
-      ladder(148, 52, 5)//middle
+      ladder(152, 52, 5)//middle
       ladder(24,68, 2,2)//associé bombe 2
       ladder(280, 68, 2,11)//associé bombe 11
 
@@ -247,7 +247,7 @@
       decors.JumpManGraphics[12] = jumpManDead2()
       decors.JumpManGraphics[13] = jumpManDead3()
 
-      jumpMan.posAct = {x:(280),y:40}//{x:(316/2)-8,y:114}
+      jumpMan.posAct = {x:(280),y:0}//{x:(316/2)-8,y:114}
       jumpMan.posPr  = {x:0,y:0}
       jumpMan.deplacement = {l:false,u:false,r:false,j:false,fr:1}
       jumpMan.jump = { jumping:false,jumpX : 0, posAct : {x:(316/2)-8,y:114,h : 0,w : 0},velX:0.0, velY:0.0, gravity:0.5}
