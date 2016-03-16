@@ -126,14 +126,38 @@
   }
   
   function up() {
-    if(collisionLadder()) {
-        jumpMan.posAct.y-=5
-    }
+    var obj = null
+    // Ladder
+    if((obj = collisionLadder()) != null) {
+        if((jumpMan.posAct.y+jumpMan.graphic.h)-4 > obj.y)
+            jumpMan.posAct.y-=4
+        else
+            jumpMan.posAct.y = obj.y-jumpMan.graphic.h + 1
+    } else if((obj = collisionRope()) != null) {
+        if(jumpMan.posAct.y-4 > obj.y)
+            jumpMan.posAct.y-=4
+        else {
+            jumpMan.posAct.y = obj.y
+            console.log("Hello World")
+        }
+    } 
   }
   
   function down() {
-    if(collisionLadder()) {
-        jumpMan.posAct.y+=5
+    var obj = null
+    
+    // Ladder
+    if((obj = collisionLadder()) != null) {
+        if((jumpMan.posAct.y+jumpMan.graphic.h)+4 < obj.y+obj.nbRep*8)
+            jumpMan.posAct.y+=4
+        else
+            jumpMan.posAct.y = obj.y+obj.nbRep*8 - jumpMan.graphic.h
+    // Rope
+    } else if((obj = collisionRope()) != null) {
+         if((jumpMan.posAct.y+jumpMan.graphic.h)+4 < obj.y+16+jumpMan.graphic.h-1)
+            jumpMan.posAct.y+=4
+        else
+            jumpMan.posAct.y = obj.y+15
     }
   }
   
@@ -144,24 +168,33 @@
 
   function collisionLadder()
   {
-    var collision = false
-    for(var i = 0; !collision && i < decors.arrLadders.length; i++) {
+    var collision = false, i
+    for(i = 0; !collision && i < decors.arrLadders.length; i++) {
         if(jumpMan.posAct.x >= decors.arrLadders[i].x
           && jumpMan.posAct.x + jumpMan.graphic.w <= decors.arrLadders[i].x + (decors.arrLadders[i].larg)
-          && (jumpMan.posAct.y+jumpMan.graphic.h >= decors.arrLadders[i].y
+          && (jumpMan.posAct.y+jumpMan.graphic.h >= decors.arrLadders[i].y-1
              && jumpMan.posAct.y+jumpMan.graphic.h <= decors.arrLadders[i].y + decors.arrLadders[i].nbRep*8)) {
                  collision = true
              }
     }
-    
-    return collision
+
+    return collision ? decors.arrLadders[i-1] : null
   }
   
   function collisionRope()
   {
-
-    
+    var collision = false, i
+    for(i = 0; !collision && i < decors.arrRopes.length; i++) {
+        if(jumpMan.posAct.x >= decors.arrRopes[i].x-4
+          && jumpMan.posAct.x + jumpMan.graphic.w <= decors.arrRopes[i].x + 8
+          && (jumpMan.posAct.y >= decors.arrRopes[i].y
+             && jumpMan.posAct.y+jumpMan.graphic.h <= decors.arrRopes[i].y + 16+jumpMan.graphic.h-1)) {
+                 collision = true
+             }
+    }
+    return collision ? decors.arrRopes[i-1] : null
   }
+  
   function collisionBomb()
   {
 

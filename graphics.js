@@ -217,9 +217,18 @@
    }
 
    function initBombs() {
-       bomb(8,14,1);             bomb(136,8,4);  bomb(176,8,7);               bomb(304,14,10);  
-       bomb(8,46,2);bomb(70,76,5);                             bomb(240,76,8);bomb(304,46,11); 
-       bomb(8,166,3);            bomb(130,146,6);bomb(182,146,9);             bomb(304,166,12); 
+       bomb(8,14,1);
+       bomb(136,8,4);
+       bomb(176,8,7);
+       bomb(304,14,10);  
+       bomb(8,46,2);
+       bomb(70,76,5);
+       bomb(240,76,8);
+       bomb(304,46,11); 
+       bomb(8,166,3);
+       bomb(130,146,6);
+       bomb(182,146,9);
+       bomb(304,166,12); 
    }
 
    function drawBomb(pX , pY) {
