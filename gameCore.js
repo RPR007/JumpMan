@@ -66,10 +66,11 @@
     //  collisionLadder()
     //  collisionRope()
     collisionBomb()
+    console.log( jumpMan.graphic.etat ) 
 
     //si pas dans corde , pas dans échelle et pas jumping
     if (true) { 
-      applyGravity()
+      applyGravity() 
     }
   }
 
@@ -119,16 +120,22 @@
       jumpMan.jump.velX= jumpMan.jump.velX>0?0:jumpMan.jump.velX> -6?jumpMan.jump.velX-=1:jumpMan.jump.velX
         if(jumpMan.posAct.x < 1 && jumpMan.jump.velX < 0)
            jumpMan.jump.velX = 0 
-        //jumpMan.graphic.etat =  jumpMan.graphic.etat==X?Y:Z // changer etat
+        // changer etat
+        isL1 = jumpMan.graphic.etat==1
+        isL2 = jumpMan.graphic.etat==2
+        alrMovLeft = (isL1 || isL2)
+        jumpMan.graphic =  (alrMovLeft?(isL1?decors.JumpManGraphics[2]:decors.JumpManGraphics[1]):decors.JumpManGraphics[1]) 
   }
   
   function right() {
-       jumpMan.graphic.etat =  jumpMan.graphic.etat==2?3:2 // changer etat
-
         jumpMan.jump.velX = jumpMan.jump.velX<0?0:jumpMan.jump.velX<6?jumpMan.jump.velX+=1:jumpMan.jump.velX
-        
         if(jumpMan.posAct.x >= 302 && jumpMan.jump.velX > 0)
            jumpMan.jump.velX = 0
+        // changer etat
+        isR1 = jumpMan.graphic.etat==3
+        isR2 = jumpMan.graphic.etat==4
+        alrMovRight = (isR1 || isR2)
+        jumpMan.graphic =  (alrMovRight?(isR1?decors.JumpManGraphics[4]:decors.JumpManGraphics[3]):decors.JumpManGraphics[3]) 
   }
   
   function up() {
@@ -206,9 +213,9 @@
     collide = false
     for (var i = 0; i < decors.arrBombs.length; i++) {
       /*  Vérification si 2 ligne se touchent  L1:AB L2:CD
-         A    C      B    D     C    A      D    B
-         ----- - - - ------     ----- - - - ------
-          ( C<=B && A<=D )  ||   ( A<=D && A<=B )
+         A    C       B    D      C    A       D    B
+         -----* - - - *------     -----* - - - *------
+            ( C<B && A<D )    ||    ( A<D && C<B )
       */
       bxMin = decors.arrBombs[i].x                        //A
       bxMax = decors.arrBombs[i].x +decors.arrBombs[i].w  //B
@@ -235,8 +242,8 @@
     toutch =  false
     for (var i = 0; i < decors.arrFloors.length; i++) {
       if (jumpMan.posAct.y+jumpMan.graphic.h == decors.arrFloors[i].y  && 
-          jumpMan.posAct.x+jumpMan.graphic.w >= decors.arrFloors[i].x &&
-          jumpMan.posAct.x<= decors.arrFloors[i].x+decors.arrFloors[i].w )  {
+          jumpMan.posAct.x+jumpMan.graphic.w-1 >= decors.arrFloors[i].x &&
+          jumpMan.posAct.x-1<= decors.arrFloors[i].x+decors.arrFloors[i].w )  {
             toutch = true
             break
       }
@@ -245,18 +252,21 @@
   }
   function applyGravity()
   {
+    nbDrop = 0
     if (!toutchFloor()) {
       canStillDrop = !toutchFloor()
       for (var i = 0; i < 6; i++) {
         if (canStillDrop) {
           jumpMan.posAct.y ++
           canStillDrop = !toutchFloor()
+          nbDrop++
         }
         else{ 
           break 
         }
       }
     }
+    return nbDrop
   }
     
 
@@ -275,7 +285,6 @@
         for (var i = 0 ; i<decors.arrFloors.length ; i++) {
             pushArrayPointsFloor(decors.arrFloors[i])
         }
-        removeBomb()
     }
     else if (pBomb.id == 2 || pBomb.id == 11 ) {
         for (var i = 0 ; i<decors.arrLadders.length ; i++) {
@@ -288,20 +297,18 @@
         for (var i = 0 ; i<decors.arrLadders.length ; i++) {
             pushArrayPointsLadders(decors.arrLadders[i] ) 
         }
-        removeBomb()
     }
-    else{ 
-      removeBomb()
-    }
-
-      function removeBomb(){
-        arrTmp =[]
-        for (var i = 0 ; i<decors.arrBombs.length ; i++) {
-          if (decors.arrBombs[i].id != pBomb.id) {
-            arrTmp.push(decors.arrBombs[i])
-          }
-        }
-        decors.arrBombs = arrTmp
+    initSize = decors.arrBombs.length
+    arrTmp =[]
+    for (var i = 0 ; i<decors.arrBombs.length ; i++) {
+      if (decors.arrBombs[i].id != pBomb.id) {
+        arrTmp.push(decors.arrBombs[i])
       }
+    }
+    decors.arrBombs = arrTmp
+    finalSize = decors.arrBombs.length
+
+    return initSize-1 == finalSize
+  
   }
 
