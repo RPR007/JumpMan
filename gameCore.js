@@ -132,15 +132,6 @@
   
   function right() {
         jumpMan.jump.velX = jumpMan.jump.velX<0?0:jumpMan.jump.velX<6?jumpMan.jump.velX+=1:jumpMan.jump.velX
-<<<<<<< HEAD
-=======
-        
-        if(touchFloorRight()) {
-            console.log("test")
-            jumpMan.posAct.y--
-        }
-        
->>>>>>> 891c24ec1054f117d9fb6c092167136c1935296e
         if(jumpMan.posAct.x >= 302 && jumpMan.jump.velX > 0)
            jumpMan.jump.velX = 0
         // changer etat
@@ -253,15 +244,9 @@
     touch =  false
     for (var i = 0; i < decors.arrFloors.length; i++) {
       if (jumpMan.posAct.y+jumpMan.graphic.h == decors.arrFloors[i].y  && 
-<<<<<<< HEAD
           jumpMan.posAct.x+jumpMan.graphic.w-1 >= decors.arrFloors[i].x &&
-          jumpMan.posAct.x-1<= decors.arrFloors[i].x+decors.arrFloors[i].w )  {
-            toutch = true
-=======
-          jumpMan.posAct.x+jumpMan.graphic.w >= decors.arrFloors[i].x &&
           jumpMan.posAct.x<= decors.arrFloors[i].x+decors.arrFloors[i].w )  {
             touch = true
->>>>>>> 891c24ec1054f117d9fb6c092167136c1935296e
             break
       }
     }
@@ -298,26 +283,14 @@
   
   function applyGravity()
   {
-<<<<<<< HEAD
     nbDrop = 0
-    if (!toutchFloor()) {
-      canStillDrop = !toutchFloor()
-      for (var i = 0; i < 6; i++) {
-        if (canStillDrop) {
-          jumpMan.posAct.y ++
-          canStillDrop = !toutchFloor()
-          nbDrop++
-=======
     if (!touchFloor()) {
       canStillDrop = !touchFloor()
       for (var i = 0; i < 6; i++) {
         if (canStillDrop) {
           jumpMan.posAct.y ++
           canStillDrop = !touchFloor()
->>>>>>> 891c24ec1054f117d9fb6c092167136c1935296e
-        }
-        else{ 
-          break 
+          nbDrop++
         }
       }
     }
