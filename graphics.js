@@ -247,10 +247,11 @@
       decors.JumpManGraphics[12] = jumpManDead2()
       decors.JumpManGraphics[13] = jumpManDead3()
 
-      jumpMan.posAct = {x:(280),y:0}//{x:(316/2)-8,y:114}
+     // jumpMan.posAct = {x:(280),y:0}
+      jumpMan.posAct = {x:(316/2)-8,y:114}
       jumpMan.posPr  = {x:0,y:0}
       jumpMan.deplacement = {l:false,u:false,r:false,j:false,fr:1}
-      jumpMan.jump = { jumping:false,jumpX : 0, posAct : {x:(316/2)-8,y:114,h : 0,w : 0},velX:0.0, velY:0.0, gravity:0.5}
+      jumpMan.jump = { jumping:false,jumpX : 0, initPos : {x:(316/2)-8,y:114},velX:0.0, velY:0.0, gravity:0.5}
       jumpMan.graphic = decors.JumpManGraphics[0]
       drawJumpMan()
     }

@@ -68,8 +68,12 @@
     collisionBomb()
 
     //si pas dans corde , pas dans échelle et pas jumping
-    if (true) { 
-      applyGravity()
+    
+ 
+    if (collisionLadder() == null 
+       && collisionRope() == null
+       && !jumpMan.deplacement.jumping) { 
+        applyGravity()
     }
   }
 
@@ -81,6 +85,7 @@
     else if (jumpMan.deplacement.j) {
         jumpMan.jump.jumpX  = -3
         jumpMan.jump.velY=0 //give it a kick
+        jumpMan.jump.initPos = {x:jumpMan.posAct.x,y:jumpMan.posAct.y}
         jumpMan.deplacement.jumping = true
     } else {
         if(jumpMan.deplacement.u) {
@@ -105,9 +110,9 @@
   }
   
   function jump() {
-     jumpMan.jump.velY = -0.7 * Math.pow(jumpMan.jump.jumpX,2) + 6
+     jumpMan.jump.velY = -(2/3) * Math.pow(jumpMan.jump.jumpX,2) + 6
      jumpMan.posAct.x += jumpMan.jump.jumpX+3
-     jumpMan.posAct.y = jumpMan.jump.posAct.y - jumpMan.jump.velY
+     jumpMan.posAct.y = jumpMan.jump.initPos.y - jumpMan.jump.velY
      if(jumpMan.jump.jumpX == 3 ) {
         jumpMan.deplacement.jumping = false
         jumpMan.jump.velY = 0
@@ -127,6 +132,11 @@
 
         jumpMan.jump.velX = jumpMan.jump.velX<0?0:jumpMan.jump.velX<6?jumpMan.jump.velX+=1:jumpMan.jump.velX
         
+        if(touchFloorRight()) {
+            console.log("test")
+            jumpMan.posAct.y--
+        }
+        
         if(jumpMan.posAct.x >= 302 && jumpMan.jump.velX > 0)
            jumpMan.jump.velX = 0
   }
@@ -135,16 +145,15 @@
     var obj = null
     // Ladder
     if((obj = collisionLadder()) != null) {
-        if((jumpMan.posAct.y+jumpMan.graphic.h)-4 > obj.y)
+        if((jumpMan.posAct.y+jumpMan.graphic.h)-4 > obj.y) {
             jumpMan.posAct.y-=4
-        else
+        } else
             jumpMan.posAct.y = obj.y-jumpMan.graphic.h + 1
     } else if((obj = collisionRope()) != null) {
         if(jumpMan.posAct.y-4 > obj.y)
             jumpMan.posAct.y-=4
         else {
             jumpMan.posAct.y = obj.y
-            console.log("Hello World")
         }
     } 
   }
@@ -177,7 +186,7 @@
     var collision = false, i
     for(i = 0; !collision && i < decors.arrLadders.length; i++) {
         if(jumpMan.posAct.x >= decors.arrLadders[i].x
-          && jumpMan.posAct.x + jumpMan.graphic.w <= decors.arrLadders[i].x + (decors.arrLadders[i].larg)
+          && jumpMan.posAct.x + jumpMan.graphic.w <= decors.arrLadders[i].x + (decors.arrLadders[i].w)
           && (jumpMan.posAct.y+jumpMan.graphic.h >= decors.arrLadders[i].y-1
              && jumpMan.posAct.y+jumpMan.graphic.h <= decors.arrLadders[i].y + decors.arrLadders[i].nbRep*8)) {
                  collision = true
@@ -230,27 +239,56 @@
 
     return collide
   }
-  function toutchFloor()
+  function touchFloor()
   {
-    toutch =  false
+    touch =  false
     for (var i = 0; i < decors.arrFloors.length; i++) {
       if (jumpMan.posAct.y+jumpMan.graphic.h == decors.arrFloors[i].y  && 
           jumpMan.posAct.x+jumpMan.graphic.w >= decors.arrFloors[i].x &&
           jumpMan.posAct.x<= decors.arrFloors[i].x+decors.arrFloors[i].w )  {
-            toutch = true
+            touch = true
             break
       }
     }
-    return toutch
+    return touch
   }
+  
+  function touchFloorLeft() {
+    touch =  false
+    for (var i = 0; i < decors.arrFloors.length; i++) {
+      if (jumpMan.posAct.y+jumpMan.graphic.h >= decors.arrFloors[i].y &&
+          jumpMan.posAct.y+jumpMan.graphic.h <= decors.arrFloors[i].y+6 &&
+          jumpMan.posAct.x+jumpMan.graphic.w+1 >= decors.arrFloors[i].x &&
+          jumpMan.posAct.x<= decors.arrFloors[i].x+decors.arrFloors[i].w )  {
+            touch = true
+            break
+      }
+    }
+    return touch
+  }
+  
+  function touchFloorRight() {
+    touch =  false
+    for (var i = 0; i < decors.arrFloors.length; i++) {
+      if (jumpMan.posAct.y+jumpMan.graphic.h >= decors.arrFloors[i].y &&
+          jumpMan.posAct.y+jumpMan.graphic.h <= decors.arrFloors[i].y+6 &&
+          jumpMan.posAct.x+jumpMan.graphic.w+1 >= decors.arrFloors[i].x &&
+          jumpMan.posAct.x<= decors.arrFloors[i].x+decors.arrFloors[i].w )  {
+            touch = true
+            break
+      }
+    }
+    return touch
+  }
+  
   function applyGravity()
   {
-    if (!toutchFloor()) {
-      canStillDrop = !toutchFloor()
+    if (!touchFloor()) {
+      canStillDrop = !touchFloor()
       for (var i = 0; i < 6; i++) {
         if (canStillDrop) {
           jumpMan.posAct.y ++
-          canStillDrop = !toutchFloor()
+          canStillDrop = !touchFloor()
         }
         else{ 
           break 
