@@ -290,7 +290,9 @@
         }
         removeBomb()
     }
-    else{ console.log("disarmBomb no "+pBomb.id+" impossible") }
+    else{ 
+      removeBomb()
+    }
 
       function removeBomb(){
         arrTmp =[]
