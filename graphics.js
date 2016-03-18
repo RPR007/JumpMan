@@ -294,9 +294,9 @@
             var scoreHeight = canvas.height-scoreY
             var vSpaceWidth = (canvas.width/3)/24
             
-            var yellow = "#ffff66"
-            var green = "#66ff66"
-            var blue = "#3333ff"
+            var yellow = "#d7de7a"
+            var green = "#afee91"
+            var blue = "#7ebec6"
             
             // Life
             context.fillStyle = yellow
