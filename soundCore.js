@@ -1,4 +1,3 @@
-
 /*
   play all the sounds 
 */
@@ -6,22 +5,32 @@
 
   function initSounds() {
       var objSon = document.createElement('audio')
-      objSon.setAttribute('src', 'sounds/JM1.mp3')
+      objSon.setAttribute('src', 'sounds/ball')
       objSon.load()
-    sounds.jump = objSon
+    sounds.ball = objSon
+
+      var objSon = document.createElement('audio')
+      objSon.setAttribute('src', 'sounds/bomb.wav')
+      objSon.load()
+    sounds.bomb = objSon
 
       objSon = document.createElement('audio')
-      objSon.setAttribute('src', 'sounds/JM2.mp3')
+      objSon.setAttribute('src', 'sounds/jump.wav')
       objSon.load()
-    sounds.bomb = objSon;
+    sounds.jump = objSon;
 
       objSon = document.createElement('audio')
-      objSon.setAttribute('src', 'sounds/JM3.mp3')
+      objSon.setAttribute('src', 'sounds/.wav')
       objSon.load()
-    sounds.rope = objSon
+    sounds.over = objSon
 
       objSon = document.createElement('audio')
-      objSon.setAttribute('src', 'sounds/JM4.mp3')
+      objSon.setAttribute('src', 'sounds/.wav')
       objSon.load()
-    sounds.death = objSon;
+    sounds.pas = objSon
+
+      objSon = document.createElement('audio')
+      objSon.setAttribute('src', 'sounds/still.wav')
+      objSon.load()
+    sounds.still = objSon;
   }
