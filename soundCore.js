@@ -20,12 +20,12 @@
     sounds.jump = objSon;
 
       objSon = document.createElement('audio')
-      objSon.setAttribute('src', 'sounds/.wav')
+      objSon.setAttribute('src', 'sounds/over.wav')
       objSon.load()
     sounds.over = objSon
 
       objSon = document.createElement('audio')
-      objSon.setAttribute('src', 'sounds/.wav')
+      objSon.setAttribute('src', 'sounds/pas.wav')
       objSon.load()
     sounds.pas = objSon
 
