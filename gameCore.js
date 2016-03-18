@@ -112,10 +112,12 @@
         }
         else if (!jumpMan.deplacement.l  && !jumpMan.deplacement.l){
           jumpMan.jump.velX=0
+          jumpMan.graphic = decors.JumpManGraphics[0]
         }
-        
-        jumpMan.posAct.x+= jumpMan.jump.velX
-        jumpMan.posAct.y+= jumpMan.jump.velY
+        else{
+          jumpMan.graphic = decors.JumpManGraphics[0]
+        }
+
     }
   }
   
@@ -147,6 +149,8 @@
   
   function left() {
       jumpMan.jump.velX= jumpMan.jump.velX>0?0:jumpMan.jump.velX> -6?jumpMan.jump.velX-=1:jumpMan.jump.velX
+        
+        //changer direction ou aretter
         if(jumpMan.posAct.x < 1 && jumpMan.jump.velX < 0)
            jumpMan.jump.velX = 0 
         // changer etat
@@ -154,10 +158,21 @@
         isL2 = jumpMan.graphic.etat==2
         alrMovLeft = (isL1 || isL2)
         jumpMan.graphic =  (alrMovLeft?(isL1?decors.JumpManGraphics[2]:decors.JumpManGraphics[1]):decors.JumpManGraphics[1]) 
+
+        jumpMan.posAct.x+= jumpMan.jump.velX
+        jumpMan.posAct.y-= 2
+        if ( !touchFloor() ) {
+          jumpMan.posAct.y+= 2
+          console.log("monte 2")
+        }
+        jumpMan.posAct.y+= jumpMan.jump.velY
+
   }
   
   function right() {
         jumpMan.jump.velX = jumpMan.jump.velX<0?0:jumpMan.jump.velX<6?jumpMan.jump.velX+=1:jumpMan.jump.velX
+        
+        //changer direction ou aretter
         if(jumpMan.posAct.x >= 302 && jumpMan.jump.velX > 0)
            jumpMan.jump.velX = 0
         // changer etat
@@ -165,6 +180,16 @@
         isR2 = jumpMan.graphic.etat==4
         alrMovRight = (isR1 || isR2)
         jumpMan.graphic =  (alrMovRight?(isR1?decors.JumpManGraphics[4]:decors.JumpManGraphics[3]):decors.JumpManGraphics[3]) 
+        
+
+        jumpMan.posAct.x+= jumpMan.jump.velX
+        jumpMan.posAct.y-= 2
+        if ( !touchFloor() ) {
+          console.log("monte 2")
+          jumpMan.posAct.y+= 2
+        }
+        jumpMan.posAct.y+= jumpMan.jump.velY
+
   }
   
   function up() {
