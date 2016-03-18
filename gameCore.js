@@ -22,7 +22,7 @@
             jumpMan.deplacement.j = true
             break;
           default:
-            console.log("down touche : "+ event.keyCode+" invalide" )
+            //console.log("down touche : "+ event.keyCode+" invalide" )
     }
  }
 
@@ -44,7 +44,7 @@
             jumpMan.deplacement.j = false
             break;
           default:
-            console.log("up touche : "+ event.keyCode+" invalide" )
+            //console.log("up touche : "+ event.keyCode+" invalide" )
     }
  }
 
@@ -64,9 +64,9 @@
   function updateAnimation()
   {
     moveJumpMan()
-    //  collisionFloor()
-    //  collisionLadder()
-    //  collisionRope()
+    moveBal()
+
+    collisionJM()
     collisionBomb()
 
     //si pas dans corde , pas dans échelle et pas jumping
@@ -91,11 +91,9 @@
                 jumpMan.jump.jumpX  = -4
                 jumpMan.jump.velY=0 //give it a kick
             }
-        
             jumpMan.jump.initPos = {x:jumpMan.posAct.x,y:jumpMan.posAct.y}
             jumpMan.deplacement.jumping = true
         }
-
         
     } else {
         if(jumpMan.deplacement.u) {
@@ -162,7 +160,6 @@
         jumpMan.posAct.y-= 2
         if ( !touchFloor() ) {
           jumpMan.posAct.y+= 2
-          console.log("monte 2")
         }
         jumpMan.posAct.y+= jumpMan.jump.velY
 
@@ -184,7 +181,6 @@
         jumpMan.posAct.x+= jumpMan.jump.velX
         jumpMan.posAct.y-= 2
         if ( !touchFloor() ) {
-          console.log("monte 2")
           jumpMan.posAct.y+= 2
         }
         jumpMan.posAct.y+= jumpMan.jump.velY
@@ -226,10 +222,6 @@
     }
   }
   
-  function collisionFloor()
-  {
-
-  }
 
   function collisionLadder()
   {
@@ -279,8 +271,8 @@
       jyMin = jumpMan.posAct.y                            //C
       jyMax = jumpMan.posAct.y + jumpMan.graphic.h        //D 
 
-      if ( ( (bxMin <= jxMax && jxMin <= bxMax )||(jxMin <= bxMax && bxMin <= jxMax) ) &&
-           ( (byMin <= jyMax && jyMin <= byMax )||(jyMin <= byMax && bxMin <= jyMax) ) ) {
+      if ( ( (bxMin < jxMax && jxMin < bxMax )||(jxMin < bxMax && bxMin < jxMax) ) &&
+           ( (byMin < jyMax && jyMin < byMax )||(jyMin < byMax && byMin < jyMax) ) ) {
           disarmBomb(decors.arrBombs[i])
           collide = true
           break
@@ -323,9 +315,8 @@
 
   function disarmBomb(pBomb)
   {
-    pBomb.armed=false
     arrTmp = []
-    if (pBomb.id == 1 || pBomb.id == 10 ) {
+    if (pBomb.id == 1 || pBomb.id == 10) {
         for (var i = 0 ; i<decors.arrFloors.length ; i++) {
           if (!decors.arrFloors[i].bomb || decors.arrFloors[i].bomb != pBomb.id) {
             arrTmp.push(decors.arrFloors[i])

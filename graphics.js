@@ -9,6 +9,7 @@
   decors.arrRopes = []
   decors.arrBombs = []
   decors.JumpManGraphics = []
+  decors.dims = {x:320 ,y:200 ,dimPx:0 }
   
   var resizeTimer
   function resize() {
@@ -17,11 +18,11 @@
     width =  window.innerWidth 
     height =  window.innerHeight
     function closureResize() {
-        var w =  window.innerWidth / 320 
-        var h =  window.innerHeight / 200
+        var w =  window.innerWidth / decors.dims.x 
+        var h =  window.innerHeight / decors.dims.y
         dimPx = (w < h ? w:h)
-        document.getElementById('canJumpMan').width=(320*dimPx)
-        document.getElementById('canJumpMan').height=(200*dimPx)
+        document.getElementById('canJumpMan').width=(decors.dims.x*dimPx)
+        document.getElementById('canJumpMan').height=(decors.dims.y*dimPx)
     }
   }
 
@@ -49,7 +50,10 @@
     context.fillStyle = '#935a28'
     for(var i = 0; i < decors.arrBombs.length; i++) {
         drawBomb(decors.arrBombs[i].x , decors.arrBombs[i].y)         
-    }//JumpMan
+    }
+    //ball
+    drawBall()
+    //JumpMan
     context.restore()
     drawJumpMan()
     context.restore()
@@ -65,6 +69,7 @@
     initRopes()
     initBombs()
     initJumpMan()
+    initBal()
   }
 
   function floor(pX , pY , pNbRep , pIdBomb) {
@@ -119,7 +124,7 @@
    originals = pArr
    var length = originals.length
      for (var i = 0; i < length; i++) {
-      floor( 320-(originals[i].x+originals[i].nbRep*4) , originals[i].y , originals[i].nbRep)
+      floor( decors.dims.x -(originals[i].x+originals[i].nbRep*4) , originals[i].y , originals[i].nbRep)
      }
    }
 
@@ -175,7 +180,7 @@
    originals = pArr
    var length = originals.length
      for (var i = 0; i < length; i++) {
-      pArr.push( {x:320-(originals[i].x+originals[i].w) , y:originals[i].y ,nbRep:originals[i].nbRep,h:originals[i].h,w:originals[i].w})
+      pArr.push( {x:decors.dims.x -(originals[i].x+originals[i].w) , y:originals[i].y ,nbRep:originals[i].nbRep,h:originals[i].h,w:originals[i].w})
      }
    }
    
@@ -218,8 +223,8 @@
 
    function initBombs() {
        bomb(8,14,1);             bomb(136,8,4);  bomb(176,8,7);               bomb(304,14,10);  
-       bomb(8,46,2);bomb(70,76,5);                             bomb(240,76,8);bomb(304,50,11); //y 46
-       bomb(8,166,3);            bomb(130,146,6);bomb(182,146,9);             bomb(304,166,12); 
+       bomb(8,46,112);bomb(70,76,5);                             bomb(240,76,8);bomb(304,50,11); //y 46
+       bomb(8,166,113);            bomb(130,146,6);bomb(182,146,9);             bomb(304,166,12); 
    }
 
    function drawBomb(pX , pY) {
