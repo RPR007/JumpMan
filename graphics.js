@@ -1,6 +1,10 @@
 /*
   X posiiton horisontale , Y posiiton verticale 
 */
+  var timer
+  score = {life:0,score:0,level:0,player:0,speed:0,bonus:0}
+
+
   var decors = new Object({})
   decors.arrLadders = []
   decors.arrPointsLadders  = []
@@ -78,6 +82,7 @@
     initScore()
   }
 
+
   function floor(pX , pY , pNbRep , pIdBomb) {
     if (pIdBomb) {
            decors.arrFloors.push({x:pX ,y:pY,nbRep:pNbRep,h:6,w:4*pNbRep,bomb:pIdBomb})
@@ -88,6 +93,7 @@
   }
 
   function initFloor() {
+    decors.arrFloors = []
     //créer les obj planchers symétriques
     //top left floor
     floor(8,20,10); 
@@ -157,6 +163,7 @@
    }
 
    function initLadders() {
+      decors.arrLadders = []
       //créer les obj échelles symétriques
       ladder(24,12,7) ;ladder(24,84,2)//left up 2/3 pieces
       ladder(88, 12, 5)//middle left-up
@@ -228,6 +235,7 @@
    }
 
    function initBombs() {
+       decors.arrBombs =[]
        bomb(8,14,1);             bomb(136,8,4);  bomb(176,8,7);               bomb(304,14,10);  
        bomb(8,46,112);bomb(70,76,5);                             bomb(240,76,8);bomb(304,50,11); //y 46
        bomb(8,166,113);            bomb(130,146,6);bomb(182,146,9);             bomb(304,166,12); 
@@ -244,16 +252,17 @@
   }
 
   function initJumpMan() {
-      decors.JumpManGraphics[0] = jumpManFront()
-      decors.JumpManGraphics[1] = jumpManLeft1()
-      decors.JumpManGraphics[2] = jumpManLeft2()
-      decors.JumpManGraphics[3] = jumpManRight1()
-      decors.JumpManGraphics[4] = jumpManRight2()
-      decors.JumpManGraphics[5] = jumpManLadder1()
-      decors.JumpManGraphics[6] = jumpManLadder2()
-      decors.JumpManGraphics[7] = jumpManLadder3()
-      decors.JumpManGraphics[8] = jumpManLadder4()
-      decors.JumpManGraphics[9] = jumpManClimb1()
+      decors.JumpManGraphics     = []
+      decors.JumpManGraphics[0]  = jumpManFront()
+      decors.JumpManGraphics[1]  = jumpManLeft1()
+      decors.JumpManGraphics[2]  = jumpManLeft2()
+      decors.JumpManGraphics[3]  = jumpManRight1()
+      decors.JumpManGraphics[4]  = jumpManRight2()
+      decors.JumpManGraphics[5]  = jumpManLadder1()
+      decors.JumpManGraphics[6]  = jumpManLadder2()
+      decors.JumpManGraphics[7]  = jumpManLadder3()
+      decors.JumpManGraphics[8]  = jumpManLadder4()
+      decors.JumpManGraphics[9]  = jumpManClimb1()
       decors.JumpManGraphics[10] = jumpManClimb2()
       decors.JumpManGraphics[11] = jumpManDead1()
       decors.JumpManGraphics[12] = jumpManDead2()
@@ -299,14 +308,14 @@
     }
     
     function initScore() {
-        life = 3
-        score = 0
-        level = 1
-        player = 1
-        speed = 4
-        bonus = 1500
-        
-        setInterval(function(){ bonus-=100 }, 5000);
+        score.life = 3
+        score.score = 0
+        score.level = 1
+        score.player = 1
+        score.speed = 4
+        score.bonus = 1500
+
+        timer = setInterval(function(){ score.bonus-=100 }, 5000);
     }
     
     function drawScore() {
@@ -327,41 +336,41 @@
             
             context.fillStyle = "black"
             context.font=scoreHeight/2-5 + "px commodore64";
-            context.fillText("JUMPMEN = " + life, 0, scoreY+(scoreHeight/2)-5)
+            context.fillText("JUMPMEN = " + score.life, 0, scoreY+(scoreHeight/2)-5)
             // Score
             context.fillStyle = 'white'
             context.fillRect(0,scoreY+scoreHeight/2,canvas.width/3,scoreHeight/2)
             
             context.fillStyle = "black"
             context.font=scoreHeight/2-5 + "px commodore64";
-            context.fillText("SCORE = " + score, 0, scoreY+scoreHeight-5)
+            context.fillText("SCORE = " + score.score, 0, scoreY+scoreHeight-5)
             // Level
             context.fillStyle = green
             context.fillRect(canvas.width/3+vSpaceWidth,scoreY,canvas.width/3-vSpaceWidth,scoreHeight/2)
             context.fillStyle = "black"
             context.font=scoreHeight/2-5 + "px commodore64";
-            context.fillText("LEVEL = " + level, canvas.width/3+vSpaceWidth, scoreY+(scoreHeight/2)-5)
+            context.fillText("LEVEL = " + score.level, canvas.width/3+vSpaceWidth, scoreY+(scoreHeight/2)-5)
             
             // Player
             context.fillStyle = blue
             context.fillRect(canvas.width/3+vSpaceWidth,scoreY+scoreHeight/2,canvas.width/3-vSpaceWidth,scoreHeight/2)
             context.fillStyle = "black"
             context.font=scoreHeight/2-5 + "px commodore64";
-            context.fillText("PLAYER = " + player, canvas.width/3+vSpaceWidth, scoreY+scoreHeight-5)
+            context.fillText("PLAYER = " + score.player, canvas.width/3+vSpaceWidth, scoreY+scoreHeight-5)
             
             // Run Speed
             context.fillStyle = yellow
             context.fillRect(canvas.width*(2/3)+vSpaceWidth,scoreY,canvas.width*(2/3),scoreHeight/2)
              context.fillStyle = "black"
             context.font=scoreHeight/2-5 + "px commodore64";
-            context.fillText("RUN SPEED = " + speed, canvas.width*(2/3)+vSpaceWidth, scoreY+(scoreHeight/2)-5)
+            context.fillText("RUN SPEED = " + score.speed, canvas.width*(2/3)+vSpaceWidth, scoreY+(scoreHeight/2)-5)
             
             // Bonus
             context.fillStyle = 'white'
             context.fillRect(canvas.width*(2/3)+vSpaceWidth,scoreY+scoreHeight/2,canvas.width*(2/3),scoreHeight/2)
              context.fillStyle = "black"
             context.font=scoreHeight/2-5 + "px commodore64";
-            context.fillText("BONUS = " + bonus, canvas.width*(2/3)+vSpaceWidth, scoreY+(scoreHeight-5))
+            context.fillText("BONUS = " + score.bonus, canvas.width*(2/3)+vSpaceWidth, scoreY+(scoreHeight-5))
         }
         
         context.restore()

@@ -81,6 +81,7 @@
     moveJumpMan()
     moveBal()
 
+    killJM()
     collisionJM()
     collisionBomb()
     
@@ -403,9 +404,33 @@
     finalSize = decors.arrBombs.length
 
     // Score
-    score += 100
+    score.score += 100
     
     return initSize-1 == finalSize
   
+  }
+
+
+  function lostOneLive()
+  {
+    console.log('lost 1 live')
+    if (score.score-1 > 1) {
+      score.score--
+    }
+    else {
+      gameOver()
+    }
+  }
+
+
+  function gameOver()
+  {
+      if ( confirm("Vous êtes mort! Voulez-vous rejouer?") ) {
+        restart()
+      } 
+      else{
+        // stop animation frame
+        // erase canvas
+      }
   }
 
