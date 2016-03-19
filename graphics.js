@@ -332,7 +332,7 @@
             
             // Life
             context.fillStyle = yellow
-            context.fillRect(0,score.scoreY,canvas.width/3,scoreHeight/2)
+            context.fillRect(0,scoreY,canvas.width/3,scoreHeight/2)
             
             context.fillStyle = "black"
             context.font=scoreHeight/2-5 + "px commodore64";
