@@ -114,11 +114,6 @@
             jumpMan.jump.initPos = {x:jumpMan.posAct.x,y:jumpMan.posAct.y}
             jumpMan.deplacement.jumping = true
         }
-<<<<<<< HEAD
-        
-=======
-
->>>>>>> 05f8b899942cbee0c796008ad42f123fb9dc9846
     } else {
         if(jumpMan.deplacement.u) {
             up()
@@ -229,12 +224,8 @@
 
         jumpMan.posAct.x+= jumpMan.jump.velX
         jumpMan.posAct.y-= 2
-<<<<<<< HEAD
-        if ( !touchFloor() ) {
-=======
         if ( touchFloor() == null) {
           console.log("monte 2")
->>>>>>> 05f8b899942cbee0c796008ad42f123fb9dc9846
           jumpMan.posAct.y+= 2
         }
         jumpMan.posAct.y+= jumpMan.jump.velY
@@ -331,13 +322,8 @@
       jyMin = jumpMan.posAct.y                            //C
       jyMax = jumpMan.posAct.y + jumpMan.graphic.h        //D 
 
-<<<<<<< HEAD
       if ( ( (bxMin < jxMax && jxMin < bxMax )||(jxMin < bxMax && bxMin < jxMax) ) &&
            ( (byMin < jyMax && jyMin < byMax )||(jyMin < byMax && byMin < jyMax) ) ) {
-=======
-      if ( ( (bxMin <= jxMax && jxMin <= bxMax )||(jxMin <= bxMax && bxMin <= jxMax) ) &&
-           ( (byMin <= jyMax && jyMin <= byMax )||(jyMin <= byMax && byMin <= jyMax) ) ) {
->>>>>>> 05f8b899942cbee0c796008ad42f123fb9dc9846
           disarmBomb(decors.arrBombs[i])
           collide = true
           break

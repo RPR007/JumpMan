@@ -74,11 +74,8 @@
     initRopes()
     initBombs()
     initJumpMan()
-<<<<<<< HEAD
     initBal()
-=======
     initScore()
->>>>>>> 05f8b899942cbee0c796008ad42f123fb9dc9846
   }
 
   function floor(pX , pY , pNbRep , pIdBomb) {
