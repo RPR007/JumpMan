@@ -303,10 +303,10 @@
         score = 0
         level = 1
         player = 1
-        speed = 4
+        speed = 1
         bonus = 1500
         
-        setInterval(function(){ bonus-=100 }, 5000);
+        setInterval(function(){ bonus > 0 ? bonus-=100 : bonus == 0}, 5000);
     }
     
     function drawScore() {

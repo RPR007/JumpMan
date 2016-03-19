@@ -11,7 +11,7 @@
         */
   function collisionJM()
   {
-    speed = 5
+    var ballSpeed = speed + 4
     if (bal.active && !bal.chassing) {
       //déplacement horisontal 2 || 4
       if (bal.diretion == 2 || bal.diretion == 4) {
@@ -24,7 +24,7 @@
         
         if ( (c<b && a<d) || (a<d && c<b) ) {
             bal.chassing = true
-            bal.velY = (e>f?speed:-speed)
+            bal.velY = (e>f?ballSpeed:-ballSpeed)
             bal.velX = 0
         }
       }

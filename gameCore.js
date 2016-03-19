@@ -102,10 +102,10 @@
         if (touchFloor() != null ||  collisionLadder() != null) {
             if(jumpMan.jump.direction == 0) {
                 jumpMan.jump.jumpX  = 3
-                jumpMan.jump.velY=0 //give it a kick
+                jumpMan.jump.velY=0
             } else if(jumpMan.jump.direction == 1) {
                 jumpMan.jump.jumpX  = -3
-                jumpMan.jump.velY=0 //give it a kick
+                jumpMan.jump.velY=0
             } else if (jumpMan.jump.direction == 2){
                jumpMan.jump.velY=3 
                jumpMan.jump.a = 1
@@ -189,8 +189,8 @@
   }
   
   function left() {
-      jumpMan.jump.velX= jumpMan.jump.velX>0?0:jumpMan.jump.velX> -6?jumpMan.jump.velX-=1:jumpMan.jump.velX
-        
+        console.log(speed)
+        jumpMan.jump.velX= jumpMan.jump.velX>0?0:jumpMan.jump.velX> -6?jumpMan.jump.velX-=speed:jumpMan.jump.velX
         //changer direction ou aretter
         if(jumpMan.posAct.x < 1 && jumpMan.jump.velX < 0)
            jumpMan.jump.velX = 0 
@@ -210,7 +210,7 @@
   }
   
   function right() {
-        jumpMan.jump.velX = jumpMan.jump.velX<0?0:jumpMan.jump.velX<6?jumpMan.jump.velX+=1:jumpMan.jump.velX
+        jumpMan.jump.velX = jumpMan.jump.velX<0?0:jumpMan.jump.velX<6?jumpMan.jump.velX+=speed:jumpMan.jump.velX
         
         //changer direction ou aretter
         if(jumpMan.posAct.x >= 302 && jumpMan.jump.velX > 0)
