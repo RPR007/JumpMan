@@ -62,8 +62,9 @@
     jumpMan.deplacement.fr = jumpMan.deplacement.fr==3?1:jumpMan.deplacement.fr+1
     
       function closureAnimer() {
+
           
-        if(decors.arrBombs.length == 0 || score.live == 0) {
+        if( decors.arrBombs.length == 0 || score.life == 0 ) {
             gameOver()
         }
         
@@ -94,12 +95,14 @@
           jumpMan.posAct.dropTotal = 0
         }
         else if (jumpMan.posAct.y==162 && jumpMan.posAct.dropTotal == 6  ){
-          console.log('petit jump plateforme mortelle')
+              console.log('petit jump plateforme mortelle')
+          lostOneLive()
         }
         else if (jumpMan.posAct.dropTotal > 40) {
-          console.log('gros jump mortelle')
+          //console.log('gros jump mortelle')
+          lostOneLive()
         }
-        console.log( drop+" : "+jumpMan.posAct.dropTotal+" : "+jumpMan.posAct.y )
+        //console.log( drop+" : "+jumpMan.posAct.dropTotal+" : "+jumpMan.posAct.y )
 
     }
     
@@ -469,8 +472,7 @@
 
   function lostOneLive()
   {
-    console.log('lost 1 live')
-    score.live--
+    score.life--
   }
 
 

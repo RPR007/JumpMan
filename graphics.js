@@ -315,7 +315,7 @@
         score.player = 1
         score.speed = 1
         score.bonus = 1500
-        timer = setInterval(function(){ score.bonus > 0 ? score.bonus-=100 : score.bonus == 0}, 5000);
+        timer = setInterval(function(){ score.bonus > 0 ? score.bonus-=100 : score.bonus == 0}, 500);
     }
     
     function drawScore() {

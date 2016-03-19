@@ -34,7 +34,8 @@
 
         if ( (c<b && a<d) || (a<d && c<b) ) {
             bal.chassing = true
-            bal.velX = (e>f?score.speed:-score.speed)
+            sounds.ball.play()
+            bal.velX = (e>f?ballSpeed:-ballSpeed)
             bal.velY = 0
         }
       }
@@ -53,8 +54,9 @@
       d1 = bal.y
       d2 = bal.y+bal.h
 
-      if ( ( (b1<a2 && a1<b2) || (a1<b2 && b1<a2) ) && ( (d1<c2 && c1<d2) || (c1<d2 && d1<c2) ) ){
+      if ( ( (b1<=a2 && a1<=b2) || (a1<=b2 && b1<=a2) ) && ( (d1<=c2 && c1<=d2) || (c1<=d2 && d1<=c2) ) ){
         lostOneLive()
+        initBal()
       }
   }  
 
