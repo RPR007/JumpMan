@@ -18,6 +18,7 @@
         
         if ( (c<b && a<d) || (a<d && c<b) ) {
             bal.chassing = true
+            sounds.ball.play()
             bal.velY = (e>f?ballSpeed:-ballSpeed)
             bal.velX = 0
         }
