@@ -11,6 +11,7 @@
           break;
           case 38: // up
             jumpMan.deplacement.u = true
+            jumpMan.jump.direction = 2
           break;
           case 39: // right
             jumpMan.deplacement.r = true
@@ -162,9 +163,10 @@
      
         jumpMan.posAct.x += jumpMan.jump.jumpX-4
         if(touchFloor() != null) {
-            console.log(jumpMan.posAct.y)
-            console.log(touchFloor().y)
             jumpMan.posAct.y = touchFloor().y - jumpMan.graphic.h -1
+            jumpMan.deplacement.jumping = false
+            jumpMan.jump.velY = 0
+        } else if(collisionLadder()) {
             jumpMan.deplacement.jumping = false
             jumpMan.jump.velY = 0
         } else
@@ -181,7 +183,10 @@
             jumpMan.deplacement.jumping = false
             jumpMan.jump.velY = 0
             
-        } else
+        } else if(collisionLadder()) {
+            jumpMan.deplacement.jumping = false
+            jumpMan.jump.velY = 0
+        }else
             jumpMan.jump.jumpX++ 
      }
      
@@ -189,7 +194,6 @@
         jumpMan.graphic = decors.JumpManGraphics[5]
         if(jumpMan.jump.velY == 0 || collisionRope()) {
             jumpMan.deplacement.jumping = false
-            jumpMan.graphic = decors.JumpManGraphics[4]
             
             if(collisionRope())
                 jumpMan.graphic = decors.JumpManGraphics[9]
@@ -203,6 +207,11 @@
             jumpMan.jump.velY-=3
          } else {
             jumpMan.jump.velY+=3
+        }
+        
+         if(collisionLadder()) {
+            jumpMan.deplacement.jumping = false
+            jumpMan.jump.velY=0
         }
      }
      
@@ -227,7 +236,9 @@
         if ( touchFloor() == null) {
           jumpMan.posAct.y+= 2
         }
-        jumpMan.posAct.y+= jumpMan.jump.velY
+        
+        if(!collisionLadder())
+            jumpMan.posAct.y+= jumpMan.jump.velY
 
   }
   
@@ -251,7 +262,9 @@
         if ( touchFloor() == null) {
           jumpMan.posAct.y+= 2
         }
-        jumpMan.posAct.y+= jumpMan.jump.velY
+        
+        if(!collisionLadder())
+            jumpMan.posAct.y+= jumpMan.jump.velY
 
   }
   
