@@ -26,6 +26,11 @@
     }
   }
 
+  function restart() {
+      effacer()
+      initScene()
+  }
+  
   function effacer() {
     context.clearRect(0, 0, width , height )
   }
@@ -69,7 +74,11 @@
     initRopes()
     initBombs()
     initJumpMan()
+<<<<<<< HEAD
     initBal()
+=======
+    initScore()
+>>>>>>> 05f8b899942cbee0c796008ad42f123fb9dc9846
   }
 
   function floor(pX , pY , pNbRep , pIdBomb) {
@@ -257,11 +266,12 @@
      // jumpMan.posAct = {x:(316/2)-8,y:114}
       jumpMan.posPr  = {x:0,y:0}
       jumpMan.deplacement = {l:false,u:false,r:false,j:false,fr:1}
-      jumpMan.jump = { jumping:false,jumpX : 0, direction : 1 ,posAct : {x:(316/2)-8,y:114},velX:0.0, velY:0.0, gravity:0.5}
+      jumpMan.jump = { jumping:false,jumpX : 0, direction : 2 , a : 1, posAct : {x:(316/2)-8,y:114},velX:0.0, velY:0.0, gravity:0.5}
       jumpMan.graphic = decors.JumpManGraphics[4]
       drawJumpMan()
     }
 
+    
     function drawJumpMan() {
       var actX = jumpMan.posAct.x
       var actY = jumpMan.posAct.y
@@ -291,6 +301,17 @@
       context.restore()
     }
     
+    function initScore() {
+        life = 3
+        score = 0
+        level = 1
+        player = 1
+        speed = 4
+        bonus = 1500
+        
+        setInterval(function(){ bonus-=100 }, 5000);
+    }
+    
     function drawScore() {
         context.save()
         
@@ -308,42 +329,42 @@
             context.fillRect(0,scoreY,canvas.width/3,scoreHeight/2)
             
             context.fillStyle = "black"
-            context.font="30px commodore64";
-            context.fillText("JUMPMEN = ", 0, scoreY+30)
+            context.font=scoreHeight/2-5 + "px commodore64";
+            context.fillText("JUMPMEN = " + life, 0, scoreY+(scoreHeight/2)-5)
             // Score
             context.fillStyle = 'white'
             context.fillRect(0,scoreY+scoreHeight/2,canvas.width/3,scoreHeight/2)
             
             context.fillStyle = "black"
-            context.font="30px commodore64";
-            context.fillText("SCORE = ", 0, scoreY+30+scoreHeight/2)
+            context.font=scoreHeight/2-5 + "px commodore64";
+            context.fillText("SCORE = " + score, 0, scoreY+scoreHeight-5)
             // Level
             context.fillStyle = green
             context.fillRect(canvas.width/3+vSpaceWidth,scoreY,canvas.width/3-vSpaceWidth,scoreHeight/2)
             context.fillStyle = "black"
-            context.font="30px commodore64";
-            context.fillText("LEVEL = ", canvas.width/3+vSpaceWidth, scoreY+30)
+            context.font=scoreHeight/2-5 + "px commodore64";
+            context.fillText("LEVEL = " + level, canvas.width/3+vSpaceWidth, scoreY+(scoreHeight/2)-5)
             
             // Player
             context.fillStyle = blue
             context.fillRect(canvas.width/3+vSpaceWidth,scoreY+scoreHeight/2,canvas.width/3-vSpaceWidth,scoreHeight/2)
             context.fillStyle = "black"
-            context.font="30px commodore64";
-            context.fillText("PLAYER = ", canvas.width/3+vSpaceWidth, scoreY+30+scoreHeight/2)
+            context.font=scoreHeight/2-5 + "px commodore64";
+            context.fillText("PLAYER = " + player, canvas.width/3+vSpaceWidth, scoreY+scoreHeight-5)
             
             // Run Speed
             context.fillStyle = yellow
             context.fillRect(canvas.width*(2/3)+vSpaceWidth,scoreY,canvas.width*(2/3),scoreHeight/2)
              context.fillStyle = "black"
-            context.font="30px commodore64";
-            context.fillText("RUN SPEED = ", canvas.width*(2/3)+vSpaceWidth, scoreY+30)
+            context.font=scoreHeight/2-5 + "px commodore64";
+            context.fillText("RUN SPEED = " + speed, canvas.width*(2/3)+vSpaceWidth, scoreY+(scoreHeight/2)-5)
             
             // Bonus
             context.fillStyle = 'white'
             context.fillRect(canvas.width*(2/3)+vSpaceWidth,scoreY+scoreHeight/2,canvas.width*(2/3),scoreHeight/2)
              context.fillStyle = "black"
-            context.font="30px commodore64";
-            context.fillText("BONUS = ", canvas.width*(2/3)+vSpaceWidth, scoreY+30+scoreHeight/2)
+            context.font=scoreHeight/2-5 + "px commodore64";
+            context.fillText("BONUS = " + bonus, canvas.width*(2/3)+vSpaceWidth, scoreY+(scoreHeight-5))
         }
         
         context.restore()
