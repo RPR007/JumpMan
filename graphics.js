@@ -237,8 +237,8 @@
    function initBombs() {
        decors.arrBombs =[]
        bomb(8,14,1);             bomb(136,8,4);  bomb(176,8,7);               bomb(304,14,10);  
-       bomb(8,46,112);bomb(70,76,5);                             bomb(240,76,8);bomb(304,50,11); //y 46
-       bomb(8,166,113);            bomb(130,146,6);bomb(182,146,9);             bomb(304,166,12); 
+       bomb(8,46,2);bomb(70,76,5);                             bomb(240,76,8);bomb(304,50,11); //y 46
+       bomb(8,166,3);            bomb(130,146,6);bomb(182,146,9);             bomb(304,166,12); 
    }
 
    function drawBomb(pX , pY) {
@@ -343,7 +343,7 @@
             context.fillStyle = "black"
             context.font=scoreHeight/2-5 + "px commodore64";
             context.fillText("SCORE = " + score.score, 0, scoreY+scoreHeight-5)
-            
+
             // Level
             context.fillStyle = green
             context.fillRect(canvas.width/3+vSpaceWidth,scoreY,canvas.width/3-vSpaceWidth,scoreHeight/2)
