@@ -103,10 +103,10 @@
         if (touchFloor() != null ||  collisionLadder() != null) {
             if(jumpMan.jump.direction == 0) {
                 jumpMan.jump.jumpX  = 3
-                jumpMan.jump.velY=0 //give it a kick
+                jumpMan.jump.velY=0
             } else if(jumpMan.jump.direction == 1) {
                 jumpMan.jump.jumpX  = -3
-                jumpMan.jump.velY=0 //give it a kick
+                jumpMan.jump.velY=0
             } else if (jumpMan.jump.direction == 2){
                jumpMan.jump.velY=3 
                jumpMan.jump.a = 1
@@ -130,10 +130,13 @@
         }
         else if (!jumpMan.deplacement.l  && !jumpMan.deplacement.l){
           jumpMan.jump.velX=0
-          jumpMan.graphic = decors.JumpManGraphics[0]
+          
+          if(!collisionLadder() && !collisionRope())
+            jumpMan.graphic = decors.JumpManGraphics[0]
         }
         else{
-          jumpMan.graphic = decors.JumpManGraphics[0]
+          if(!collisionLadder() && !collisionRope())
+            jumpMan.graphic = decors.JumpManGraphics[0]
         }
 
     }
@@ -167,13 +170,19 @@
             jumpMan.posAct.y = touchFloor().y - jumpMan.graphic.h -1
             jumpMan.deplacement.jumping = false
             jumpMan.jump.velY = 0
+            
         } else
             jumpMan.jump.jumpX++ 
      }
      
      function jumpUp() {
+        jumpMan.graphic = decors.JumpManGraphics[5]
         if(jumpMan.jump.velY == 0 || collisionRope()) {
             jumpMan.deplacement.jumping = false
+            jumpMan.graphic = decors.JumpManGraphics[4]
+            
+            if(collisionRope())
+                jumpMan.graphic = decors.JumpManGraphics[9]
         } else if(jumpMan.jump.velY == 12)
             jumpMan.jump.a *= -1
             
@@ -190,8 +199,7 @@
   }
   
   function left() {
-      jumpMan.jump.velX= jumpMan.jump.velX>0?0:jumpMan.jump.velX> -6?jumpMan.jump.velX-=1:jumpMan.jump.velX
-        
+        jumpMan.jump.velX= jumpMan.jump.velX>0?0:jumpMan.jump.velX> -6?jumpMan.jump.velX-=score.speed:jumpMan.jump.velX
         //changer direction ou aretter
         if(jumpMan.posAct.x < 1 && jumpMan.jump.velX < 0)
            jumpMan.jump.velX = 0 
@@ -211,7 +219,7 @@
   }
   
   function right() {
-        jumpMan.jump.velX = jumpMan.jump.velX<0?0:jumpMan.jump.velX<6?jumpMan.jump.velX+=1:jumpMan.jump.velX
+        jumpMan.jump.velX = jumpMan.jump.velX<0?0:jumpMan.jump.velX<6?jumpMan.jump.velX+=score.speed:jumpMan.jump.velX
         
         //changer direction ou aretter
         if(jumpMan.posAct.x >= 302 && jumpMan.jump.velX > 0)
@@ -237,6 +245,7 @@
     var obj = null
     // Ladder
     if((obj = collisionLadder()) != null) {
+        switchJumpManLadder()
         if((jumpMan.posAct.y+jumpMan.graphic.h)-4 > obj.y) {
             jumpMan.posAct.y-=4
         } else {
@@ -245,6 +254,7 @@
                 jumpMan.posAct.y = obj.y-jumpMan.graphic.h + 1
         }
     } else if((obj = collisionRope()) != null) {
+        switchJumpManRope()
         if(jumpMan.posAct.y-4 > obj.y)
             jumpMan.posAct.y-=4
         else {
@@ -258,6 +268,7 @@
     
     // Ladder
     if((obj = collisionLadder()) != null) {
+        switchJumpManLadder()
         if((jumpMan.posAct.y+jumpMan.graphic.h)+4 < obj.y+obj.nbRep*8)
             jumpMan.posAct.y+=4
         else {
@@ -267,6 +278,7 @@
         }
     // Rope
     } else if((obj = collisionRope()) != null) {
+         switchJumpManRope()
          if((jumpMan.posAct.y+jumpMan.graphic.h)+4 < obj.y+16+jumpMan.graphic.h-1)
             jumpMan.posAct.y+=4
         else
@@ -274,14 +286,31 @@
     }
   }
   
+  function switchJumpManLadder() {
+      if(jumpMan.graphic == decors.JumpManGraphics[5])
+        jumpMan.graphic = decors.JumpManGraphics[6]
+      else if(jumpMan.graphic == decors.JumpManGraphics[6])
+        jumpMan.graphic = decors.JumpManGraphics[7]
+      else if(jumpMan.graphic == decors.JumpManGraphics[7])
+        jumpMan.graphic = decors.JumpManGraphics[8]
+      else
+        jumpMan.graphic = decors.JumpManGraphics[5]
+  }
+  
+  function switchJumpManRope() {
+      if(jumpMan.graphic == decors.JumpManGraphics[9])
+        jumpMan.graphic = decors.JumpManGraphics[10]
+      else
+        jumpMan.graphic = decors.JumpManGraphics[9]
+  }
 
   function collisionLadder()
   {
     var collision = false, i
     for(i = 0; !collision && i < decors.arrLadders.length; i++) {
-        if(jumpMan.posAct.x >= decors.arrLadders[i].x
-          && jumpMan.posAct.x + jumpMan.graphic.w <= decors.arrLadders[i].x + (decors.arrLadders[i].w)
-          && (jumpMan.posAct.y+jumpMan.graphic.h >= decors.arrLadders[i].y-1
+        if(jumpMan.posAct.x >= decors.arrLadders[i].x-5
+          && jumpMan.posAct.x + jumpMan.graphic.w <= decors.arrLadders[i].x + (decors.arrLadders[i].w) + 5
+          && (jumpMan.posAct.y+jumpMan.graphic.h >= decors.arrLadders[i].y
              && jumpMan.posAct.y+jumpMan.graphic.h <= decors.arrLadders[i].y + decors.arrLadders[i].nbRep*8)) {
                  collision = true
              }

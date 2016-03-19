@@ -273,7 +273,7 @@
       jumpMan.posPr  = {x:0,y:0}
       jumpMan.deplacement = {l:false,u:false,r:false,j:false,fr:1}
       jumpMan.jump = { jumping:false,jumpX : 0, direction : 2 , a : 1, posAct : {x:(316/2)-8,y:114},velX:0.0, velY:0.0, gravity:0.5}
-      jumpMan.graphic = decors.JumpManGraphics[4]
+      jumpMan.graphic = decors.JumpManGraphics[0]
       drawJumpMan()
     }
 
@@ -308,14 +308,14 @@
     }
     
     function initScore() {
+      
         score.life = 3
         score.score = 0
         score.level = 1
         score.player = 1
         score.speed = 4
         score.bonus = 1500
-
-        timer = setInterval(function(){ score.bonus-=100 }, 5000);
+        timer = setInterval(function(){ score.bonus > 0 ? score.bonus-=100 : score.bonus == 0}, 5000);
     }
     
     function drawScore() {
@@ -332,7 +332,7 @@
             
             // Life
             context.fillStyle = yellow
-            context.fillRect(0,scoreY,canvas.width/3,scoreHeight/2)
+            context.fillRect(0,score.scoreY,canvas.width/3,scoreHeight/2)
             
             context.fillStyle = "black"
             context.font=scoreHeight/2-5 + "px commodore64";
