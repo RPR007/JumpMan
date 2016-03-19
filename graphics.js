@@ -313,7 +313,7 @@
         score.score = 0
         score.level = 1
         score.player = 1
-        score.speed = 4
+        score.speed = 1
         score.bonus = 1500
         timer = setInterval(function(){ score.bonus > 0 ? score.bonus-=100 : score.bonus == 0}, 5000);
     }

@@ -5,7 +5,7 @@
 
   function initSounds() {
       var objSon = document.createElement('audio')
-      objSon.setAttribute('src', 'sounds/ball')
+      objSon.setAttribute('src', 'sounds/bal.wav')
       objSon.load()
     sounds.ball = objSon
 
