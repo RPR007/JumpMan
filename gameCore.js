@@ -62,11 +62,8 @@
     
       function closureAnimer() {
           
-        if(decors.arrBombs.length == 0) {
-            score += bonus
-            window.cancelAnimationFrame(objCycleAnimation)
-            sounds.over.play()
-            alert("La partie est terminé. \n\nVous avez obtenu un score de " + score)
+        if(decors.arrBombs.length == 0 || score.live == 0) {
+            gameOver()
         }
         
         effacer()
@@ -202,8 +199,8 @@
   
   function left() {
         sounds.pas.play()
-        console.log(speed)
-        jumpMan.jump.velX= jumpMan.jump.velX>0?0:jumpMan.jump.velX> -6?jumpMan.jump.velX-=speed:jumpMan.jump.velX
+        console.log(score.speed)
+        jumpMan.jump.velX= jumpMan.jump.velX>0?0:jumpMan.jump.velX> -6?jumpMan.jump.velX-=score.speed:jumpMan.jump.velX
 
         //changer direction ou aretter
         if(jumpMan.posAct.x < 1 && jumpMan.jump.velX < 0)
@@ -225,7 +222,7 @@
   
   function right() {
         sounds.pas.play()
-        jumpMan.jump.velX = jumpMan.jump.velX<0?0:jumpMan.jump.velX<6?jumpMan.jump.velX+=speed:jumpMan.jump.velX
+        jumpMan.jump.velX = jumpMan.jump.velX<0?0:jumpMan.jump.velX<6?jumpMan.jump.velX+=score.speed:jumpMan.jump.velX
 
         
         //changer direction ou aretter
@@ -241,7 +238,6 @@
         jumpMan.posAct.x+= jumpMan.jump.velX
         jumpMan.posAct.y-= 2
         if ( touchFloor() == null) {
-          console.log("monte 2")
           jumpMan.posAct.y+= 2
         }
         jumpMan.posAct.y+= jumpMan.jump.velY
@@ -453,23 +449,20 @@
   function lostOneLive()
   {
     console.log('lost 1 live')
-    if (score.score-1 > 1) {
-      score.score--
-    }
-    else {
-      gameOver()
-    }
+    score.live--
   }
 
 
   function gameOver()
   {
-      if ( confirm("Vous êtes mort! Voulez-vous rejouer?") ) {
-        restart()
-      } 
-      else{
-        // stop animation frame
-        // erase canvas
-      }
+    score.score += score.bonus
+    window.cancelAnimationFrame(objCycleAnimation)
+    sounds.over.play()
+    alert("La partie est terminé. \n\nVous avez obtenu un score de " + score.score)
+    restart()
+    if ( confirm("Vous êtes mort! \n\nVoulez-vous rejouer?") ) {
+      animer()
+    } 
+    
   }
 

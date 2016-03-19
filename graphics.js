@@ -268,7 +268,7 @@
       decors.JumpManGraphics[12] = jumpManDead2()
       decors.JumpManGraphics[13] = jumpManDead3()
 
-      jumpMan.posAct = {x:280,y:0}
+      jumpMan.posAct = {x:154,y:100}
      // jumpMan.posAct = {x:(316/2)-8,y:114}
       jumpMan.posPr  = {x:0,y:0}
       jumpMan.deplacement = {l:false,u:false,r:false,j:false,fr:1}
@@ -308,7 +308,7 @@
     }
     
     function initScore() {
-      
+
         score.life = 3
         score.score = 0
         score.level = 1
@@ -340,10 +340,10 @@
             // Score
             context.fillStyle = 'white'
             context.fillRect(0,scoreY+scoreHeight/2,canvas.width/3,scoreHeight/2)
-            
             context.fillStyle = "black"
             context.font=scoreHeight/2-5 + "px commodore64";
             context.fillText("SCORE = " + score.score, 0, scoreY+scoreHeight-5)
+            
             // Level
             context.fillStyle = green
             context.fillRect(canvas.width/3+vSpaceWidth,scoreY,canvas.width/3-vSpaceWidth,scoreHeight/2)
