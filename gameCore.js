@@ -68,7 +68,7 @@
 
     collisionJM()
     collisionBomb()
-
+    
     //si pas dans corde , pas dans échelle et pas jumping
     if (collisionLadder() == null 
        && collisionRope() == null
@@ -83,12 +83,12 @@
     if (jumpMan.deplacement.jumping) { jump() }
     else if (jumpMan.deplacement.l && jumpMan.deplacement.r) {}
     else if (jumpMan.deplacement.j) {
-        if (touchFloor()) {
+        if (touchFloor() || collisionLadder()) {
             if(jumpMan.jump.direction == 0) {
-                jumpMan.jump.jumpX  = 4
+                jumpMan.jump.jumpX  = 3
                 jumpMan.jump.velY=0 //give it a kick
             } else {
-                jumpMan.jump.jumpX  = -4
+                jumpMan.jump.jumpX  = -3
                 jumpMan.jump.velY=0 //give it a kick
             }
             jumpMan.jump.initPos = {x:jumpMan.posAct.x,y:jumpMan.posAct.y}
@@ -127,16 +127,17 @@
      
      function jumpLeft() {
         jumpMan.posAct.x += jumpMan.jump.jumpX-4
-        if(jumpMan.jump.jumpX == -4 ) {
+        if(jumpMan.posAct.x == -4) {
             jumpMan.deplacement.jumping = false
             jumpMan.jump.velY = 0
         } else
             jumpMan.jump.jumpX-- 
+            
      }
      
      function jumpRight() {
         jumpMan.posAct.x += jumpMan.jump.jumpX+4
-        if(jumpMan.jump.jumpX == 4 ) {
+        if(jumpMan.posAct.x == 4) {
             jumpMan.deplacement.jumping = false
             jumpMan.jump.velY = 0
         } else
@@ -285,7 +286,7 @@
   {
     touch =  false
     for (var i = 0; i < decors.arrFloors.length; i++) {
-      if (jumpMan.posAct.y+jumpMan.graphic.h == decors.arrFloors[i].y  && 
+      if (Math.ceil(jumpMan.posAct.y)+jumpMan.graphic.h == decors.arrFloors[i].y  && 
           jumpMan.posAct.x+jumpMan.graphic.w-1 >= decors.arrFloors[i].x &&
           jumpMan.posAct.x<= decors.arrFloors[i].x+decors.arrFloors[i].w )  {
             touch = true

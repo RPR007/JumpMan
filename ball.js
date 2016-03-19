@@ -11,6 +11,7 @@
         */
   function collisionJM()
   {
+    speed = 5
     if (bal.active && !bal.chassing) {
       //déplacement horisontal 2 || 4
       if (bal.diretion == 2 || bal.diretion == 4) {
@@ -18,35 +19,13 @@
         b = jumpMan.posAct.x+jumpMan.graphic.h
         c = bal.x
         d = bal.x+bal.w
-        //direction 2
-        if (bal.diretion == 2) { 
-          if ( c<b && a<d ) {
+        e = jumpMan.posAct.y
+        f = bal.y
+        
+        if ( (c<b && a<d) || (a<d && c<b) ) {
             bal.chassing = true
-            bal.velY = 3
+            bal.velY = (e>f?speed:-speed)
             bal.velX = 0
-            console.log("2,1")
-          }
-          else if ( a<d && c<b ){
-            bal.chassing = true
-            bal.velY = 3
-            bal.velX = 0
-            console.log("2,2")
-          }
-        }
-        //direction 4
-        else{ 
-          if ( c<b && a<d ) {
-            bal.chassing = true
-            bal.velY = 3
-            bal.velX = 0
-            console.log("4,1")
-          }
-          else if ( a<d && c<b ){
-            bal.chassing = true
-            bal.velY = 3
-            bal.velX = 0
-            console.log("4,2")
-          }
         }
       }
       //déplacement horisontal 1 || 3
@@ -55,35 +34,13 @@
         b = jumpMan.posAct.y+jumpMan.graphic.w
         c = bal.y
         d = bal.y+bal.w 
-        //direction 1
-        if (bal.diretion == 1) { 
-          if ( c<b && a<d ) {
+        e = jumpMan.posAct.y
+        f = bal.y
+
+        if ( (c<b && a<d) || (a<d && c<b) ) {
             bal.chassing = true
-            bal.velX = 3
+            bal.velX = (e>f?speed:-speed)
             bal.velY = 0
-            console.log("1,1")
-          }
-          else if ( a<d && c<b ){
-            bal.chassing = true
-            bal.velX = 3
-            bal.velY = 0
-            console.log("1,2")
-          }
-        }
-        //direction 3
-        else{ 
-          if ( c<b && a<d ) {
-            bal.chassing = true
-            bal.velX = 3
-            bal.velY = 0
-            console.log("3,1")
-          }
-          else if ( a<d && c<b ){
-            bal.chassing = true
-            bal.velX = 3
-            bal.velY = 0
-            console.log("3,2")
-          }
         }
       }
     }
@@ -120,21 +77,25 @@
     
     switch(bal.diretion ) {
         case 1: //go down
+          console.log("down")
           bal.velY = 1
           bal.x = Math.floor((Math.random()*decors.dims.x - bal.w)+bal.w) 
           bal.y = 0
           break;
          case 2: //go right 
+          console.log("right")
           bal.velX = 1
           bal.x = 0 
           bal.y = Math.floor((Math.random()*decors.dims.y- bal.w) )
           break;
         case 3://go up
+          console.log("up")
           bal.velY = -1
           bal.x = Math.floor((Math.random()*180 - bal.h)) 
           bal.y = decors.dims.y - 20
           break;
         case 4: //go left
+          console.log("left")
           bal.velX = -1
           bal.x = decors.dims.x
           bal.y =  Math.floor((Math.random()*decors.dims.y -20 -bal.h)+bal.h )
