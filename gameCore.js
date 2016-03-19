@@ -86,9 +86,20 @@
     //si pas dans corde , pas dans échelle et pas jumping
     if (collisionLadder() == null 
        && collisionRope() == null
-       && !jumpMan.deplacement.jumping) { 
+       && !jumpMan.deplacement.jumping) {
+         console.log("applyGravity")
         applyGravity()
     }
+    
+    else if((obj = collisionRope()) != null) {
+        switchJumpManRope()
+        if(jumpMan.posAct.y+jumpMan.graphic.h-4 > obj.y)
+            jumpMan.posAct.y-=4
+        else {
+            jumpMan.posAct.y = obj.y-16
+            jumpMan.jump.velY = 0
+        }
+    } 
     
   }
 
@@ -97,7 +108,7 @@
   {
     if (jumpMan.deplacement.jumping) { jump() }
     else if (jumpMan.deplacement.l && jumpMan.deplacement.r) {}
-    else if (jumpMan.deplacement.j) {
+    else if (jumpMan.deplacement.j || (jumpMan.deplacement.u && !collisionLadder() && !collisionRope())) {
         if (touchFloor() != null ||  collisionLadder() != null) {
             if(jumpMan.jump.direction == 0) {
                 jumpMan.jump.jumpX  = 3
@@ -257,14 +268,7 @@
             if(!collisionLadder())
                 jumpMan.posAct.y = obj.y-jumpMan.graphic.h + 1
         }
-    } else if((obj = collisionRope()) != null) {
-        switchJumpManRope()
-        if(jumpMan.posAct.y-4 > obj.y)
-            jumpMan.posAct.y-=4
-        else {
-            jumpMan.posAct.y = obj.y
-        }
-    } 
+    }
   }
   
   function down() {
@@ -282,12 +286,6 @@
                 jumpMan.posAct.y = obj.y+obj.nbRep*8 - jumpMan.graphic.h
         }
     // Rope
-    } else if((obj = collisionRope()) != null) {
-         switchJumpManRope()
-         if((jumpMan.posAct.y+jumpMan.graphic.h)+4 < obj.y+16+jumpMan.graphic.h-1)
-            jumpMan.posAct.y+=4
-        else
-            jumpMan.posAct.y = obj.y+15
     }
   }
   
@@ -330,8 +328,8 @@
     for(i = 0; !collision && i < decors.arrRopes.length; i++) {
         if(jumpMan.posAct.x >= decors.arrRopes[i].x-8
           && jumpMan.posAct.x + jumpMan.graphic.w <= decors.arrRopes[i].x + 12
-          && (jumpMan.posAct.y >= decors.arrRopes[i].y
-             && jumpMan.posAct.y <= decors.arrRopes[i].y + 16-1)) {
+          && (jumpMan.posAct.y+jumpMan.graphic.h >= decors.arrRopes[i].y
+             && jumpMan.posAct.y <= decors.arrRopes[i].y + 15)) {
                  collision = true
              }
     }
