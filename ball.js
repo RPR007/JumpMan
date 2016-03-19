@@ -3,15 +3,9 @@
 */var bal = {h:2,w:4,velX:0,velY:0,active:true}
 
 
-/*  Vérification si 2 ligne se touchent  L1:AB L2:CD 
-        j1    b1      j2   b2     b1  j1       b2   j2
-         A    C       B    D      C    A       D    B
-         -----* - - - *------     -----* - - - *------
-            ( C<B && A<D )    ||    ( A<D && C<B )
-        */
   function collisionJM()
   {
-    var ballSpeed = speed + 4
+    var ballSpeed = score.speed + 4
     if (bal.active && !bal.chassing) {
       //déplacement horisontal 2 || 4
       if (bal.diretion == 2 || bal.diretion == 4) {
@@ -35,24 +29,41 @@
         b = jumpMan.posAct.y+jumpMan.graphic.w
         c = bal.y
         d = bal.y+bal.w 
-        e = jumpMan.posAct.y
-        f = bal.y
+        e = jumpMan.posAct.x
+        f = bal.x
 
         if ( (c<b && a<d) || (a<d && c<b) ) {
             bal.chassing = true
-            bal.velX = (e>f?speed:-speed)
+            bal.velX = (e>f?score.speed:-score.speed)
             bal.velY = 0
         }
       }
     }
   }
 
+  function killJM()
+  {
+      a1 = jumpMan.posAct.x
+      a2 = jumpMan.posAct.x+jumpMan.graphic.w
+      b1 = jumpMan.posAct.x
+      b2 = jumpMan.posAct.x+jumpMan.graphic.h
+
+      c1 = bal.x
+      c2 = bal.x+bal.w
+      d1 = bal.y
+      d2 = bal.y+bal.h
+
+      if ( ( (b1<a2 && a1<b2) || (a1<b2 && b1<a2) ) && ( (d1<c2 && c1<d2) || (c1<d2 && d1<c2) ) ){
+        lostOneLive()
+      }
+  }  
+
   function moveBal()
   {
     bal.x += bal.velX 
     bal.y += bal.velY 
-    if (bal.x < 0             ||bal.x > decors.dims.x ||
-        bal.y < 0             ||bal.y > decors.dims.y ) {
+    if (bal.x < 0 || bal.x > decors.dims.x ||
+        bal.y < 0 || bal.y > decors.dims.y ) {
       initBal()
     }
   }
@@ -78,29 +89,24 @@
     
     switch(bal.diretion ) {
         case 1: //go down
-          console.log("down")
           bal.velY = 1
           bal.x = Math.floor((Math.random()*decors.dims.x - bal.w)+bal.w) 
           bal.y = 0
           break;
          case 2: //go right 
-          console.log("right")
           bal.velX = 1
           bal.x = 0 
           bal.y = Math.floor((Math.random()*decors.dims.y- bal.w) )
           break;
         case 3://go up
-          console.log("up")
           bal.velY = -1
           bal.x = Math.floor((Math.random()*180 - bal.h)) 
           bal.y = decors.dims.y - 20
           break;
         case 4: //go left
-          console.log("left")
           bal.velX = -1
           bal.x = decors.dims.x
           bal.y =  Math.floor((Math.random()*decors.dims.y -20 -bal.h)+bal.h )
           break;
     }
   }
-

@@ -62,11 +62,8 @@
     
       function closureAnimer() {
           
-        if(decors.arrBombs.length == 0) {
-            score += bonus
-            window.cancelAnimationFrame(objCycleAnimation)
-            sounds.over.play()
-            alert("La partie est terminé. \n\nVous avez obtenu un score de " + score)
+        if(decors.arrBombs.length == 0 || score.live == 0) {
+            gameOver()
         }
         
         effacer()
@@ -82,6 +79,7 @@
     moveJumpMan()
     moveBal()
 
+    killJM()
     collisionJM()
     collisionBomb()
     
@@ -212,8 +210,9 @@
   
   function left() {
         sounds.pas.play()
-        console.log(speed)
-        jumpMan.jump.velX= jumpMan.jump.velX>0?0:jumpMan.jump.velX> -6?jumpMan.jump.velX-=speed:jumpMan.jump.velX
+        console.log(score.speed)
+        jumpMan.jump.velX= jumpMan.jump.velX>0?0:jumpMan.jump.velX> -6?jumpMan.jump.velX-=score.speed:jumpMan.jump.velX
+
         //changer direction ou aretter
         if(jumpMan.posAct.x < 1 && jumpMan.jump.velX < 0)
            jumpMan.jump.velX = 0 
@@ -234,7 +233,8 @@
   
   function right() {
         sounds.pas.play()
-        jumpMan.jump.velX = jumpMan.jump.velX<0?0:jumpMan.jump.velX<6?jumpMan.jump.velX+=speed:jumpMan.jump.velX
+        jumpMan.jump.velX = jumpMan.jump.velX<0?0:jumpMan.jump.velX<6?jumpMan.jump.velX+=score.speed:jumpMan.jump.velX
+
         
         //changer direction ou aretter
         if(jumpMan.posAct.x >= 302 && jumpMan.jump.velX > 0)
@@ -249,7 +249,6 @@
         jumpMan.posAct.x+= jumpMan.jump.velX
         jumpMan.posAct.y-= 2
         if ( touchFloor() == null) {
-          console.log("monte 2")
           jumpMan.posAct.y+= 2
         }
         jumpMan.posAct.y+= jumpMan.jump.velY
@@ -438,9 +437,30 @@
     finalSize = decors.arrBombs.length
 
     // Score
-    score += 100
+    score.score += 100
     
     return initSize-1 == finalSize
   
+  }
+
+
+  function lostOneLive()
+  {
+    console.log('lost 1 live')
+    score.live--
+  }
+
+
+  function gameOver()
+  {
+    score.score += score.bonus
+    window.cancelAnimationFrame(objCycleAnimation)
+    sounds.over.play()
+    alert("La partie est terminé. \n\nVous avez obtenu un score de " + score.score)
+    restart()
+    if ( confirm("Vous êtes mort! \n\nVoulez-vous rejouer?") ) {
+      animer()
+    } 
+    
   }
 
