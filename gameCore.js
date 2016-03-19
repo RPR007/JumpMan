@@ -77,18 +77,29 @@
   function updateAnimation()
   {
     moveJumpMan()
+    killJM()
     moveBal()
 
-    killJM()
+    
     collisionJM()
     collisionBomb()
     
     //si pas dans corde , pas dans échelle et pas jumping
-    if (collisionLadder() == null 
-       && collisionRope() == null
-       && !jumpMan.deplacement.jumping) {
-         console.log("applyGravity")
-        applyGravity()
+    if (collisionLadder() == null && collisionRope() == null && !jumpMan.deplacement.jumping){
+        drop = applyGravity()
+        jumpMan.posAct.dropTotal += drop
+
+        if (drop == 0) {
+          jumpMan.posAct.dropTotal = 0
+        }
+        else if (jumpMan.posAct.y==162 && jumpMan.posAct.dropTotal == 6  ){
+          console.log('petit jump plateforme mortelle')
+        }
+        else if (jumpMan.posAct.dropTotal > 40) {
+          console.log('gros jump mortelle')
+        }
+        console.log( drop+" : "+jumpMan.posAct.dropTotal+" : "+jumpMan.posAct.y )
+
     }
     
     else if((obj = collisionRope()) != null) {
@@ -155,7 +166,6 @@
      sounds.jump.play()
      jumpMan.jump.direction == 0 ? jumpLeft() : jumpMan.jump.direction == 1 ? jumpRight() : jumpUp()
      
-     console.log("Jump")
      function jumpLeft() {
         jumpMan.jump.velY = -(3/4) * Math.pow(jumpMan.jump.jumpX,2) + 12
         jumpMan.posAct.y = jumpMan.jump.initPos.y - jumpMan.jump.velY
@@ -210,8 +220,7 @@
   
   function left() {
         sounds.pas.play()
-        console.log(score.speed)
-        jumpMan.jump.velX= jumpMan.jump.velX>0?0:jumpMan.jump.velX> -6?jumpMan.jump.velX-=score.speed:jumpMan.jump.velX
+        jumpMan.jump.velX = jumpMan.jump.velX>0?0:jumpMan.jump.velX> -6?jumpMan.jump.velX-=score.speed:jumpMan.jump.velX
 
         //changer direction ou aretter
         if(jumpMan.posAct.x < 1 && jumpMan.jump.velX < 0)
@@ -290,6 +299,7 @@
   }
   
   function switchJumpManLadder() {
+
       if(jumpMan.graphic == decors.JumpManGraphics[5])
         jumpMan.graphic = decors.JumpManGraphics[6]
       else if(jumpMan.graphic == decors.JumpManGraphics[6])
@@ -458,7 +468,7 @@
     sounds.over.play()
     alert("La partie est terminé. \n\nVous avez obtenu un score de " + score.score)
     restart()
-    if ( confirm("Vous êtes mort! \n\nVoulez-vous rejouer?") ) {
+    if ( confirm("Voulez-vous rejouer?") ) {
       animer()
     } 
     
