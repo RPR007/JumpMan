@@ -65,6 +65,7 @@
         if(decors.arrBombs.length == 0) {
             score += bonus
             window.cancelAnimationFrame(objCycleAnimation)
+            sounds.over.play()
             alert("La partie est terminé. \n\nVous avez obtenu un score de " + score)
         }
         
@@ -142,8 +143,9 @@
   }
   
   function jump() {
+     sounds.jump.play()
      jumpMan.jump.direction == 0 ? jumpLeft() : jumpMan.jump.direction == 1 ? jumpRight() : jumpUp()
-   
+     
      console.log("Jump")
      function jumpLeft() {
         jumpMan.jump.velY = -(3/4) * Math.pow(jumpMan.jump.jumpX,2) + 12
@@ -198,6 +200,7 @@
   }
   
   function left() {
+        sounds.pas.play()
         console.log(speed)
         jumpMan.jump.velX= jumpMan.jump.velX>0?0:jumpMan.jump.velX> -6?jumpMan.jump.velX-=speed:jumpMan.jump.velX
         //changer direction ou aretter
@@ -219,6 +222,7 @@
   }
   
   function right() {
+        sounds.pas.play()
         jumpMan.jump.velX = jumpMan.jump.velX<0?0:jumpMan.jump.velX<6?jumpMan.jump.velX+=speed:jumpMan.jump.velX
         
         //changer direction ou aretter
@@ -245,6 +249,7 @@
     var obj = null
     // Ladder
     if((obj = collisionLadder()) != null) {
+        sounds.pas.play()
         switchJumpManLadder()
         if((jumpMan.posAct.y+jumpMan.graphic.h)-4 > obj.y) {
             jumpMan.posAct.y-=4
@@ -269,6 +274,7 @@
     // Ladder
     if((obj = collisionLadder()) != null) {
         switchJumpManLadder()
+        sounds.pas.play()
         if((jumpMan.posAct.y+jumpMan.graphic.h)+4 < obj.y+obj.nbRep*8)
             jumpMan.posAct.y+=4
         else {
@@ -355,6 +361,7 @@
       if ( ( (bxMin < jxMax && jxMin < bxMax )||(jxMin < bxMax && bxMin < jxMax) ) &&
            ( (byMin < jyMax && jyMin < byMax )||(jyMin < byMax && byMin < jyMax) ) ) {
           disarmBomb(decors.arrBombs[i])
+          sounds.bomb.play()
           collide = true
           break
       }
