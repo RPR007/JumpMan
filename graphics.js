@@ -264,7 +264,7 @@
       jumpMan.posPr  = {x:0,y:0}
       jumpMan.deplacement = {l:false,u:false,r:false,j:false,fr:1}
       jumpMan.jump = { jumping:false,jumpX : 0, direction : 2 , a : 1, posAct : {x:(316/2)-8,y:114},velX:0.0, velY:0.0, gravity:0.5}
-      jumpMan.graphic = decors.JumpManGraphics[4]
+      jumpMan.graphic = decors.JumpManGraphics[0]
       drawJumpMan()
     }
 
